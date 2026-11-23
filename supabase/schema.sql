@@ -1,28 +1,39 @@
--- Run this in the Supabase SQL editor once.
+-- DeutscheProbe on the Supabase free tier.
+-- Run this once in the SQL editor after creating a project.
 
-create table if not exists public.clients (
-  id uuid primary key default gen_random_uuid(),
-  clerk_user_id text not null unique,
-  name text not null default 'Support',
-  color text not null default '#9184d9',
-  public_key text not null unique,
-  stripe_customer_id text,
-  stripe_subscription_id text,
-  subscription_status text not null default 'inactive',
-  created_at timestamptz not null default now()
+create table if not exists public.profiles (
+  id uuid primary key references auth.users (id) on delete cascade,
+  display_name text not null,
+  exam text not null check (exam in ('goethe', 'telc')),
+  level text not null check (level in ('A1', 'A2', 'B1', 'B2')),
+  goal text default '',
+  exam_in_days integer default 30,
+  onboarded boolean default false,
+  created_at timestamptz default now()
 );
 
-create table if not exists public.faq_entries (
-  id uuid primary key default gen_random_uuid(),
-  client_id uuid not null references public.clients(id) on delete cascade,
-  question text not null,
-  answer text not null,
-  created_at timestamptz not null default now()
+create table if not exists public.attempts (
+  id text primary key,
+  user_id uuid not null references auth.users (id) on delete cascade,
+  track_id text not null,
+  task_id text not null,
+  skill text not null,
+  mode text not null check (mode in ('practice', 'exam')),
+  score numeric,
+  max_score numeric not null,
+  payload jsonb,
+  created_at timestamptz default now()
 );
 
-create index if not exists faq_entries_client_id_idx on public.faq_entries (client_id);
+alter table public.profiles enable row level security;
+alter table public.attempts enable row level security;
 
-alter table public.clients enable row level security;
-alter table public.faq_entries enable row level security;
+create policy "profiles select own" on public.profiles
+  for select using (auth.uid() = id);
+create policy "profiles insert own" on public.profiles
+  for insert with check (auth.uid() = id);
+create policy "profiles update own" on public.profiles
+  for update using (auth.uid() = id);
 
--- No anon/authenticated policies: the Next.js server uses the service role key.
+create policy "attempts own" on public.attempts
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);

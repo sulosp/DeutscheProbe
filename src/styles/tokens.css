@@ -1,0 +1,141 @@
+/*
+  DeutscheProbe design tokens.
+
+  This is the only place colours, type, radius and shadow are defined.
+  Components use the semantic names (brand, surface, skill-lesen, …).
+  To reskin the product, edit the values below.
+
+  Brand placeholder until the final palette arrives:
+    light  #0B6BCB
+    dark   #0B6BCB for filled surfaces (white text stays readable)
+           #9CCBFF for text and links on dark surfaces
+
+  The favicon (src/app/icon.svg) repeats the light brand hex because a
+  static icon cannot read CSS variables. Update it when the brand changes.
+
+  No green: success is a blue tone. Sprachbausteine is deep indigo/navy,
+  Lesen is sky blue, the brand is a separate royal blue.
+*/
+
+:root {
+  color-scheme: light;
+
+  --brand: #0b6bcb;
+  --brand-hover: #0957a8;
+  --brand-foreground: #ffffff;
+  --brand-text: #0b4f9c;
+  --brand-soft: #e6f2fc;
+  --brand-softer: #f4f9fd;
+
+  --surface: #f3f6fb;
+  --surface-raised: #ffffff;
+  --surface-sunken: #e7eef6;
+  --text: #142033;
+  --text-muted: #5c6d84;
+  --text-soft: #8493a8;
+  --border: #e1e8f2;
+  --border-strong: #c5d2e2;
+  --overlay: rgb(20 32 51 / 0.48);
+
+  --success: #0b6bcb;
+  --success-soft: #e6f2fc;
+  --warn: #b45309;
+  --warn-soft: #fef3e2;
+  --error: #d12b4a;
+  --error-soft: #fdecef;
+
+  --skill-sprechen: #c2410c;
+  --skill-sprechen-vivid: #f97316;
+  --skill-sprechen-soft: #fff1e8;
+  --skill-hoeren: #6d28d9;
+  --skill-hoeren-vivid: #8b5cf6;
+  --skill-hoeren-soft: #f3ecfe;
+  --skill-lesen: #0369a1;
+  --skill-lesen-vivid: #0ea5e9;
+  --skill-lesen-soft: #e0f2fe;
+  --skill-schreiben: #be185d;
+  --skill-schreiben-vivid: #ec4899;
+  --skill-schreiben-soft: #fdecf4;
+  --skill-sprachbausteine: #1e1b4b;
+  --skill-sprachbausteine-vivid: #3730a3;
+  --skill-sprachbausteine-soft: #eeeefb;
+
+  --streak: #c2410c;
+  --streak-soft: #fff1e8;
+
+  --dp-shadow-sm: 0 1px 2px rgb(20 32 51 / 0.06);
+  --dp-shadow-md: 0 16px 40px -24px rgb(20 32 51 / 0.35);
+  --dp-shadow-lg: 0 28px 60px -28px rgb(20 32 51 / 0.45);
+
+  --dp-radius-sm: 0.625rem;
+  --dp-radius-md: 0.875rem;
+  --dp-radius-lg: 1.125rem;
+  --dp-radius-xl: 1.375rem;
+  --dp-radius-2xl: 1.75rem;
+
+  --dp-text-micro: 0.75rem;
+  --dp-text-small: 0.875rem;
+  --dp-text-body: 1rem;
+  --dp-text-lead: 1.125rem;
+  --dp-text-h3: 1.25rem;
+  --dp-text-h2: 1.5rem;
+  --dp-text-h1: 2rem;
+  --dp-text-display: clamp(2.15rem, 4vw, 3.15rem);
+  --dp-tracking-display: -0.035em;
+  --dp-leading-tight: 1.15;
+  --dp-leading-body: 1.6;
+
+  --dp-space-page: 1.5rem;
+  --dp-space-section: 1.75rem;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --brand: #0b6bcb;
+  --brand-hover: #3b8fe0;
+  --brand-foreground: #ffffff;
+  --brand-text: #9ccbff;
+  --brand-soft: #173154;
+  --brand-softer: #121c2e;
+
+  --surface: #0e1524;
+  --surface-raised: #171f33;
+  --surface-sunken: #0a101c;
+  --text: #e7eef8;
+  --text-muted: #a7b4c8;
+  --text-soft: #7e8da3;
+  --border: #2a3650;
+  --border-strong: #3c4e6e;
+  --overlay: rgb(0 0 0 / 0.62);
+
+  --success: #9ccbff;
+  --success-soft: #163056;
+  --warn: #f0b27a;
+  --warn-soft: #3a2a1c;
+  --error: #ff8aa0;
+  --error-soft: #3a1c26;
+
+  --skill-sprechen: #fdba8c;
+  --skill-sprechen-vivid: #fb923c;
+  --skill-sprechen-soft: #3a2418;
+  --skill-hoeren: #ddd6fe;
+  --skill-hoeren-vivid: #a78bfa;
+  --skill-hoeren-soft: #2a2148;
+  --skill-lesen: #7dd3fc;
+  --skill-lesen-vivid: #38bdf8;
+  --skill-lesen-soft: #082f49;
+  --skill-schreiben: #f9a8d4;
+  --skill-schreiben-vivid: #f472b6;
+  --skill-schreiben-soft: #3a1c2e;
+  --skill-sprachbausteine: #c7d2fe;
+  --skill-sprachbausteine-vivid: #818cf8;
+  --skill-sprachbausteine-soft: #1e2348;
+
+  --streak: #fdba8c;
+  --streak-soft: #3a2418;
+
+  --dp-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.35);
+  --dp-shadow-md: 0 16px 40px -24px rgb(0 0 0 / 0.7);
+  --dp-shadow-lg: 0 28px 60px -28px rgb(0 0 0 / 0.75);
+}
