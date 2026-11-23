@@ -1,13 +1,105 @@
 @import "tailwindcss";
-@import "../styles/nocturne.css";
-@import "../styles/app.css";
+@import "../styles/tokens.css";
 
-html,
-body {
-  margin: 0;
-  min-height: 100%;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-text: var(--brand-text);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-softer: var(--brand-softer);
+  --color-surface: var(--surface);
+  --color-raised: var(--surface-raised);
+  --color-sunken: var(--surface-sunken);
+  --color-foreground: var(--text);
+  --color-muted: var(--text-muted);
+  --color-soft: var(--text-soft);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-overlay: var(--overlay);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--error);
+  --color-danger-soft: var(--error-soft);
+  --color-skill-sprechen: var(--skill-sprechen);
+  --color-skill-sprechen-vivid: var(--skill-sprechen-vivid);
+  --color-skill-sprechen-soft: var(--skill-sprechen-soft);
+  --color-skill-hoeren: var(--skill-hoeren);
+  --color-skill-hoeren-vivid: var(--skill-hoeren-vivid);
+  --color-skill-hoeren-soft: var(--skill-hoeren-soft);
+  --color-skill-lesen: var(--skill-lesen);
+  --color-skill-lesen-vivid: var(--skill-lesen-vivid);
+  --color-skill-lesen-soft: var(--skill-lesen-soft);
+  --color-skill-schreiben: var(--skill-schreiben);
+  --color-skill-schreiben-vivid: var(--skill-schreiben-vivid);
+  --color-skill-schreiben-soft: var(--skill-schreiben-soft);
+  --color-skill-sprachbausteine: var(--skill-sprachbausteine);
+  --color-skill-sprachbausteine-vivid: var(--skill-sprachbausteine-vivid);
+  --color-skill-sprachbausteine-soft: var(--skill-sprachbausteine-soft);
+  --color-streak: var(--streak);
+  --color-streak-soft: var(--streak-soft);
+
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: var(--dp-radius-sm);
+  --radius-md: var(--dp-radius-md);
+  --radius-lg: var(--dp-radius-lg);
+  --radius-xl: var(--dp-radius-xl);
+  --radius-2xl: var(--dp-radius-2xl);
+
+  --shadow-sm: var(--dp-shadow-sm);
+  --shadow-card: var(--dp-shadow-md);
+  --shadow-pop: var(--dp-shadow-lg);
+
+  --text-micro: var(--dp-text-micro);
+  --text-small: var(--dp-text-small);
+  --text-lead: var(--dp-text-lead);
+  --text-h3: var(--dp-text-h3);
+  --text-h2: var(--dp-text-h2);
+  --text-h1: var(--dp-text-h1);
+  --text-display: var(--dp-text-display);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  overflow: auto;
+  min-height: 100vh;
+  background-color: var(--surface);
+  background-image: radial-gradient(1100px 420px at 8% -10%, var(--brand-soft), transparent 60%);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--dp-text-body);
+  line-height: var(--dp-leading-body);
+}
+
+.display {
+  font-size: var(--dp-text-display);
+  letter-spacing: var(--dp-tracking-display);
+  line-height: var(--dp-leading-tight);
+  font-weight: 600;
+}
+
+::selection {
+  background: var(--brand-soft);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
 }

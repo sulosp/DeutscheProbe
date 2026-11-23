@@ -1,45 +1,24 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import { clerkConfigured } from "@/lib/env";
-import { THEME_INIT_SCRIPT } from "@/lib/theme";
+import { Inter } from "next/font/google";
+import { Providers } from "@/components/providers";
 import "./globals.css";
 
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
 export const metadata: Metadata = {
-  title: "Nebula — FAQ chatbot for your site",
-  description:
-    "Add your FAQs, paste a script tag, and let a chatbot answer from your own content.",
-};
-
-const clerkAppearance = {
-  variables: {
-    colorBackground: "var(--color-surface)",
-    colorPrimary: "var(--color-accent)",
-    colorText: "var(--color-text)",
-    colorTextSecondary: "var(--color-text)",
-    colorInputBackground: "var(--color-bg)",
-    colorInputText: "var(--color-text)",
-    colorNeutral: "var(--color-text)",
-    borderRadius: "8px",
+  title: {
+    default: "DeutscheProbe",
+    template: "%s · DeutscheProbe",
   },
+  description: "Kostenlos Goethe und telc üben: Lesen, Hören, Schreiben, Sprechen und Probeprüfungen. Beispieldaten, kein Abo.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const inner = (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
-      </head>
-      <body className="antialiased">{children}</body>
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="de" className={inter.variable} suppressHydrationWarning>
+      <body className={`${inter.className} antialiased`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
-
-  if (!clerkConfigured()) {
-    return inner;
-  }
-
-  return <ClerkProvider appearance={clerkAppearance}>{inner}</ClerkProvider>;
 }

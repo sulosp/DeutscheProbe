@@ -1,56 +1,82 @@
-# Nebula
+# DeutscheProbe
 
-Embeddable FAQ chatbot. A client logs in, types their own Q&A pairs, pastes a script tag on their site, and visitors get answers from that FAQ (or “Please contact us”).
+Kostenlose Web-App zum Üben der Goethe- und telc-Prüfungen Deutsch A1 bis B2. Lesen, Hören, Schreiben, Sprechen und, bei telc B1 und B2, Sprachbausteine. Dazu eine Probeprüfung pro Strecke: Start, Teile in der öffentlichen Reihenfolge, Übergänge, Ergebnis, Auswertungen.
 
-Phase 2–4 (inquiry dashboard, analytics, extra branding) stay out until this loop is selling.
+Die Aufgaben sind eigene Beispieldaten. DeutscheProbe ist nicht mit dem Goethe-Institut oder telc verbunden und verwendet keine Prüfungslogos und keine offiziellen Aufgaben.
 
-## Local setup
+## Demo-Modus
 
-1. Accept Clerk Marketplace terms: [vercel.com/sulo/~/integrations/accept-terms/clerk](https://vercel.com/sulo/~/integrations/accept-terms/clerk?source=cli) then rerun:
+Ohne Umgebungsvariablen läuft die App lokal im Browser:
 
-```
-npx vercel integration add clerk --plan hobby_2025_08 --no-claim
-npx vercel integration add supabase --plan free --no-claim
-npx vercel integration add stripe --plan sandbox --no-claim
-npx vercel env pull --yes
-```
+- Konto, Ziel und Versuche liegen in `localStorage`
+- eine laufende Probeprüfung liegt in `sessionStorage`
+- Schreiben und Sprechen bekommen eine eingebaute Einschätzung
+- Hören nutzt die Sprachausgabe des Browsers
+- Sprechen nimmt über das Mikrofon auf (`MediaRecorder`). Die Aufnahme bleibt im Tab
 
-Or paste keys by hand into `.env.local`:
+`Beispiel ansehen` öffnet ein Beispielkonto auf Goethe B1. Die Zahlen auf der Übersicht sind dann als Beispieldaten gekennzeichnet, bis eigene Versuche dazukommen.
 
-```
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+## Einrichten
 
-NEXT_PUBLIC_SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-
-GROQ_API_KEY=
-GROQ_MODEL=openai/gpt-oss-20b
-
-STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
-STRIPE_PRICE_ID=
-
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+```bash
+npm install
+cp .env.example .env.local
+npm run dev
 ```
 
-2. In the Supabase SQL editor, run `supabase/schema.sql`.
-3. Create a Groq API key at [console.groq.com](https://console.groq.com).
-4. Stripe: test mode is enough. If `STRIPE_PRICE_ID` is empty, checkout creates a $29/mo price automatically. For webhooks locally: `stripe listen --forward-to localhost:3000/api/stripe/webhook`.
-5. `npm install` then `npm run dev`.
+Die App liegt auf [http://localhost:3000](http://localhost:3000).
 
-Dashboard FAQ + widget settings are gated on an active Stripe subscription (test card `4242…` works). After checkout, you land on billing with `session_id` so access unlocks even before the webhook fires.
+## Umgebung
 
-## Routes
+Siehe `.env.example`. Nichts davon ist Pflicht.
 
-- `/` landing
-- `/sign-in` `/sign-up` Clerk
-- `/dashboard` FAQ table
-- `/dashboard/settings` name, color, script tag
-- `/dashboard/billing` $29/mo Checkout
-- `/widget.js` embed script (`data-client="nb_…"`)
-- `POST /api/chat` `{ publicKey, message }`
+| Variable | Zweck |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase-Projekt, Free Tier |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | anon key |
+| `GEMINI_API_KEY` | Einschätzung für Schreiben und Sprechen, Free Tier |
+| `GEMINI_MODEL` | Standard `gemini-2.0-flash` |
+
+Supabase: E-Mail und Google unter Authentication aktivieren, `.../auth/callback` als Redirect eintragen, dann `supabase/schema.sql` im SQL-Editor ausführen. Profile und Versuche sind mit Row Level Security auf die eigene Nutzerin beschränkt.
+
+Ohne `GEMINI_API_KEY` antwortet `/api/feedback` mit der Demo-Einschätzung.
+
+## Strecken
+
+Acht Übersichten: Goethe und telc, jeweils A1, A2, B1, B2. Prüfung und Niveau lassen sich auf der Übersicht wechseln.
+
+Probeprüfungen folgen der üblichen Reihenfolge und den veröffentlichten Dauern (Orientierung, keine amtliche Durchführung):
+
+- Goethe A1: Hören, Lesen, Schreiben, Sprechen
+- Goethe A2, B1, B2: Lesen, Hören, Schreiben, Sprechen
+- telc A1 und A2: Hören, dann der Block Lesen und Schreiben, dann Sprechen
+- telc B1 und B2: Lesen, Sprachbausteine, Hören, Schreiben, Sprechen
+
+Zwischen den schriftlichen Goethe-Modulen B1 und B2 ist in der Prüfung eine Pause vorgesehen. In der App kann man sofort weitergehen. Während der Prüfung gibt es keine Auswertung.
+
+Neue Aufgaben kommen als Einträge in `src/content/goethe.ts` oder `src/content/telc.ts`. Die Strecke verweist in `src/content/tracks.ts` auf die Aufgaben-ID.
+
+## Gestaltung
+
+Farben, Schriftgrößen, Radien und Schatten stehen in `src/styles/tokens.css`. Komponenten benutzen nur diese Namen. Die Marke ist bis zur endgültigen Palette ein Blau (`#0B6BCB` im Hellen). Darstellung: Hell, Dunkel oder System, Schalter im Kopf, gespeichert unter `deutscheprobe-theme`, ohne Aufblitzen beim Laden.
+
+Die Bausteine liegen in `src/components/ui` (Button, Card, Badge, SkillBadge, Chip, Tabs, Timer, ProgressBar, Input, Modal). `/design-system` zeigt Tokens und Komponenten.
+
+## Skripte
+
+```bash
+npm run dev
+npm run lint
+npm run build
+npm start
+```
+
+## Deployment ohne Kosten
+
+**Vercel Hobby.** Repository verbinden, Framework Next.js. Für den Demo-Modus sind keine Variablen nötig. Supabase und Gemini nur eintragen, wenn sie genutzt werden.
+
+**Cloudflare Pages.** Die App ist ein gewöhnliches Next.js-Projekt ohne node-eigene Zusatzmodule. Für Pages den OpenNext-Adapter für Cloudflare verwenden (`@opennextjs/cloudflare`) und mit dem Next.js-Preset bauen. Auch dort reicht der Demo-Modus ohne Secrets. `GEMINI_API_KEY` bleibt serverseitig.
+
+## Hinweise
+
+Lesen, Hören und Sprachbausteine werden im Browser gewertet. Schreiben und Sprechen schickt nur Text, Notizen, Stichpunkte und die Dauer an `/api/feedback`, nicht die Audiodatei.

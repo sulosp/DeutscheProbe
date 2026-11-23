@@ -1,36 +1,30 @@
 {
-  "name": "nebula",
+  "name": "deutscheprobe",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "@ai-sdk/groq": "^4.0.33",
-    "@clerk/nextjs": "^7.8.2",
-    "@phosphor-icons/react": "^2.1.10",
-    "@supabase/supabase-js": "^2.112.4",
-    "ai": "^7.0.79",
-    "next": "^15.3.3",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "stripe": "^22.5.0",
-    "zod": "^4.4.3"
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.81.1",
+    "next": "^15.5.6",
+    "next-themes": "^0.4.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@tailwindcss/postcss": "^4.1.7",
-    "@types/node": "^22.15.21",
-    "@types/react": "^19.1.4",
-    "@types/react-dom": "^19.1.5",
-    "eslint": "^9.27.0",
-    "eslint-config-next": "^15.3.3",
-    "playwright": "^1.61.1",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.7",
-    "typescript": "^5.8.3"
+    "@tailwindcss/postcss": "^4.1.16",
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.1.1",
+    "@types/react-dom": "^19.1.1",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "^15.5.6",
+    "tailwindcss": "^4.1.16",
+    "typescript": "^5.9.3"
   }
 }
