@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { IconArrow, IconFlame } from "@/components/icons";
+import { ReadinessDonut, SkillRing, WeekBars, WeekSpark } from "@/components/dashboard/charts";
 import { Badge, ScorePill, SkillBadge } from "@/components/ui/badge";
 import { BrandPanel, Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,7 @@ import { minutesToday, sampleMode, skillStat, streakCount, weekMarks } from "@/l
 import { useExamSession } from "@/lib/exam-session";
 import { useFullExamSession } from "@/lib/full-exam-session";
 import { useAppState } from "@/lib/storage";
-import type { ExamId, Level, Skill, Track } from "@/lib/types";
+import type { ExamId, Level, Track } from "@/lib/types";
 
 const LEVELS: Level[] = ["A1", "A2", "B1", "B2"];
 const DAYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
@@ -42,16 +43,29 @@ export function DashboardView({ track }: { track: Track }) {
           taskId: attempt.result.taskId,
           score: attempt.result.feedback.percent,
         }));
+  const stats = skills.map((skill) => ({ skill, ...skillStat(track, attempts, skill, sample) }));
+  const readiness = stats.length ? Math.round(stats.reduce((sum, item) => sum + item.percent, 0) / stats.length) : 0;
+  const activeDays = week.filter(Boolean).length;
+  const todayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
+  const bars = week.map((on, index) => {
+    if (!on) return 10;
+    if (index === todayIndex) return Math.max(28, Math.round((minutes / 30) * 100));
+    return 72;
+  });
+  const upcoming = [track.recommendedTaskId, ...track.quickTaskIds]
+    .map((id) => getTask(id))
+    .filter((task, index, list): task is NonNullable<typeof task> => Boolean(task) && list.findIndex((item) => item?.id === task?.id) === index);
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
+    <div className="space-y-5">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="min-w-0">
-          <h1 className="text-h1 font-extrabold tracking-tight md:text-display">
+          <p className="text-small font-semibold text-brand-text">{track.title}</p>
+          <h1 className="mt-1 text-h2 font-extrabold tracking-tight md:text-h1">
             {track.hello}, {firstName(profile.name)}!
           </h1>
-          <p className="mt-2 max-w-2xl text-muted">
-            Ziel: {track.title} · Prüfung in {profile.examInDays} Tagen. {track.tagline}
+          <p className="mt-1 max-w-2xl text-small text-muted">
+            Prüfung in {profile.examInDays} Tagen. {track.tagline}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -69,7 +83,7 @@ export function DashboardView({ track }: { track: Track }) {
             {exam === "goethe" ? "Goethe" : "telc"}
           </Chip>
         ))}
-        <span className="ml-2 text-small text-muted">Niveau wechseln</span>
+        <span className="ml-2 text-small text-muted">Niveau</span>
         {LEVELS.map((level) => (
           <Chip key={level} active={profile.level === level} onClick={() => setTrack(profile.exam, level)}>
             {level}
@@ -97,7 +111,6 @@ export function DashboardView({ track }: { track: Track }) {
           </Button>
         </Card>
       ) : null}
-
       {session?.status === "active" && session.trackId !== "goethe-b1" ? (
         <Card className="flex flex-wrap items-center justify-between gap-3 p-4">
           <div>
@@ -110,78 +123,171 @@ export function DashboardView({ track }: { track: Track }) {
         </Card>
       ) : null}
 
-      {track.layout === "goethe" ? (
-        <GoetheTop track={track} recommendedTitle={recommended?.title ?? "Aufgabe"} minutes={minutes} week={week} reason={track.recommendReason} streak={streak} sample={sample} />
-      ) : (
-        <TelcTop track={track} />
-      )}
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
+        <StatCard label="Serie" value={String(streak)} unit="Tage" note={`${activeDays}/7 Tagen aktiv`} values={bars} />
+        <StatCard label="Heute" value={String(minutes)} unit="Min." note="Ziel 30 Min." values={bars} />
+        <StatCard label="Prüfung" value={String(profile.examInDays)} unit="Tage" note={track.level} values={bars} />
+        <StatCard label="Bereitschaft" value={`${readiness}`} unit="%" note={sample ? "Beispieldaten" : "Ø der Teile"} values={stats.map((item) => item.percent)} />
 
-      <section>
-        <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-h3 font-bold">Dein Fortschritt nach Prüfungsteil</h2>
-          {sample ? <span className="text-micro text-soft">Beispieldaten</span> : null}
-        </div>
-        <div className={skills.length > 4 ? "grid gap-3 sm:grid-cols-2 xl:grid-cols-5" : "grid gap-3 sm:grid-cols-2 xl:grid-cols-4"}>
-          {skills.map((skill) => {
-            const stat = skillStat(track, attempts, skill, sample);
-            return (
-              <Card key={skill} className="p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <SkillBadge skill={skill} />
-                  <span className="text-h2 font-extrabold tabular-nums">{stat.percent}%</span>
-                </div>
-                <div className="mt-4">
-                  <ProgressBar value={stat.percent} skill={skill} label={SKILL_LABEL[skill]} />
-                </div>
-                <div className="mt-3 flex justify-between text-micro text-muted">
+        <Card className="col-span-2 p-4 md:p-5">
+          <div className="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <h2 className="font-bold">Aktivität diese Woche</h2>
+              <p className="text-micro text-muted">{sample ? "Beispielwoche, bis eigene Versuche dazukommen." : "Tage mit mindestens einer Übung."}</p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-small font-bold text-streak">
+              <IconFlame /> {streak}
+            </span>
+          </div>
+          <WeekBars
+            labels={DAYS}
+            values={bars}
+            caption={`Wochenaktivität. ${DAYS.map((day, index) => `${day} ${week[index] ? "geübt" : "frei"}`).join(", ")}.`}
+          />
+          <div className="mt-3 flex items-center justify-between text-small">
+            <span className="text-muted">Tagesziel</span>
+            <span className="font-semibold tabular-nums">{minutes} / 30 Min.</span>
+          </div>
+          <div className="mt-2">
+            <ProgressBar value={(minutes / 30) * 100} tone="streak" label="Tagesziel" />
+          </div>
+        </Card>
+
+        <Card className="col-span-2 flex flex-col items-center justify-center gap-2 p-4 lg:col-span-1">
+          <h2 className="self-start font-bold">Prüfungsreife</h2>
+          <ReadinessDonut percent={readiness} caption={`Prüfungsreife ${readiness} Prozent, Durchschnitt der Teile.`} />
+          <p className="text-center text-micro text-muted">{readiness >= 60 ? "Im Bereich vieler bestandener Prüfungen." : "Noch üben, besonders den schwächsten Teil."}</p>
+        </Card>
+
+        <BrandPanel className="col-span-2 flex flex-col justify-between p-4 lg:col-span-1">
+          <div>
+            <p className="text-micro font-semibold text-brand-text dark:font-normal dark:text-brand-foreground/80">
+              Probeprüfung · {track.title.replace("Goethe-Zertifikat ", "Goethe ").replace("telc Deutsch ", "telc ")}
+            </p>
+            <h2 className="mt-2 text-h3 font-extrabold leading-tight">Probe starten</h2>
+            <p className="mt-2 text-small text-muted dark:text-brand-foreground/85">
+              {track.layout === "goethe" ? "Teile in der echten Reihenfolge, mit Timer." : track.parts.map((part) => part.label).join(", ") + "."}
+            </p>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {track.parts.map((part) => (
+              <span key={part.taskId} className="rounded-full bg-raised px-2.5 py-1 text-micro font-semibold text-brand-text dark:bg-brand-foreground/15 dark:text-brand-foreground">
+                {part.label} {part.minutes}m
+              </span>
+            ))}
+          </div>
+          <Button href="/probe" variant="ghost" className="exam-cta mt-4 w-fit">
+            Jetzt starten <IconArrow />
+          </Button>
+        </BrandPanel>
+
+        <Card className="col-span-2 p-4 md:p-5">
+          <h2 className="font-bold">Fertigkeiten</h2>
+          <div className={`mt-4 grid gap-3 ${skills.length > 4 ? "grid-cols-3 sm:grid-cols-5" : "grid-cols-2 sm:grid-cols-4"}`}>
+            {stats.map((item) => (
+              <SkillRing key={item.skill} skill={item.skill} percent={item.percent} label={SKILL_LABEL[item.skill]} />
+            ))}
+          </div>
+          <ul className="mt-4 space-y-3">
+            {stats.map((item) => (
+              <li key={item.skill}>
+                <div className="mb-1 flex justify-between text-micro text-muted">
                   <span>
-                    {stat.done} von {stat.total || stat.done} Teilen geübt
+                    {SKILL_LABEL[item.skill]} · {item.done} von {item.total || item.done} Teilen
                   </span>
-                  <span className="font-semibold text-foreground">Ø {stat.points}/100</span>
+                  <span className="font-semibold text-foreground">Ø {item.points}/100</span>
                 </div>
-              </Card>
-            );
-          })}
-        </div>
-      </section>
+                <ProgressBar value={item.percent} skill={item.skill} label={SKILL_LABEL[item.skill]} />
+              </li>
+            ))}
+          </ul>
+        </Card>
 
-      <div className="grid gap-4 lg:grid-cols-[1.4fr_0.8fr]">
-        <Card className="p-4 md:p-5">
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-h3 font-bold">Letzte Ergebnisse</h2>
+        <Card className="col-span-2 p-4 md:p-5">
+          <div className="flex items-center justify-between">
+            <h2 className="font-bold">Als Nächstes</h2>
+            <span className="text-micro text-muted">Diese Woche</span>
+          </div>
+          <div className="mt-3 grid grid-cols-7 gap-1">
+            {DAYS.map((day, index) => (
+              <div key={day} className="text-center">
+                <div
+                  className={`mx-auto grid h-8 w-8 place-items-center rounded-xl text-micro font-bold ${week[index] ? "bg-brand text-brand-foreground" : "bg-sunken text-soft"} ${index === todayIndex ? "ring-2 ring-brand-text" : ""}`}
+                >
+                  {week[index] ? "✓" : ""}
+                </div>
+                <div className="mt-1 text-micro text-muted">{day}</div>
+              </div>
+            ))}
+          </div>
+          <ul className="mt-4 space-y-3">
+            {upcoming.map((task) => (
+              <li key={task.id} className="flex items-center gap-3">
+                <SkillBadge skill={task.skill} />
+                <div className="min-w-0 flex-1">
+                  <div className="truncate font-semibold">{task.title}</div>
+                  <div className="text-micro text-muted">
+                    {task.teil} · {task.minutes} Min.
+                    {task.id === recommended?.id ? ` · ${track.recommendReason}` : ""}
+                  </div>
+                </div>
+                <Button href={`/ueben/${task.skill}/${task.id}`} variant="secondary" size="sm">
+                  Start
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+        <Card className="col-span-2 p-4 md:p-5 lg:col-span-4">
+          <div className="mb-2 flex items-center justify-between">
+            <h2 className="font-bold">Letzte Ergebnisse</h2>
             <Button href="/profil" variant="soft" size="sm">
               Alle ansehen
             </Button>
           </div>
-          <ul className="divide-y divide-border">
-            {results.length === 0 ? <li className="py-6 text-small text-muted">Noch keine Versuche auf dieser Strecke.</li> : null}
-            {results.map((result) => {
-              const task = getTask(result.taskId);
-              if (!task) return null;
-              return (
-                <li key={`${result.when}-${result.taskId}`}>
-                  <Link href={`/ueben/${task.skill}/${task.id}`} className="flex items-center gap-3 py-3">
-                    <span className="w-16 shrink-0 text-small text-muted">{result.when}</span>
-                    <SkillBadge skill={task.skill} />
-                    <span className="min-w-0 flex-1 truncate font-medium">{task.title}</span>
-                    <ScorePill score={result.score} />
-                    <IconArrow className="hidden text-soft sm:block" />
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </Card>
-        <section>
-          <h2 className="mb-3 text-h3 font-bold">Schnell üben</h2>
-          <div className="space-y-3">
-            {track.quickTaskIds.map((id) => {
-              const task = getTask(id);
-              if (!task) return null;
-              return <TaskCard key={task.id} skill={task.skill} title={task.title} meta={`${task.teil} · ${task.minutes} Min.`} href={`/ueben/${task.skill}/${task.id}`} />;
-            })}
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[32rem] text-left text-small">
+              <thead>
+                <tr className="border-b border-border text-micro text-muted">
+                  <th className="py-2 font-semibold">Datum</th>
+                  <th className="py-2 font-semibold">Teil</th>
+                  <th className="py-2 font-semibold">Aufgabe</th>
+                  <th className="py-2 text-right font-semibold">Punkte</th>
+                </tr>
+              </thead>
+              <tbody>
+                {results.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="py-6 text-muted">
+                      Noch keine Versuche auf dieser Strecke.
+                    </td>
+                  </tr>
+                ) : null}
+                {results.map((result) => {
+                  const task = getTask(result.taskId);
+                  if (!task) return null;
+                  return (
+                    <tr key={`${result.when}-${result.taskId}`} className="border-b border-border last:border-0">
+                      <td className="py-3 text-muted">{result.when}</td>
+                      <td className="py-3">
+                        <SkillBadge skill={task.skill} />
+                      </td>
+                      <td className="py-3">
+                        <Link href={`/ueben/${task.skill}/${task.id}`} className="font-semibold hover:text-brand-text">
+                          {task.title}
+                        </Link>
+                      </td>
+                      <td className="py-3 text-right">
+                        <ScorePill score={result.score} />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
-        </section>
+        </Card>
       </div>
     </div>
   );
@@ -192,138 +298,30 @@ function attemptsForTrack<T extends { trackId: string }>(attempts: T[], trackId:
   return attempts.filter((attempt) => attempt.trackId === trackId);
 }
 
-function GoetheTop({
-  track,
-  recommendedTitle,
-  minutes,
-  week,
-  reason,
-  streak,
-  sample,
+function StatCard({
+  label,
+  value,
+  unit,
+  note,
+  values,
 }: {
-  track: Track;
-  recommendedTitle: string;
-  minutes: number;
-  week: boolean[];
-  reason: string;
-  streak: number;
-  sample: boolean;
-}) {
-  const recommended = getTask(track.recommendedTaskId);
-  return (
-    <div className="grid gap-4 lg:grid-cols-[1.35fr_0.9fr]">
-      <BrandPanel className="p-5 md:p-6">
-        <p className="text-small font-semibold text-brand-text dark:font-normal dark:text-white/80">Probeprüfung · {track.title.replace("Goethe-Zertifikat ", "Goethe ")}</p>
-        <h2 className="mt-3 max-w-md text-h1 font-extrabold leading-tight">Komplette Probeprüfung starten</h2>
-        <p className="mt-3 max-w-lg text-small text-muted dark:text-white/85">
-          Lesen, Hören, Schreiben und Sprechen in der echten Reihenfolge – mit Timer und Gesamtwertung.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {track.parts.map((part) => (
-            <span key={part.taskId} className="rounded-full bg-white px-3 py-1 text-micro font-semibold text-brand-text shadow-sm dark:bg-white/15 dark:text-white dark:shadow-none">
-              {part.label} {part.minutes} Min.
-            </span>
-          ))}
-        </div>
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Button href="/probe" variant="ghost" className="exam-cta">
-            Jetzt starten <IconArrow />
-          </Button>
-          <span className="text-micro text-muted dark:text-white/80">Zwischenspeichern jederzeit möglich</span>
-        </div>
-      </BrandPanel>
-      <div className="grid gap-4">
-        <Card className="p-4">
-          <div className="flex items-center gap-2 font-semibold">
-            <IconFlame className="text-streak" /> {streak} Tage in Folge
-          </div>
-          <p className="mt-1 text-micro text-muted">{sample ? "Beispiel-Serie, bis eigene Versuche dazukommen." : "Tage mit mindestens einer Übung."}</p>
-          <div className="mt-3 flex gap-2">
-            {DAYS.map((day, index) => (
-              <span key={day} className="text-center text-micro text-muted">
-                <span className={`mx-auto mb-1 grid h-6 w-6 place-items-center rounded-full ${week[index] ? "bg-streak-dot text-streak-on-dot" : "bg-sunken text-soft"}`}>
-                  {week[index] ? "✓" : ""}
-                </span>
-                {day}
-              </span>
-            ))}
-          </div>
-          <div className="mt-3 flex items-center justify-between text-small">
-            <span className="text-muted">Tagesziel</span>
-            <span className="font-semibold tabular-nums">{minutes} / 30 Min.</span>
-          </div>
-          <div className="mt-2">
-            <ProgressBar value={(minutes / 30) * 100} tone="streak" label="Tagesziel" />
-          </div>
-        </Card>
-        <Card className="p-4">
-          <p className="text-small font-semibold text-brand-text">Nächste empfohlene Aufgabe</p>
-          {recommended ? <SkillBadge skill={recommended.skill} className="mt-3" /> : null}
-          <h3 className="mt-3 text-h3 font-bold">{recommendedTitle}</h3>
-          <p className="mt-1 text-small text-muted">{reason}</p>
-          {recommended ? (
-            <Button href={`/ueben/${recommended.skill}/${recommended.id}`} variant="secondary" size="sm" className="mt-4">
-              Aufgabe starten <IconArrow />
-            </Button>
-          ) : null}
-        </Card>
-      </div>
-    </div>
-  );
-}
-
-function TelcTop({ track }: { track: Track }) {
-  const cards = [track.recommendedTaskId, ...track.quickTaskIds]
-    .map((id) => getTask(id))
-    .filter((task): task is NonNullable<typeof task> => Boolean(task));
-  return (
-    <div className="space-y-5">
-      <BrandPanel className="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="text-small font-semibold text-brand-text dark:font-normal dark:text-white/80">Probeprüfung · {track.title.replace("telc Deutsch ", "telc ")}</p>
-          <h2 className="mt-1 text-h2 font-extrabold">Komplette Probeprüfung starten</h2>
-          <p className="mt-2 max-w-2xl text-small text-muted dark:text-white/85">{track.parts.map((part) => part.label).join(", ")}.</p>
-        </div>
-        <Button href="/probe" variant="ghost" className="exam-cta">
-          Jetzt starten
-        </Button>
-      </BrandPanel>
-      <section>
-        <h2 className="mb-3 text-h3 font-bold">Empfohlene Aufgaben</h2>
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
-          {cards.map((task) => (
-            <TaskCard key={task.id} skill={task.skill} title={task.title} meta={`${task.minutes} Min.`} href={`/ueben/${task.skill}/${task.id}`} detail={task.intro} />
-          ))}
-        </div>
-      </section>
-    </div>
-  );
-}
-
-function TaskCard({
-  skill,
-  title,
-  meta,
-  href,
-  detail,
-}: {
-  skill: Skill;
-  title: string;
-  meta: string;
-  href: string;
-  detail?: string;
+  label: string;
+  value: string;
+  unit: string;
+  note: string;
+  values: number[];
 }) {
   return (
-    <Card className="flex h-full flex-col p-4">
-      <div className="flex items-center justify-between gap-2">
-        <SkillBadge skill={skill} />
-        <span className="text-micro text-muted">{meta}</span>
+    <Card className="p-4">
+      <div className="flex items-start justify-between gap-2">
+        <p className="text-micro font-semibold text-muted">{label}</p>
+        <WeekSpark values={values.length ? values : [0]} />
       </div>
-      <h3 className="mt-3 font-bold leading-snug">{title}</h3>
-      {detail ? <p className="mt-2 line-clamp-3 text-small text-muted">{detail}</p> : null}
-      <Button href={href} variant="secondary" size="sm" className="mt-4 w-fit">
-        Starten <IconArrow />
-      </Button>
+      <p className="mt-2 font-display text-h1 font-extrabold tabular-nums leading-none">
+        {value}
+        <span className="ml-1 text-small font-semibold text-muted">{unit}</span>
+      </p>
+      <p className="mt-2 text-micro font-semibold text-brand-text">{note}</p>
     </Card>
   );
 }

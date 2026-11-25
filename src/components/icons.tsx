@@ -120,6 +120,54 @@ export function IconClose({ className }: IconProps) {
   );
 }
 
+export function IconGrid({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={base(className)} fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+      <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
+      <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
+      <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
+      <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
+    </svg>
+  );
+}
+
+export function IconSearch({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={base(className)} fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+      <circle cx="11" cy="11" r="6" />
+      <path d="m16 16 4 4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconBell({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={base(className)} fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+      <path d="M6 16V11a6 6 0 1 1 12 0v5l1.2 2H4.8L6 16Z" strokeLinejoin="round" />
+      <path d="M10 19a2 2 0 0 0 4 0" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconUser({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={base(className)} fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+      <circle cx="12" cy="8" r="3.2" />
+      <path d="M5.5 19.2a6.5 6.5 0 0 1 13 0" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconClipboard({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={base(className)} fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+      <rect x="6" y="5" width="12" height="15" rx="2" />
+      <path d="M9 5.2V4.5A1.5 1.5 0 0 1 10.5 3h3A1.5 1.5 0 0 1 15 4.5v.7" strokeLinecap="round" />
+      <path d="M9 11h6M9 15h4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function SkillIcon({ skill, className }: { skill: Skill; className?: string }) {
   if (skill === "sprechen") return <IconMic className={className} />;
   if (skill === "hoeren") return <IconHeadphones className={className} />;
