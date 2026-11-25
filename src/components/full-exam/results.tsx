@@ -191,6 +191,20 @@ export function ExamResults({
                 </Card>
               );
             })}
+            {module.skill === "sprechen"
+              ? module.teile.map((teil) =>
+                  teil.speaking ? (
+                    <Card key={`${teil.id}-check`} className="p-4">
+                      <h3 className="font-semibold">Teil {teil.number} · Stichpunkte nach dem Modul</h3>
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-small text-muted">
+                        {teil.speaking.checklist.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    </Card>
+                  ) : null,
+                )
+              : null}
             {feedback.aussprache && module.skill === "sprechen" ? (
               <Card className="p-4">
                 <h3 className="font-semibold">

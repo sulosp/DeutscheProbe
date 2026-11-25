@@ -63,6 +63,15 @@ export const sprechenTeile: Teil[] = [
       situation: "Ihre Kollegin Sara zieht nach Dresden. Sie und Nora wollen eine Abschiedsfeier für sie organisieren.",
       prompts: ["Wann und wo?", "Wen laden Sie ein?", "Was gibt es zu essen und zu trinken?", "Welches kleine Programm passt?"],
       partnerLines: [{ name: "Nora", text: "Sara zieht nächsten Monat nach Dresden. Wir sollten eine Abschiedsfeier machen. Wann hättest du Zeit?" }],
+      cues: [
+        { role: "examiner", name: "Frau Berger", text: "Guten Tag. Ich bin Frau Berger und leite die mündliche Prüfung. Wir beginnen." },
+        { role: "examiner", name: "Frau Berger", text: "Teil 1. Sie planen mit Ihrer Partnerin eine Abschiedsfeier. Gehen Sie auf alle Punkte ein. Sie haben etwa drei Minuten. Bitte beginnen Sie." },
+        { role: "partner", name: "Nora", text: "Sara zieht nächsten Monat nach Dresden. Wir sollten eine Abschiedsfeier machen. Wann hättest du Zeit, und wo könnten wir uns treffen?", reply: true },
+        { role: "partner", name: "Nora", text: "Einverstanden. Wen laden wir ein?", reply: true },
+        { role: "partner", name: "Nora", text: "Gut. Was gibt es zu essen und zu trinken?", reply: true },
+        { role: "partner", name: "Nora", text: "Das passt. Und welches kleine Programm schlägst du vor?", reply: true },
+        { role: "examiner", name: "Frau Berger", text: "Vielen Dank. Das war Teil 1." },
+      ],
       checklist: ["Zeit oder Ort genannt", "Gäste genannt", "Essen oder Trinken genannt", "auf Nora reagiert"],
       examinerAudio: duo("gb1-s-t1", [
         { speaker: "narrator", text: "Teil 1. Sie planen gemeinsam eine Feier. Sie haben etwa drei Minuten." },
@@ -89,6 +98,11 @@ export const sprechenTeile: Teil[] = [
         { id: "homeoffice", title: "Thema A: Homeoffice", prompts: slides },
         { id: "verkehr", title: "Thema B: Öffentliche Verkehrsmittel in meiner Stadt", prompts: slides },
       ],
+      cues: [
+        { role: "examiner", name: "Frau Berger", text: "Teil 2. Wählen Sie ein Thema und halten Sie einen Vortrag von etwa drei Minuten. Die Folien geben die Reihenfolge vor. Bitte beginnen Sie.", reply: true },
+        { role: "examiner", name: "Frau Berger", text: "Danke. Was ist für Sie der größte Vorteil?", reply: true },
+        { role: "examiner", name: "Frau Berger", text: "Vielen Dank. Das war Teil 2." },
+      ],
       checklist: ["Thema genannt", "eigene Erfahrung", "Situation vor Ort", "Vorteile oder Nachteile und Meinung", "Schluss"],
       examinerAudio: duo("gb1-s-t2", [
         { speaker: "narrator", text: "Teil 2. Wählen Sie ein Thema und halten Sie einen kurzen Vortrag. Sie haben etwa drei Minuten." },
@@ -111,6 +125,12 @@ export const sprechenTeile: Teil[] = [
       rubric: rubric3,
       situation: "Nora hat einen Vortrag gehalten. Geben Sie eine kurze Rückmeldung, stellen Sie eine Frage und antworten Sie auf ihre Frage.",
       prompts: ["Sagen Sie, was Sie am Vortrag interessant fanden.", "Stellen Sie eine Frage.", "Antworten Sie auf Noras Frage."],
+      cues: [
+        { role: "examiner", name: "Frau Berger", text: "Teil 3. Geben Sie eine kurze Rückmeldung, stellen Sie eine Frage und antworten Sie auf Nora. Bitte beginnen Sie." },
+        { role: "partner", name: "Nora", text: "Ich habe meinen Vortrag beendet. Was fandest du daran interessant?", reply: true },
+        { role: "partner", name: "Nora", text: "Danke. Und was würdest du mich fragen?", reply: true },
+        { role: "examiner", name: "Frau Berger", text: "Vielen Dank. Das war Teil 3." },
+      ],
       checklist: ["Rückmeldung gegeben", "eine Frage gestellt", "Noras Frage beantwortet"],
       examinerAudio: duo("gb1-s-t3", [
         { speaker: "narrator", text: "Teil 3. Geben Sie eine kurze Rückmeldung und stellen Sie eine Frage. Danach antworten Sie." },

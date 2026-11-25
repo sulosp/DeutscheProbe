@@ -94,6 +94,22 @@ export type WritingTask = {
   quote?: string;
 };
 
+export type OralCue = {
+  role: "examiner" | "partner";
+  name: string;
+  text: string;
+  /** The candidate answers after this line. */
+  reply?: boolean;
+};
+
+/**
+ * Scripted oral lines. A future live partner can implement the same shape
+ * asynchronously without changing the exam screen.
+ */
+export type OralEngine = {
+  lineAt(index: number): OralCue | null;
+};
+
 export type SpeakingTask = {
   id: string;
   situation: string;
@@ -102,6 +118,8 @@ export type SpeakingTask = {
   partnerLines?: { name: string; text: string }[];
   examinerAudio?: AudioScript;
   followupAudio?: Record<string, AudioScript>;
+  /** Spoken aloud. Never shown as captions. */
+  cues?: OralCue[];
   checklist: string[];
   minutes: number;
   rubric: RubricCriterion[];
