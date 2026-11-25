@@ -1,0 +1,170 @@
+{
+  "cues": {
+    "gong": {
+      "src": "/audio/cues/gong.mp3",
+      "durationSec": 0.55
+    },
+    "repeat": {
+      "src": "/audio/cues/repeat.mp3",
+      "durationSec": 3.22
+    },
+    "headphone": {
+      "src": "/audio/cues/headphone.mp3",
+      "durationSec": 9.55
+    }
+  },
+  "clips": {
+    "gb1-h-intro": {
+      "src": "/audio/goethe-b1/gb1-h-intro.mp3",
+      "durationSec": 28.51
+    },
+    "gb1-h-t1-intro": {
+      "src": "/audio/goethe-b1/gb1-h-t1-intro.mp3",
+      "durationSec": 22.63
+    },
+    "gb1-h-t1-ende": {
+      "src": "/audio/goethe-b1/gb1-h-t1-ende.mp3",
+      "durationSec": 2.95
+    },
+    "gb1-h-bsp__situation": {
+      "src": "/audio/goethe-b1/gb1-h-bsp__situation.mp3",
+      "durationSec": 3.26
+    },
+    "gb1-h-bsp": {
+      "src": "/audio/goethe-b1/gb1-h-bsp.mp3",
+      "durationSec": 13.1
+    },
+    "gb1-h-t1-1__readcue": {
+      "src": "/audio/goethe-b1/gb1-h-t1-1__readcue.mp3",
+      "durationSec": 6.74
+    },
+    "gb1-h-t1-1__situation": {
+      "src": "/audio/goethe-b1/gb1-h-t1-1__situation.mp3",
+      "durationSec": 3.89
+    },
+    "gb1-h-t1-1": {
+      "src": "/audio/goethe-b1/gb1-h-t1-1.mp3",
+      "durationSec": 29.06
+    },
+    "gb1-h-t1-2__readcue": {
+      "src": "/audio/goethe-b1/gb1-h-t1-2__readcue.mp3",
+      "durationSec": 6.7
+    },
+    "gb1-h-t1-2__situation": {
+      "src": "/audio/goethe-b1/gb1-h-t1-2__situation.mp3",
+      "durationSec": 3.62
+    },
+    "gb1-h-t1-2": {
+      "src": "/audio/goethe-b1/gb1-h-t1-2.mp3",
+      "durationSec": 18.29
+    },
+    "gb1-h-t1-3__readcue": {
+      "src": "/audio/goethe-b1/gb1-h-t1-3__readcue.mp3",
+      "durationSec": 6.67
+    },
+    "gb1-h-t1-3__situation": {
+      "src": "/audio/goethe-b1/gb1-h-t1-3__situation.mp3",
+      "durationSec": 3.19
+    },
+    "gb1-h-t1-3": {
+      "src": "/audio/goethe-b1/gb1-h-t1-3.mp3",
+      "durationSec": 20.06
+    },
+    "gb1-h-t1-4__readcue": {
+      "src": "/audio/goethe-b1/gb1-h-t1-4__readcue.mp3",
+      "durationSec": 6.82
+    },
+    "gb1-h-t1-4__situation": {
+      "src": "/audio/goethe-b1/gb1-h-t1-4__situation.mp3",
+      "durationSec": 3.36
+    },
+    "gb1-h-t1-4": {
+      "src": "/audio/goethe-b1/gb1-h-t1-4.mp3",
+      "durationSec": 19.03
+    },
+    "gb1-h-t1-5__readcue": {
+      "src": "/audio/goethe-b1/gb1-h-t1-5__readcue.mp3",
+      "durationSec": 6.72
+    },
+    "gb1-h-t1-5__situation": {
+      "src": "/audio/goethe-b1/gb1-h-t1-5__situation.mp3",
+      "durationSec": 3.07
+    },
+    "gb1-h-t1-5": {
+      "src": "/audio/goethe-b1/gb1-h-t1-5.mp3",
+      "durationSec": 24.29
+    },
+    "gb1-h-t2-intro": {
+      "src": "/audio/goethe-b1/gb1-h-t2-intro.mp3",
+      "durationSec": 18.48
+    },
+    "gb1-h-t2-ende": {
+      "src": "/audio/goethe-b1/gb1-h-t2-ende.mp3",
+      "durationSec": 3.02
+    },
+    "gb1-h-t2__situation": {
+      "src": "/audio/goethe-b1/gb1-h-t2__situation.mp3",
+      "durationSec": 3.5
+    },
+    "gb1-h-t2": {
+      "src": "/audio/goethe-b1/gb1-h-t2.mp3",
+      "durationSec": 80.9
+    },
+    "gb1-h-t3-intro": {
+      "src": "/audio/goethe-b1/gb1-h-t3-intro.mp3",
+      "durationSec": 19.3
+    },
+    "gb1-h-t3-ende": {
+      "src": "/audio/goethe-b1/gb1-h-t3-ende.mp3",
+      "durationSec": 2.95
+    },
+    "gb1-h-t3__situation": {
+      "src": "/audio/goethe-b1/gb1-h-t3__situation.mp3",
+      "durationSec": 5.74
+    },
+    "gb1-h-t3": {
+      "src": "/audio/goethe-b1/gb1-h-t3.mp3",
+      "durationSec": 73.7
+    },
+    "gb1-h-t4-intro": {
+      "src": "/audio/goethe-b1/gb1-h-t4-intro.mp3",
+      "durationSec": 22.68
+    },
+    "gb1-h-t4-ende": {
+      "src": "/audio/goethe-b1/gb1-h-t4-ende.mp3",
+      "durationSec": 9.34
+    },
+    "gb1-h-t4__situation": {
+      "src": "/audio/goethe-b1/gb1-h-t4__situation.mp3",
+      "durationSec": 9.55
+    },
+    "gb1-h-t4": {
+      "src": "/audio/goethe-b1/gb1-h-t4.mp3",
+      "durationSec": 104.45
+    },
+    "gb1-s-t1": {
+      "src": "/audio/goethe-b1/gb1-s-t1.mp3",
+      "durationSec": 14.93
+    },
+    "gb1-s-t2": {
+      "src": "/audio/goethe-b1/gb1-s-t2.mp3",
+      "durationSec": 16.94
+    },
+    "gb1-s-t3": {
+      "src": "/audio/goethe-b1/gb1-s-t3.mp3",
+      "durationSec": 7.3
+    },
+    "gb1-s-t3-home": {
+      "src": "/audio/goethe-b1/gb1-s-t3-home.mp3",
+      "durationSec": 6.34
+    },
+    "gb1-s-t3-verkehr": {
+      "src": "/audio/goethe-b1/gb1-s-t3-verkehr.mp3",
+      "durationSec": 5.54
+    },
+    "gb1-s-t3-default": {
+      "src": "/audio/goethe-b1/gb1-s-t3-default.mp3",
+      "durationSec": 3.48
+    }
+  }
+}

@@ -12,6 +12,7 @@ import { firstName } from "@/lib/format";
 import { SKILL_LABEL, SKILL_ORDER } from "@/lib/skills";
 import { minutesToday, sampleMode, skillStat, streakCount, weekMarks } from "@/lib/stats";
 import { useExamSession } from "@/lib/exam-session";
+import { useFullExamSession } from "@/lib/full-exam-session";
 import { useAppState } from "@/lib/storage";
 import type { ExamId, Level, Skill, Track } from "@/lib/types";
 
@@ -21,6 +22,7 @@ const DAYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 export function DashboardView({ track }: { track: Track }) {
   const { profile, attempts, setTrack } = useAppState();
   const { session } = useExamSession();
+  const { session: fullExam } = useFullExamSession();
   if (!profile) return null;
 
   const sample = sampleMode(attempts, track.id);
@@ -75,7 +77,28 @@ export function DashboardView({ track }: { track: Track }) {
         ))}
       </div>
 
-      {session?.status === "active" ? (
+      {fullExam?.status === "active" ? (
+        <Card className="flex flex-wrap items-center justify-between gap-3 p-4">
+          <div>
+            <div className="font-semibold">Probeprüfung läuft noch</div>
+            <p className="text-small text-muted">Zeit und Antworten bleiben in diesem Tab gespeichert.</p>
+          </div>
+          <Button href="/probe/pruefung">Fortsetzen</Button>
+        </Card>
+      ) : null}
+      {fullExam?.status === "review" ? (
+        <Card className="flex flex-wrap items-center justify-between gap-3 p-4">
+          <div>
+            <div className="font-semibold">Ergebnis der letzten Prüfung</div>
+            <p className="text-small text-muted">Die Auswertung liegt noch in diesem Tab.</p>
+          </div>
+          <Button href="/probe/pruefung" variant="secondary">
+            Ergebnis öffnen
+          </Button>
+        </Card>
+      ) : null}
+
+      {session?.status === "active" && session.trackId !== "goethe-b1" ? (
         <Card className="flex flex-wrap items-center justify-between gap-3 p-4">
           <div>
             <div className="font-semibold">Probeprüfung läuft noch</div>

@@ -1,8 +1,8 @@
 # DeutscheProbe
 
-Kostenlose Web-App zum Üben der Goethe- und telc-Prüfungen Deutsch A1 bis B2. Lesen, Hören, Schreiben, Sprechen und, bei telc B1 und B2, Sprachbausteine. Dazu eine Probeprüfung pro Strecke: Start, Teile in der öffentlichen Reihenfolge, Übergänge, Ergebnis, Auswertungen.
+Kostenlose Web-App zum Üben der Goethe- und telc-Prüfungen Deutsch A1 bis B2. Lesen, Hören, Schreiben, Sprechen und, bei telc B1 und B2, Sprachbausteine.
 
-Die Aufgaben sind eigene Beispieldaten. DeutscheProbe ist nicht mit dem Goethe-Institut oder telc verbunden und verwendet keine Prüfungslogos und keine offiziellen Aufgaben.
+Goethe-Zertifikat B1 hat einen vollständigen Modellsatz: vier Module in der Prüfungsreihenfolge, alle Teile mit Aufgabenzahl, Zeit und, beim Hören, Anzahl der Wiedergaben. Die anderen Strecken behalten vorerst die kürzeren Aufgaben. Alle Texte sind eigene Beispieldaten. DeutscheProbe ist nicht mit dem Goethe-Institut oder telc verbunden und verwendet keine Prüfungslogos und keine offiziellen Aufgaben.
 
 ## Demo-Modus
 
@@ -11,7 +11,7 @@ Ohne Umgebungsvariablen läuft die App lokal im Browser:
 - Konto, Ziel und Versuche liegen in `localStorage`
 - eine laufende Probeprüfung liegt in `sessionStorage`
 - Schreiben und Sprechen bekommen eine eingebaute Einschätzung
-- Hören nutzt die Sprachausgabe des Browsers
+- Hören im Goethe-B1-Modellsatz spielt vorbereitete Aufnahmen ab. Die kürzeren Aufgaben der anderen Strecken nutzen die Sprachausgabe des Browsers
 - Sprechen nimmt über das Mikrofon auf (`MediaRecorder`). Die Aufnahme bleibt im Tab
 
 `Beispiel ansehen` öffnet ein Beispielkonto auf Goethe B1. Die Zahlen auf der Übersicht sind dann als Beispieldaten gekennzeichnet, bis eigene Versuche dazukommen.
@@ -45,7 +45,16 @@ Ohne `GEMINI_API_KEY` antwortet `/api/feedback` mit der Demo-Einschätzung.
 
 Acht Übersichten: Goethe und telc, jeweils A1, A2, B1, B2. Prüfung und Niveau lassen sich auf der Übersicht wechseln.
 
-Probeprüfungen folgen der üblichen Reihenfolge und den veröffentlichten Dauern (Orientierung, keine amtliche Durchführung):
+Der Goethe-B1-Modellsatz liegt unter `src/content/exams/goethe-b1`. Lesen 65 Minuten (Teile 1–5, Aufgaben 1–30), Hören etwa 40 Minuten plus fünf Minuten Antwortbogen (Teile 1–4, Aufgaben 1–30, Texte ein- oder zweimal), Schreiben 60 Minuten (drei Aufgaben), Sprechen etwa 15 Minuten plus 15 Minuten Vorbereitung. Jedes Modul gilt ab 60 von 100 Punkten als bestanden. Lesen und Hören rechnen 30 Rohpunkte auf 100 um. Im Prüfungsmodus läuft Hören ohne Pause und ohne Zurückspulen. Einzelne Teile lassen sich unter Üben mit sofortiger Lösung wiederholen.
+
+Die Hördateien liegen in `public/audio/goethe-b1` und `public/audio/cues`. Neu erzeugen, nachdem `edge-tts` und ffmpeg installiert sind:
+
+```bash
+pip install -r scripts/tts/requirements.txt
+npm run audio
+```
+
+Die übrigen Probeprüfungen folgen der üblichen Reihenfolge und den veröffentlichten Dauern (Orientierung, keine amtliche Durchführung):
 
 - Goethe A1: Hören, Lesen, Schreiben, Sprechen
 - Goethe A2, B1, B2: Lesen, Hören, Schreiben, Sprechen

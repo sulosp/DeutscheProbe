@@ -5,6 +5,7 @@ import { SkillBadge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { findTrack, tasksFor } from "@/content";
+import { getMockForTrack } from "@/content/exams";
 import { SKILL_HINT, SKILL_LABEL, isSkill } from "@/lib/skills";
 import { useAppState } from "@/lib/storage";
 
@@ -29,6 +30,8 @@ export default function SkillPage() {
     );
   }
   const list = tasksFor(profile.exam, profile.level, skill);
+  const mock = getMockForTrack(track.id);
+  const teile = mock?.modules.find((module) => module.skill === skill)?.teile ?? [];
   return (
     <div className="space-y-5">
       <div>
@@ -36,6 +39,18 @@ export default function SkillPage() {
         <h1 className="mt-3 text-h1 font-semibold">{SKILL_LABEL[skill]}</h1>
         <p className="mt-2 max-w-2xl text-muted">{SKILL_HINT[skill]}</p>
       </div>
+      {teile.map((teil) => (
+        <Card key={teil.id} className="p-5">
+          <p className="text-micro font-semibold text-muted">
+            Beispieldaten · {mock?.title} · Teil {teil.number}
+          </p>
+          <h2 className="mt-2 text-h3 font-semibold">{teil.title}</h2>
+          <p className="mt-2 text-small text-muted">{teil.instruction}</p>
+          <Button href={`/ueben/${skill}/teil/${teil.id}`} className="mt-4">
+            Teil üben
+          </Button>
+        </Card>
+      ))}
       {list.map((task) => (
         <Card key={task.id} className="p-5">
           <p className="text-micro font-semibold text-muted">Beispieldaten · {task.teil}</p>

@@ -10,3 +10,6 @@ dist
 .DS_Store
 next-env.d.ts
 tsconfig.tsbuildinfo
+scripts/tts/cache/
+scripts/tts/work/
+scripts/tts/audio-scripts.json
