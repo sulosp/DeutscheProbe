@@ -31,7 +31,7 @@ export function ExamStart({ track }: { track: Track }) {
     <div className="space-y-6">
       <div>
         <p className="text-small font-semibold text-brand-text">Probeprüfung · {track.title}</p>
-        <h1 className="mt-2 text-h1 font-semibold tracking-tight">Komplette Probeprüfung</h1>
+        <h1 className="mt-2 text-h1 font-extrabold tracking-tight">Komplette Probeprüfung</h1>
         <p className="mt-2 max-w-2xl text-muted">
           Die Teile laufen in der öffentlichen Reihenfolge. Unterwegs gibt es kein Feedback. Die Auswertung kommt erst am Ende. Inhalte sind Beispieldaten.
         </p>
@@ -189,7 +189,7 @@ export function ExamTransition({ track, index }: { track: Track; index: number }
   return (
     <div className="mx-auto max-w-xl space-y-5 py-8 text-center">
       <p className="text-small font-semibold text-brand-text">Übergang</p>
-      <h1 className="text-h1 font-semibold">Nächster Teil: {part.label}</h1>
+      <h1 className="text-h1 font-extrabold">Nächster Teil: {part.label}</h1>
       <div className="flex justify-center">
         <SkillBadge skill={part.skill} />
       </div>
@@ -262,7 +262,7 @@ export function ExamResults({ track }: { track: Track }) {
         <ScoreRing percent={percent} label="Gesamt" />
         <div>
           <p className="text-small font-semibold text-brand-text">Ergebnis der Probeprüfung</p>
-          <h1 className="mt-1 text-h1 font-semibold">{track.title}</h1>
+          <h1 className="mt-1 text-h1 font-extrabold">{track.title}</h1>
           <p className="mt-2 max-w-2xl text-muted">
             Orientierung: viele dieser Prüfungen gelten ab etwa 60 Prozent als bestanden. Das hier ist keine offizielle Bewertung.
           </p>
@@ -311,7 +311,7 @@ export function ExamAuswertung({ track, skill }: { track: Track; skill: string }
   if (!task || !result || !session) {
     return (
       <Card className="p-5">
-        <h1 className="text-h3 font-semibold">Noch keine Auswertung</h1>
+        <h1 className="text-h3 font-bold">Noch keine Auswertung</h1>
         <p className="mt-2 text-muted">Schließe zuerst die Probeprüfung ab.</p>
         <Button href="/probe" className="mt-4">
           Zur Probeprüfung

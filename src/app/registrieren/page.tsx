@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Mark } from "@/components/logo";
 import { SiteHeader } from "@/components/shell/site-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -68,9 +69,10 @@ export default function RegisterPage() {
   return (
     <div>
       <SiteHeader />
-      <main className="mx-auto max-w-md px-4 py-10">
-        <Card className="p-6">
-          <h1 className="text-h2 font-semibold">Konto erstellen</h1>
+      <main className="mx-auto max-w-md px-4 py-12 md:py-16">
+        <Card className="p-6 md:p-8">
+          <Mark />
+          <h1 className="mt-4 text-h1 font-extrabold tracking-tight">Konto erstellen</h1>
           <p className="mt-2 text-small text-muted">
             {demoMode ? "Demo-Modus: das Konto bleibt in diesem Browser." : "E-Mail oder Google. Danach wählst du Prüfung und Niveau."}
           </p>

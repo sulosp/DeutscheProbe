@@ -23,7 +23,7 @@ export function Tabs({
             aria-selected={selected}
             onClick={() => onChange(tab.id)}
             className={cn(
-              "h-9 shrink-0 rounded-full px-3 text-small font-semibold",
+              "h-9 shrink-0 rounded-full px-3 text-small font-semibold tracking-tight",
               selected ? "bg-raised text-foreground shadow-sm" : "text-muted hover:text-foreground",
             )}
           >

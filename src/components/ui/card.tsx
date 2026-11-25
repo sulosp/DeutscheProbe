@@ -6,5 +6,5 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
 }
 
 export function BrandPanel({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("rounded-xl bg-brand text-brand-foreground shadow-card", className)} {...props} />;
+  return <div className={cn("rounded-2xl bg-brand text-brand-foreground shadow-card", className)} {...props} />;
 }

@@ -5,73 +5,84 @@
   Components use the semantic names (brand, surface, skill-lesen, …).
   To reskin the product, edit the values below.
 
-  Brand placeholder until the final palette arrives:
-    light  #0B6BCB
-    dark   #0B6BCB for filled surfaces (white text stays readable)
-           #9CCBFF for text and links on dark surfaces
+  The palette follows a violet product system:
+    brand fill   #6647F0  (white text clears WCAG AA)
+    vivid        #7B68EE
+    pink accent  #FD71AF
+    blue accent  #49CCF9
+    ink          #1B1B2E on white surfaces
 
-  The favicon (src/app/icon.svg) repeats the light brand hex because a
-  static icon cannot read CSS variables. Update it when the brand changes.
+  The pink/blue/purple gradient is reserved for the mark, hero glow,
+  and highlighted words. Body text stays solid ink.
 
-  No green: success is a blue tone. Sprachbausteine is deep indigo/navy,
-  Lesen is sky blue, the brand is a separate royal blue.
+  Success stays blue, not green. The favicon (src/app/icon.svg) repeats
+  the mark gradient because a static icon cannot read CSS variables.
 */
 
 :root {
   color-scheme: light;
 
-  --brand: #0b6bcb;
-  --brand-hover: #0957a8;
+  --brand: #6647f0;
+  --brand-hover: #5536dc;
+  --brand-vivid: #7b68ee;
   --brand-foreground: #ffffff;
-  --brand-text: #0b4f9c;
-  --brand-soft: #e6f2fc;
-  --brand-softer: #f4f9fd;
+  --brand-text: #5344c4;
+  --brand-soft: #eeeaff;
+  --brand-softer: #f7f6fd;
+  --accent-pink: #fd71af;
+  --accent-blue: #49ccf9;
+  --brand-gradient: linear-gradient(135deg, #7b68ee 0%, #fd71af 50%, #49ccf9 100%);
+  --brand-gradient-text: linear-gradient(100deg, #5344c4 0%, #be185d 50%, #0b6f96 100%);
+  --mark-gradient: linear-gradient(135deg, #6647f0 0%, #be185d 100%);
 
-  --surface: #f3f6fb;
+  --surface: #f7f7fb;
   --surface-raised: #ffffff;
-  --surface-sunken: #e7eef6;
-  --text: #142033;
-  --text-muted: #5c6d84;
-  --text-soft: #8493a8;
-  --border: #e1e8f2;
-  --border-strong: #c5d2e2;
-  --overlay: rgb(20 32 51 / 0.48);
+  --surface-sunken: #ededf4;
+  --text: #1b1b2e;
+  --text-muted: #5e5e7a;
+  --text-soft: #65657f;
+  --border: #e7e7ef;
+  --border-strong: #dedee9;
+  --overlay: rgb(27 27 46 / 0.52);
 
-  --success: #0b6bcb;
-  --success-soft: #e6f2fc;
-  --warn: #b45309;
-  --warn-soft: #fef3e2;
-  --error: #d12b4a;
+  --success: #0b6f96;
+  --success-fill: #0b6f96;
+  --success-soft: #e5f6fc;
+  --warn: #9a6400;
+  --warn-soft: #fff6dd;
+  --error: #c42a48;
+  --danger-fill: #c42a48;
   --error-soft: #fdecef;
 
   --skill-sprechen: #c2410c;
-  --skill-sprechen-vivid: #f97316;
+  --skill-sprechen-vivid: #d4530a;
   --skill-sprechen-soft: #fff1e8;
-  --skill-hoeren: #6d28d9;
-  --skill-hoeren-vivid: #8b5cf6;
-  --skill-hoeren-soft: #f3ecfe;
-  --skill-lesen: #0369a1;
-  --skill-lesen-vivid: #0ea5e9;
-  --skill-lesen-soft: #e0f2fe;
+  --skill-hoeren: #5344c4;
+  --skill-hoeren-vivid: #7b68ee;
+  --skill-hoeren-soft: #f1eefe;
+  --skill-lesen: #0b6f96;
+  --skill-lesen-vivid: #0b7ea8;
+  --skill-lesen-soft: #e5f6fc;
   --skill-schreiben: #be185d;
-  --skill-schreiben-vivid: #ec4899;
+  --skill-schreiben-vivid: #d63378;
   --skill-schreiben-soft: #fdecf4;
-  --skill-sprachbausteine: #1e1b4b;
-  --skill-sprachbausteine-vivid: #3730a3;
-  --skill-sprachbausteine-soft: #eeeefb;
+  --skill-sprachbausteine: #3a2f8a;
+  --skill-sprachbausteine-vivid: #5b4bc4;
+  --skill-sprachbausteine-soft: #eeedfb;
 
   --streak: #c2410c;
+  --streak-fill: #c2410c;
   --streak-soft: #fff1e8;
 
-  --dp-shadow-sm: 0 1px 2px rgb(20 32 51 / 0.06);
-  --dp-shadow-md: 0 16px 40px -24px rgb(20 32 51 / 0.35);
-  --dp-shadow-lg: 0 28px 60px -28px rgb(20 32 51 / 0.45);
+  --dp-shadow-sm: 0 1px 2px rgb(27 27 46 / 0.06);
+  --dp-shadow-md: 0 1px 2px rgb(27 27 46 / 0.04), 0 12px 32px -18px rgb(27 27 46 / 0.18);
+  --dp-shadow-lg: 0 28px 70px -28px rgb(27 27 46 / 0.28), 0 16px 40px -24px rgb(102 71 240 / 0.35);
 
-  --dp-radius-sm: 0.625rem;
-  --dp-radius-md: 0.875rem;
-  --dp-radius-lg: 1.125rem;
-  --dp-radius-xl: 1.375rem;
-  --dp-radius-2xl: 1.75rem;
+  --dp-radius-sm: 0.5rem;
+  --dp-radius-md: 0.625rem;
+  --dp-radius-lg: 0.875rem;
+  --dp-radius-xl: 1.125rem;
+  --dp-radius-2xl: 1.5rem;
 
   --dp-text-micro: 0.75rem;
   --dp-text-small: 0.875rem;
@@ -80,9 +91,9 @@
   --dp-text-h3: 1.25rem;
   --dp-text-h2: 1.5rem;
   --dp-text-h1: 2rem;
-  --dp-text-display: clamp(2.15rem, 4vw, 3.15rem);
-  --dp-tracking-display: -0.035em;
-  --dp-leading-tight: 1.15;
+  --dp-text-display: clamp(2.15rem, 4vw, 3rem);
+  --dp-tracking-display: -0.04em;
+  --dp-leading-tight: 1.08;
   --dp-leading-body: 1.6;
 
   --dp-space-page: 1.5rem;
@@ -92,34 +103,42 @@
 .dark {
   color-scheme: dark;
 
-  --brand: #0b6bcb;
-  --brand-hover: #3b8fe0;
+  --brand: #6647f0;
+  --brand-hover: #7b68ee;
+  --brand-vivid: #7b68ee;
   --brand-foreground: #ffffff;
-  --brand-text: #9ccbff;
-  --brand-soft: #173154;
-  --brand-softer: #121c2e;
+  --brand-text: #d4ccff;
+  --brand-soft: #322b58;
+  --brand-softer: #241f40;
+  --accent-pink: #fd71af;
+  --accent-blue: #49ccf9;
+  --brand-gradient: linear-gradient(135deg, #7b68ee 0%, #fd71af 50%, #49ccf9 100%);
+  --brand-gradient-text: linear-gradient(100deg, #d4ccff 0%, #ff9ec8 48%, #8fd4f2 100%);
+  --mark-gradient: linear-gradient(135deg, #6647f0 0%, #be185d 100%);
 
-  --surface: #0e1524;
-  --surface-raised: #171f33;
-  --surface-sunken: #0a101c;
-  --text: #e7eef8;
-  --text-muted: #a7b4c8;
-  --text-soft: #7e8da3;
-  --border: #2a3650;
-  --border-strong: #3c4e6e;
+  --surface: #1b1b2e;
+  --surface-raised: #232338;
+  --surface-sunken: #151526;
+  --text: #f1f1f6;
+  --text-muted: #a6a6bc;
+  --text-soft: #8e8ea6;
+  --border: #383852;
+  --border-strong: #42425c;
   --overlay: rgb(0 0 0 / 0.62);
 
-  --success: #9ccbff;
-  --success-soft: #163056;
+  --success: #8fd4f2;
+  --success-fill: #0b6f96;
+  --success-soft: #123044;
   --warn: #f0b27a;
   --warn-soft: #3a2a1c;
   --error: #ff8aa0;
+  --danger-fill: #c42a48;
   --error-soft: #3a1c26;
 
   --skill-sprechen: #fdba8c;
   --skill-sprechen-vivid: #fb923c;
   --skill-sprechen-soft: #3a2418;
-  --skill-hoeren: #ddd6fe;
+  --skill-hoeren: #c4b5fd;
   --skill-hoeren-vivid: #a78bfa;
   --skill-hoeren-soft: #2a2148;
   --skill-lesen: #7dd3fc;
@@ -133,9 +152,10 @@
   --skill-sprachbausteine-soft: #1e2348;
 
   --streak: #fdba8c;
+  --streak-fill: #c2410c;
   --streak-soft: #3a2418;
 
   --dp-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.35);
-  --dp-shadow-md: 0 16px 40px -24px rgb(0 0 0 / 0.7);
-  --dp-shadow-lg: 0 28px 60px -28px rgb(0 0 0 / 0.75);
+  --dp-shadow-md: 0 1px 2px rgb(0 0 0 / 0.28), 0 16px 36px -20px rgb(0 0 0 / 0.65);
+  --dp-shadow-lg: 0 28px 70px -28px rgb(0 0 0 / 0.7), 0 16px 40px -24px rgb(123 104 238 / 0.35);
 }

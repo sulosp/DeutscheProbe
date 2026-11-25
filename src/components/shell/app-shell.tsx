@@ -18,8 +18,8 @@ import { useIsClient } from "@/lib/use-is-client";
 
 const linkClass = (active: boolean) =>
   cn(
-    "rounded-full px-3 py-2 text-small font-semibold",
-    active ? "bg-brand-soft text-brand-text" : "text-muted hover:text-foreground",
+    "rounded-full px-3 py-2 text-small font-bold tracking-tight",
+    active ? "bg-brand-soft text-brand-text" : "text-muted hover:bg-sunken hover:text-foreground",
   );
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -72,7 +72,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-40 border-b border-border bg-surface/90 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-border bg-raised/90 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4">
           <Logo href="/uebersicht" />
           <nav className="ml-2 hidden items-center gap-1 lg:flex" aria-label="Hauptnavigation">
@@ -86,7 +86,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             })}
           </nav>
           <div className="ml-auto flex items-center gap-2">
-            <Link href="/auswahl" className="hidden rounded-full border border-border bg-raised px-3 py-1.5 text-small font-semibold sm:inline-flex">
+            <Link href="/auswahl" className="hidden rounded-full border border-border bg-surface px-3 py-1.5 text-small font-bold sm:inline-flex">
               {profile.exam === "goethe" ? "Goethe" : "telc"} · {profile.level}
             </Link>
             <span className="hidden items-center gap-1 text-small font-semibold text-streak sm:inline-flex">

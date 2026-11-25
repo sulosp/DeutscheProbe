@@ -6,10 +6,13 @@
 @theme inline {
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
+  --color-brand-vivid: var(--brand-vivid);
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-text: var(--brand-text);
   --color-brand-soft: var(--brand-soft);
   --color-brand-softer: var(--brand-softer);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-blue: var(--accent-blue);
   --color-surface: var(--surface);
   --color-raised: var(--surface-raised);
   --color-sunken: var(--surface-sunken);
@@ -20,10 +23,12 @@
   --color-border-strong: var(--border-strong);
   --color-overlay: var(--overlay);
   --color-success: var(--success);
+  --color-success-fill: var(--success-fill);
   --color-success-soft: var(--success-soft);
   --color-warn: var(--warn);
   --color-warn-soft: var(--warn-soft);
   --color-danger: var(--error);
+  --color-danger-fill: var(--danger-fill);
   --color-danger-soft: var(--error-soft);
   --color-skill-sprechen: var(--skill-sprechen);
   --color-skill-sprechen-vivid: var(--skill-sprechen-vivid);
@@ -41,9 +46,11 @@
   --color-skill-sprachbausteine-vivid: var(--skill-sprachbausteine-vivid);
   --color-skill-sprachbausteine-soft: var(--skill-sprachbausteine-soft);
   --color-streak: var(--streak);
+  --color-streak-fill: var(--streak-fill);
   --color-streak-soft: var(--streak-soft);
 
   --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), "Plus Jakarta Sans", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: var(--dp-radius-sm);
   --radius-md: var(--dp-radius-md);
@@ -71,18 +78,55 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--surface);
-  background-image: radial-gradient(1100px 420px at 8% -10%, var(--brand-soft), transparent 60%);
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--dp-text-body);
   line-height: var(--dp-leading-body);
 }
 
+h1,
+h2,
+h3,
+.display,
+.hero-title,
+.text-display,
+.text-h1,
+.text-h2,
+.text-h3 {
+  font-family: var(--font-display), var(--font-sans);
+}
+
 .display {
   font-size: var(--dp-text-display);
   letter-spacing: var(--dp-tracking-display);
   line-height: var(--dp-leading-tight);
-  font-weight: 600;
+  font-weight: 800;
+}
+
+.hero-title {
+  font-size: clamp(2.55rem, 5.6vw, 4.35rem);
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  font-weight: 800;
+}
+
+.gradient-text {
+  background-image: var(--brand-gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mark-gradient {
+  background-color: var(--brand);
+  background-image: var(--mark-gradient);
+}
+
+.hero-glow {
+  background:
+    radial-gradient(880px 280px at 50% -10%, color-mix(in srgb, var(--brand-vivid) 30%, transparent), transparent 70%),
+    radial-gradient(640px 240px at 82% 0%, color-mix(in srgb, var(--accent-pink) 26%, transparent), transparent 68%),
+    radial-gradient(560px 220px at 12% 0%, color-mix(in srgb, var(--accent-blue) 24%, transparent), transparent 70%);
 }
 
 ::selection {

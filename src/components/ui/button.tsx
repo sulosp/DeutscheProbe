@@ -3,11 +3,11 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 const variants = {
-  primary: "bg-brand text-brand-foreground hover:bg-brand-hover shadow-sm",
-  secondary: "bg-raised text-foreground border border-border hover:bg-sunken",
+  primary: "bg-brand text-brand-foreground shadow-sm hover:bg-brand-hover",
+  secondary: "border border-border bg-raised text-foreground shadow-sm hover:bg-sunken",
   ghost: "bg-transparent text-foreground hover:bg-sunken",
   soft: "bg-brand-soft text-brand-text hover:opacity-90",
-  danger: "bg-danger text-white hover:opacity-90",
+  danger: "bg-danger-fill text-white hover:opacity-90",
 };
 
 const sizes = {
@@ -25,7 +25,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export function Button({ href, variant = "primary", size = "md", className, children, type = "button", ...props }: Props) {
   const cls = cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold tracking-tight transition disabled:pointer-events-none disabled:opacity-50",
     variants[variant],
     sizes[size],
     className,

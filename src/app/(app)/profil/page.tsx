@@ -38,7 +38,7 @@ export default function ProfilePage() {
       <div className="flex flex-wrap items-center gap-4">
         <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-soft text-h3 font-bold text-brand-text">{initials(profile.name)}</span>
         <div>
-          <h1 className="text-h1 font-semibold">{profile.name}</h1>
+          <h1 className="text-h1 font-extrabold">{profile.name}</h1>
           <p className="text-muted">{profile.email}</p>
         </div>
       </div>
@@ -78,7 +78,7 @@ export default function ProfilePage() {
         {demoMode ? " Supabase ist nicht konfiguriert, deshalb bleiben die Daten in diesem Browser." : " Versuche werden zusätzlich in Supabase gespeichert, wenn die Anmeldung aktiv ist."}
       </p>
       <section>
-        <h2 className="text-h3 font-semibold">Verlauf</h2>
+        <h2 className="text-h3 font-bold">Verlauf</h2>
         <div className="mt-3 space-y-2">
           {attempts.length === 0 ? <p className="text-small text-muted">Noch keine eigenen Versuche.</p> : null}
           {attempts.slice(0, 20).map((attempt) => {

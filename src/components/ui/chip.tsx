@@ -8,8 +8,8 @@ export function Chip({ active = false, className, type = "button", ...props }: P
     <button
       type={type}
       className={cn(
-        "h-9 rounded-full px-3 text-small font-semibold transition",
-        active ? "border border-border bg-raised text-foreground shadow-sm" : "border border-transparent text-muted hover:text-foreground",
+        "h-9 rounded-full px-3 text-small font-semibold tracking-tight transition",
+        active ? "border border-brand bg-brand text-brand-foreground shadow-sm" : "border border-transparent text-muted hover:bg-sunken hover:text-foreground",
         className,
       )}
       aria-pressed={active}

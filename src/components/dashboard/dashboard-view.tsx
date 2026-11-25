@@ -43,9 +43,9 @@ export function DashboardView({ track }: { track: Track }) {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="text-h1 font-semibold tracking-tight md:text-display">
+      <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="text-h1 font-extrabold tracking-tight md:text-display">
             {track.hello}, {firstName(profile.name)}!
           </h1>
           <p className="mt-2 max-w-2xl text-muted">
@@ -95,7 +95,7 @@ export function DashboardView({ track }: { track: Track }) {
 
       <section>
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-h3 font-semibold">Dein Fortschritt nach Prüfungsteil</h2>
+          <h2 className="text-h3 font-bold">Dein Fortschritt nach Prüfungsteil</h2>
           {sample ? <span className="text-micro text-soft">Beispieldaten</span> : null}
         </div>
         <div className={skills.length > 4 ? "grid gap-3 sm:grid-cols-2 xl:grid-cols-5" : "grid gap-3 sm:grid-cols-2 xl:grid-cols-4"}>
@@ -105,7 +105,7 @@ export function DashboardView({ track }: { track: Track }) {
               <Card key={skill} className="p-4">
                 <div className="flex items-start justify-between gap-3">
                   <SkillBadge skill={skill} />
-                  <span className="text-h2 font-semibold tabular-nums">{stat.percent}%</span>
+                  <span className="text-h2 font-extrabold tabular-nums">{stat.percent}%</span>
                 </div>
                 <div className="mt-4">
                   <ProgressBar value={stat.percent} skill={skill} label={SKILL_LABEL[skill]} />
@@ -125,7 +125,7 @@ export function DashboardView({ track }: { track: Track }) {
       <div className="grid gap-4 lg:grid-cols-[1.4fr_0.8fr]">
         <Card className="p-4 md:p-5">
           <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-h3 font-semibold">Letzte Ergebnisse</h2>
+            <h2 className="text-h3 font-bold">Letzte Ergebnisse</h2>
             <Button href="/profil" variant="soft" size="sm">
               Alle ansehen
             </Button>
@@ -150,7 +150,7 @@ export function DashboardView({ track }: { track: Track }) {
           </ul>
         </Card>
         <section>
-          <h2 className="mb-3 text-h3 font-semibold">Schnell üben</h2>
+          <h2 className="mb-3 text-h3 font-bold">Schnell üben</h2>
           <div className="space-y-3">
             {track.quickTaskIds.map((id) => {
               const task = getTask(id);
@@ -191,7 +191,7 @@ function GoetheTop({
     <div className="grid gap-4 lg:grid-cols-[1.35fr_0.9fr]">
       <BrandPanel className="p-5 md:p-6">
         <p className="text-small text-white/80">Probeprüfung · {track.title.replace("Goethe-Zertifikat ", "Goethe ")}</p>
-        <h2 className="mt-3 max-w-md text-h1 font-semibold leading-tight">Komplette Probeprüfung starten</h2>
+        <h2 className="mt-3 max-w-md text-h1 font-extrabold leading-tight">Komplette Probeprüfung starten</h2>
         <p className="mt-3 max-w-lg text-small text-white/85">
           Lesen, Hören, Schreiben und Sprechen in der echten Reihenfolge – mit Timer und Gesamtwertung.
         </p>
@@ -218,7 +218,7 @@ function GoetheTop({
           <div className="mt-3 flex gap-2">
             {DAYS.map((day, index) => (
               <span key={day} className="text-center text-micro text-muted">
-                <span className={`mx-auto mb-1 grid h-6 w-6 place-items-center rounded-full ${week[index] ? "bg-streak text-white" : "bg-sunken text-soft"}`}>
+                <span className={`mx-auto mb-1 grid h-6 w-6 place-items-center rounded-full ${week[index] ? "bg-streak-fill text-white" : "bg-sunken text-soft"}`}>
                   {week[index] ? "✓" : ""}
                 </span>
                 {day}
@@ -236,7 +236,7 @@ function GoetheTop({
         <Card className="p-4">
           <p className="text-small font-semibold text-brand-text">Nächste empfohlene Aufgabe</p>
           {recommended ? <SkillBadge skill={recommended.skill} className="mt-3" /> : null}
-          <h3 className="mt-3 text-h3 font-semibold">{recommendedTitle}</h3>
+          <h3 className="mt-3 text-h3 font-bold">{recommendedTitle}</h3>
           <p className="mt-1 text-small text-muted">{reason}</p>
           {recommended ? (
             <Button href={`/ueben/${recommended.skill}/${recommended.id}`} variant="secondary" size="sm" className="mt-4">
@@ -258,7 +258,7 @@ function TelcTop({ track }: { track: Track }) {
       <BrandPanel className="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-small text-white/80">Probeprüfung · {track.title.replace("telc Deutsch ", "telc ")}</p>
-          <h2 className="mt-1 text-h2 font-semibold">Komplette Probeprüfung starten</h2>
+          <h2 className="mt-1 text-h2 font-extrabold">Komplette Probeprüfung starten</h2>
           <p className="mt-2 max-w-2xl text-small text-white/85">{track.parts.map((part) => part.label).join(", ")}.</p>
         </div>
         <Button href="/probe" variant="secondary">
@@ -266,7 +266,7 @@ function TelcTop({ track }: { track: Track }) {
         </Button>
       </BrandPanel>
       <section>
-        <h2 className="mb-3 text-h3 font-semibold">Empfohlene Aufgaben</h2>
+        <h2 className="mb-3 text-h3 font-bold">Empfohlene Aufgaben</h2>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
           {cards.map((task) => (
             <TaskCard key={task.id} skill={task.skill} title={task.title} meta={`${task.minutes} Min.`} href={`/ueben/${task.skill}/${task.id}`} detail={task.intro} />
@@ -296,7 +296,7 @@ function TaskCard({
         <SkillBadge skill={skill} />
         <span className="text-micro text-muted">{meta}</span>
       </div>
-      <h3 className="mt-3 font-semibold leading-snug">{title}</h3>
+      <h3 className="mt-3 font-bold leading-snug">{title}</h3>
       {detail ? <p className="mt-2 line-clamp-3 text-small text-muted">{detail}</p> : null}
       <Button href={href} variant="secondary" size="sm" className="mt-4 w-fit">
         Starten <IconArrow />

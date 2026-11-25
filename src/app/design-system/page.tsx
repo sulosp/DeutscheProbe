@@ -18,7 +18,10 @@ import { useTheme } from "next-themes";
 
 const swatches = [
   ["brand", "Marke"],
+  ["brand-vivid", "Violett, lebhaft"],
   ["brand-soft", "Marke, Fläche"],
+  ["accent-pink", "Akzent Pink"],
+  ["accent-blue", "Akzent Blau"],
   ["surface", "Hintergrund"],
   ["surface-raised", "Karte"],
   ["text", "Text"],
@@ -59,14 +62,14 @@ export default function DesignSystemPage() {
             <p className="text-small font-semibold text-brand-text">DeutscheProbe</p>
             <h1 className="display mt-2">Design-System</h1>
             <p className="mt-3 max-w-2xl text-muted">
-              Alle Farben stehen in <code className="text-foreground">src/styles/tokens.css</code>. Die Marke ist vorerst ein Blau, Platzhalter #0B6BCB im Hellen. Hell, Dunkel und System teilen sich dieselben Namen.
+              Alle Farben stehen in <code className="text-foreground">src/styles/tokens.css</code>. Die Marke ist Violett (#6647F0), der Verlauf aus Violett, Pink und Blau bleibt Akzent. Überschriften nutzen Plus Jakarta Sans, Fließtext Inter. Hell, Dunkel und System teilen sich dieselben Namen.
             </p>
           </div>
           <ThemeToggle />
         </header>
 
         <section>
-          <h2 className="text-h2 font-semibold">Farben</h2>
+          <h2 className="text-h2 font-extrabold">Farben</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {swatches.map(([token, label]) => (
               <Card key={token} className="flex items-center gap-3 p-3">
@@ -79,27 +82,28 @@ export default function DesignSystemPage() {
               </Card>
             ))}
           </div>
+          <div className="mt-4 h-14 rounded-2xl" style={{ backgroundImage: "var(--brand-gradient)" }} role="img" aria-label="Markenverlauf von Violett über Pink nach Blau" />
           <p className="mt-3 text-small text-muted">
-            Lesen ist Himmelblau, Sprachbausteine ist Indigo. Erfolg ist blau, nicht grün. Die Balken nutzen die lebhaftere Stufe derselben Farbe.
+            Lesen ist Blau, Hören ist Violett, Schreiben ist Pink, Sprechen ist Orange, Sprachbausteine ist Indigo. Erfolg ist blau, nicht grün. Die Balken nutzen die lebhaftere Stufe derselben Farbe. Der Verlauf markiert nur die Wortmarke und Akzente.
           </p>
         </section>
 
         <section>
-          <h2 className="text-h2 font-semibold">Schrift</h2>
+          <h2 className="text-h2 font-extrabold">Schrift</h2>
           <div className="mt-4 space-y-3">
             <p className="display">Probeprüfung</p>
-            <p className="text-h1 font-semibold">Überschrift eins</p>
-            <p className="text-h2 font-semibold">Überschrift zwei</p>
-            <p className="text-h3 font-semibold">Überschrift drei</p>
+            <p className="text-h1 font-extrabold">Überschrift eins</p>
+            <p className="text-h2 font-extrabold">Überschrift zwei</p>
+            <p className="text-h3 font-bold">Überschrift drei</p>
             <p className="text-lead">Einleitungstext für Erklärungen auf der Aufgabenseite.</p>
-            <p>Fließtext in Inter, der Schrift der Oberfläche.</p>
+            <p>Fließtext in Inter. Überschriften in Plus Jakarta Sans.</p>
             <p className="text-small text-muted">Kleiner Text für Metaangaben.</p>
             <p className="text-micro text-soft">Micro für Zeiten und Hinweise.</p>
           </div>
         </section>
 
         <section>
-          <h2 className="text-h2 font-semibold">Komponenten</h2>
+          <h2 className="text-h2 font-extrabold">Komponenten</h2>
           <Card className="mt-4 space-y-5 p-5">
             <div className="flex flex-wrap gap-2">
               <Button>Primär</Button>
@@ -155,7 +159,7 @@ export default function DesignSystemPage() {
         </section>
 
         <section>
-          <h2 className="text-h2 font-semibold">Radius, Schatten, Abstand</h2>
+          <h2 className="text-h2 font-extrabold">Radius, Schatten, Abstand</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
             <div className="rounded-sm border border-border bg-raised p-4 shadow-sm">sm</div>
             <div className="rounded-xl border border-border bg-raised p-4 shadow-card">Karte</div>
