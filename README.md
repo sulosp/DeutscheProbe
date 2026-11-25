@@ -11,7 +11,7 @@ Ohne Umgebungsvariablen läuft die App lokal im Browser:
 - Konto, Ziel und Versuche liegen in `localStorage`
 - eine laufende Probeprüfung liegt in `sessionStorage`
 - Schreiben und Sprechen bekommen eine eingebaute Einschätzung
-- Hören im Goethe-B1-Modellsatz spielt vorbereitete Aufnahmen ab. Die kürzeren Aufgaben der anderen Strecken nutzen die Sprachausgabe des Browsers
+- Hören in allen acht Modellsätzen spielt vorbereitete Aufnahmen ab
 - Sprechen nimmt über das Mikrofon auf (`MediaRecorder`). Die Aufnahme bleibt im Tab
 
 `Beispiel ansehen` öffnet ein Beispielkonto auf Goethe B1. Die Zahlen auf der Übersicht sind dann als Beispieldaten gekennzeichnet, bis eigene Versuche dazukommen.
@@ -47,7 +47,7 @@ Acht Übersichten: Goethe und telc, jeweils A1, A2, B1, B2. Prüfung und Niveau 
 
 Die Goethe-Modellsätze liegen unter `src/content/exams/goethe-a1`, `goethe-a2`, `goethe-b1` und `goethe-b2`. B1 im Einzelnen: Lesen 65 Minuten (Teile 1–5, Aufgaben 1–30), Hören etwa 40 Minuten plus fünf Minuten Antwortbogen (Teile 1–4, Aufgaben 1–30, Texte ein- oder zweimal), Schreiben 60 Minuten (drei Aufgaben), Sprechen etwa 15 Minuten plus 15 Minuten Vorbereitung. Jedes Modul gilt ab 60 von 100 Punkten als bestanden. Lesen und Hören rechnen 30 Rohpunkte auf 100 um. Im Prüfungsmodus läuft Hören ohne Pause und ohne Zurückspulen. Einzelne Teile lassen sich unter Üben mit sofortiger Lösung wiederholen.
 
-Die Hördateien liegen in `public/audio/` und `public/audio/cues`. Neu erzeugen, nachdem `edge-tts` und ffmpeg installiert sind:
+Die Hördateien liegen in `public/audio/` und `public/audio/cues`. Jede Rolle hat eine eigene Stimme. Ansagen, Telefon, Radio, Café und Vortrag bekommen eine leise, im Build erzeugte Raumfarbe; die Lizenzen stehen in `public/audio/ambience/LICENSES.md`. Neu erzeugen, nachdem `edge-tts` und ffmpeg installiert sind:
 
 ```bash
 pip install -r scripts/tts/requirements.txt

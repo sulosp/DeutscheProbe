@@ -43,6 +43,8 @@ export type AudioScript = {
   situation?: string;
   readCue?: string;
   repeatCue?: string;
+  /** Acoustic setting for the listening text: station, shop, phone, radio, cafe, street, lecture, quiet. */
+  scene?: "station" | "shop" | "phone" | "radio" | "cafe" | "street" | "lecture" | "quiet";
   speakers: Speaker[];
   lines: ScriptLine[];
 };
@@ -227,7 +229,21 @@ export type AudioClip = {
   id: string;
   speakers: Speaker[];
   lines: ScriptLine[];
+  scene?: AudioScript["scene"];
 };
+
+export function inferScene(situation?: string): NonNullable<AudioScript["scene"]> {
+  const text = (situation ?? "").toLowerCase();
+  if (/bahnhof|gleis|haltestelle|flughafen|steig|bahnsteig/.test(text)) return "station";
+  if (/anruf|mailbox|telefon|praxis|nachricht auf/.test(text)) return "phone";
+  if (/radio|interview|diskussion|nachrichten/.test(text)) return "radio";
+  if (/café|cafe|kneipe|straßenbahn|strassenbahn|tram/.test(text)) return "cafe";
+  if (/straße|strasse|park|unterhalten|feier/.test(text)) return "street";
+  if (/vortrag|kurs|saal|workshop|begrüßung/.test(text)) return "lecture";
+  if (/geschäft|geschaeft|kaufhaus|kunden|supermarkt|laden|bad /.test(text)) return "shop";
+  if (/gespräch|gespraech/.test(text)) return "cafe";
+  return "quiet";
+}
 
 export function clipsForScript(script: AudioScript, narrator: Speaker): AudioClip[] {
   const clips: AudioClip[] = [];
@@ -245,7 +261,12 @@ export function clipsForScript(script: AudioScript, narrator: Speaker): AudioCli
       lines: [{ speaker: narrator.id, text: script.situation }],
     });
   }
-  clips.push({ id: script.id, speakers: script.speakers, lines: script.lines });
+  clips.push({
+    id: script.id,
+    speakers: script.speakers,
+    lines: script.lines,
+    scene: script.scene ?? inferScene(script.situation),
+  });
   return clips;
 }
 
