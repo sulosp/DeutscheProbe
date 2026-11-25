@@ -2,7 +2,7 @@
 
 Kostenlose Web-App zum Üben der Goethe- und telc-Prüfungen Deutsch A1 bis B2. Lesen, Hören, Schreiben, Sprechen und, bei telc B1 und B2, Sprachbausteine.
 
-Goethe-Zertifikat B1 hat einen vollständigen Modellsatz: vier Module in der Prüfungsreihenfolge, alle Teile mit Aufgabenzahl, Zeit und, beim Hören, Anzahl der Wiedergaben. Die anderen Strecken behalten vorerst die kürzeren Aufgaben. Alle Texte sind eigene Beispieldaten. DeutscheProbe ist nicht mit dem Goethe-Institut oder telc verbunden und verwendet keine Prüfungslogos und keine offiziellen Aufgaben.
+Goethe und telc, jeweils A1 bis B2, haben je einen vollständigen Modellsatz: Module in der Prüfungsreihenfolge, alle Teile mit Aufgabenzahl, Zeit und, beim Hören, Anzahl der Wiedergaben. Bei telc B1 und B2 gehören die Sprachbausteine dazu. Alle Texte sind eigene Beispieldaten. DeutscheProbe ist nicht mit dem Goethe-Institut oder telc verbunden und verwendet keine Prüfungslogos und keine offiziellen Aufgaben.
 
 ## Demo-Modus
 
@@ -45,9 +45,9 @@ Ohne `GEMINI_API_KEY` antwortet `/api/feedback` mit der Demo-Einschätzung.
 
 Acht Übersichten: Goethe und telc, jeweils A1, A2, B1, B2. Prüfung und Niveau lassen sich auf der Übersicht wechseln.
 
-Der Goethe-B1-Modellsatz liegt unter `src/content/exams/goethe-b1`. Lesen 65 Minuten (Teile 1–5, Aufgaben 1–30), Hören etwa 40 Minuten plus fünf Minuten Antwortbogen (Teile 1–4, Aufgaben 1–30, Texte ein- oder zweimal), Schreiben 60 Minuten (drei Aufgaben), Sprechen etwa 15 Minuten plus 15 Minuten Vorbereitung. Jedes Modul gilt ab 60 von 100 Punkten als bestanden. Lesen und Hören rechnen 30 Rohpunkte auf 100 um. Im Prüfungsmodus läuft Hören ohne Pause und ohne Zurückspulen. Einzelne Teile lassen sich unter Üben mit sofortiger Lösung wiederholen.
+Die Goethe-Modellsätze liegen unter `src/content/exams/goethe-a1`, `goethe-a2`, `goethe-b1` und `goethe-b2`. B1 im Einzelnen: Lesen 65 Minuten (Teile 1–5, Aufgaben 1–30), Hören etwa 40 Minuten plus fünf Minuten Antwortbogen (Teile 1–4, Aufgaben 1–30, Texte ein- oder zweimal), Schreiben 60 Minuten (drei Aufgaben), Sprechen etwa 15 Minuten plus 15 Minuten Vorbereitung. Jedes Modul gilt ab 60 von 100 Punkten als bestanden. Lesen und Hören rechnen 30 Rohpunkte auf 100 um. Im Prüfungsmodus läuft Hören ohne Pause und ohne Zurückspulen. Einzelne Teile lassen sich unter Üben mit sofortiger Lösung wiederholen.
 
-Die Hördateien liegen in `public/audio/goethe-b1` und `public/audio/cues`. Neu erzeugen, nachdem `edge-tts` und ffmpeg installiert sind:
+Die Hördateien liegen in `public/audio/` und `public/audio/cues`. Neu erzeugen, nachdem `edge-tts` und ffmpeg installiert sind:
 
 ```bash
 pip install -r scripts/tts/requirements.txt

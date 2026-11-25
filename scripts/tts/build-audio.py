@@ -188,14 +188,22 @@ def write_gong(dest: Path) -> None:
     )
 
 
+def clip_groups(data: dict) -> list[dict]:
+    if "groups" in data:
+        return data["groups"]
+    return [{"folder": "goethe-b1", "clips": data["clips"], "teile": data.get("teile", [])}]
+
+
 async def main() -> None:
     if not JSON_PATH.exists():
         fail("audio-scripts.json fehlt. Zuerst export-audio ausführen.")
     data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
-    for teil in data["teile"]:
-        check_teil(teil)
-    for clip in data["clips"]:
-        check_voices(clip["lines"], clip["id"])
+    groups = clip_groups(data)
+    for group in groups:
+        for teil in group.get("teile", []):
+            check_teil(teil)
+        for clip in group["clips"]:
+            check_voices(clip["lines"], clip["id"])
 
     CACHE.mkdir(parents=True, exist_ok=True)
     WORK.mkdir(parents=True, exist_ok=True)
@@ -235,31 +243,49 @@ async def main() -> None:
         check_voices(cue["lines"], cue["id"])
 
     sem = asyncio.Semaphore(4)
-    jobs = []
-    for clip in [*data["clips"], *cue_lines]:
+    pending = []
+    for group in groups:
+        for clip in group["clips"]:
+            folder = PUBLIC / "audio" / group["folder"]
+            dest = folder / f"{clip['id']}.mp3"
+            if dest.exists() and dest.stat().st_size > 400:
+                continue
+            for line in clip["lines"]:
+                pending.append(line_file(line, sem))
+    for clip in cue_lines:
+        dest = OUT_CUES / f"{clip['id']}.mp3"
+        if dest.exists() and dest.stat().st_size > 400:
+            continue
         for line in clip["lines"]:
-            jobs.append(line_file(line, sem))
-    await asyncio.gather(*jobs)
+            pending.append(line_file(line, sem))
+    if pending:
+        await asyncio.gather(*pending)
 
     manifest = {"cues": {}, "clips": {}}
     gong = OUT_CUES / "gong.mp3"
-    write_gong(gong)
+    if not gong.exists():
+        write_gong(gong)
     manifest["cues"]["gong"] = {"src": "/audio/cues/gong.mp3", "durationSec": duration(gong)}
 
     def render(clip: dict, folder: Path, web_dir: str, bucket: str) -> None:
-        parts: list[Path] = []
-        for index, line in enumerate(clip["lines"]):
-            parts.append(CACHE / f"{sha(line['voice'], line['rate'], line['pitch'], line['text'])}.mp3")
-            pause_ms = int(line.get("pauseAfterMs") or 0)
-            if pause_ms > 0 and index < len(clip["lines"]) - 1:
-                parts.append(silence(pause_ms))
+        folder.mkdir(parents=True, exist_ok=True)
         dest = folder / f"{clip['id']}.mp3"
-        concat(parts, dest)
+        if not (dest.exists() and dest.stat().st_size > 400):
+            parts: list[Path] = []
+            for index, line in enumerate(clip["lines"]):
+                parts.append(CACHE / f"{sha(line['voice'], line['rate'], line['pitch'], line['text'])}.mp3")
+                pause_ms = int(line.get("pauseAfterMs") or 0)
+                if pause_ms > 0 and index < len(clip["lines"]) - 1:
+                    parts.append(silence(pause_ms))
+            concat(parts, dest)
+            print("built", clip["id"])
+        else:
+            print("keep", clip["id"])
         manifest[bucket][clip["id"]] = {"src": f"{web_dir}/{clip['id']}.mp3", "durationSec": duration(dest)}
-        print(clip["id"], manifest[bucket][clip["id"]]["durationSec"])
 
-    for clip in data["clips"]:
-        render(clip, OUT_CLIPS, "/audio/goethe-b1", "clips")
+    for group in groups:
+        for clip in group["clips"]:
+            render(clip, PUBLIC / "audio" / group["folder"], f"/audio/{group['folder']}", "clips")
     for clip in cue_lines:
         render(clip, OUT_CUES, "/audio/cues", "cues")
 

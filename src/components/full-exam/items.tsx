@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -7,11 +8,24 @@ import { answerMatches, itemOptions, type Item, type Teil } from "@/lib/exam-mod
 import { cn } from "@/lib/cn";
 
 export function Stimuli({ teil }: { teil: Teil }) {
+  const pictures = teil.stimuli.filter((stimulus) => stimulus.kind === "image");
   const texts = teil.stimuli.filter((stimulus) => stimulus.kind === "text");
   const ads = texts.filter((stimulus) => stimulus.kind === "text" && stimulus.genre === "ad");
   const rest = texts.filter((stimulus) => stimulus.kind === "text" && stimulus.genre !== "ad");
   return (
     <div className="space-y-3">
+      {pictures.length > 0 ? (
+        <div className="grid gap-3 sm:grid-cols-3">
+          {pictures.map((stimulus) =>
+            stimulus.kind === "image" ? (
+              <Card key={stimulus.id} className="p-3">
+                <Image src={stimulus.src} alt={stimulus.alt} width={320} height={112} className="h-28 w-full rounded-md object-contain" />
+                <p className="mt-2 text-micro text-muted">{stimulus.alt}</p>
+              </Card>
+            ) : null,
+          )}
+        </div>
+      ) : null}
       {ads.length > 0 ? (
         <div className="grid gap-3 sm:grid-cols-2">
           {ads.map((stimulus) =>
@@ -96,6 +110,7 @@ export function ItemCard({
   locked,
   reveal,
   highlight,
+  taken,
 }: {
   item: Item;
   teil: Teil;
@@ -104,10 +119,29 @@ export function ItemCard({
   locked?: boolean;
   reveal?: boolean;
   highlight?: boolean;
+  taken?: Set<string>;
 }) {
   const options = itemOptions(item, teil);
   const correctId = Array.isArray(item.correct) ? item.correct[0] : item.correct;
   const right = reveal ? answerMatches(item.correct, value) : false;
+  if (item.type === "fill") {
+    return (
+      <Card className={cn("p-4", reveal && (right ? "bg-success-soft" : "bg-danger-soft"))} id={`item-${item.id}`}>
+        <h3 className="font-semibold">
+          {item.number}. {item.prompt}
+        </h3>
+        <input
+          className="mt-3 h-11 w-full rounded-lg border border-border bg-raised px-3"
+          value={value ?? ""}
+          disabled={locked || reveal}
+          aria-label={item.prompt}
+          onChange={(event) => onChange?.(event.target.value)}
+        />
+        {reveal ? <p className="mt-2 text-small">Lösung: {Array.isArray(item.correct) ? item.correct[0] : item.correct}</p> : null}
+        {reveal ? <p className="mt-1 text-small text-muted">{item.explanation}</p> : null}
+      </Card>
+    );
+  }
   return (
     <Card className={cn("p-4", highlight && "ring-2 ring-brand", reveal && (right ? "bg-success-soft" : "bg-danger-soft"))} id={`item-${item.id}`}>
       <div className="flex flex-wrap items-start justify-between gap-2">
@@ -127,9 +161,10 @@ export function ItemCard({
               selected={selected}
               correct={showCorrect}
               wrong={showWrong}
-              disabled={locked || reveal}
+              disabled={locked || reveal || (item.type === "gapBank" && !teil.allowReuse && taken?.has(option.id) && value !== option.id)}
               onClick={() => onChange?.(option.id)}
             >
+              {option.image ? <Image src={option.image} alt="" width={160} height={48} className="mb-1 h-12 w-full object-contain" /> : null}
               {option.label}
             </OptionButton>
           );
@@ -157,18 +192,24 @@ export function TeilQuestions({
 }) {
   return (
     <div className="space-y-3">
-      {teil.items.map((item) => (
-        <ItemCard
-          key={item.id}
-          item={item}
-          teil={teil}
-          value={answers[item.id]}
-          onChange={onAnswer ? (optionId) => onAnswer(item.id, optionId) : undefined}
-          locked={locked}
-          reveal={reveal}
-          highlight={highlightIds?.includes(item.id)}
-        />
-      ))}
+      {teil.items.map((item) => {
+        const taken = new Set(
+          teil.items.filter((other) => other.id !== item.id && other.type === "gapBank").map((other) => answers[other.id]).filter(Boolean),
+        );
+        return (
+          <ItemCard
+            key={item.id}
+            item={item}
+            teil={teil}
+            value={answers[item.id]}
+            onChange={onAnswer ? (optionId) => onAnswer(item.id, optionId) : undefined}
+            locked={locked}
+            reveal={reveal}
+            highlight={highlightIds?.includes(item.id)}
+            taken={taken}
+          />
+        );
+      })}
     </div>
   );
 }

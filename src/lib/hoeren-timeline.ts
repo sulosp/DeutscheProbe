@@ -80,16 +80,18 @@ function pushStimulus(
   });
   steps.push(body(1));
   if (audio.plays === 2) {
-    const repeatId = audio.repeatCue && audio.repeatCue !== REPEAT_CUE ? `${audio.id}__repeat` : "repeat";
-    steps.push({
-      kind: "audio",
-      src: clipSrc(manifest, repeatId),
-      label: "Ansage",
-      teilIndex,
-      stimulusId,
-      highlightItemIds: itemIds,
-      showExample,
-    });
+    if (audio.repeatCue) {
+      const repeatId = audio.repeatCue !== REPEAT_CUE ? `${audio.id}__repeat` : "repeat";
+      steps.push({
+        kind: "audio",
+        src: clipSrc(manifest, repeatId),
+        label: "Ansage",
+        teilIndex,
+        stimulusId,
+        highlightItemIds: itemIds,
+        showExample,
+      });
+    }
     if (audio.betweenPlaysSeconds > 0) {
       steps.push({
         kind: "pause",
