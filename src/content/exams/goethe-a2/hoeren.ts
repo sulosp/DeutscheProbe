@@ -22,24 +22,37 @@ export const a2Hoeren: Teil[] = [
     introAudio: narrate("ga2-h-t1-intro", ["Teil 1.", "Sie hören fünf kurze Texte.", "Sie hören jeden Text zweimal.", "Lesen Sie zuerst das Beispiel. Dazu haben Sie fünfzehn Sekunden Zeit."]),
     endAudio: narrate("ga2-h-t1-ende", ["Ende von Teil 1."]),
     example: mc("ga2-h-bsp", 0, "Wohin fährt der Bus?", [{ id: "a", label: "zum See" }, { id: "b", label: "zum Markt" }, { id: "c", label: "zum Bahnhof" }], "c", "Der Bus fährt zum Bahnhof."),
-    exampleStimulus: { kind: "audio", id: "ga2-h-bsp", itemIds: ["ga2-h-bsp"], audio: dialogue("ga2-h-bsp", [JAN], [{ who: JAN, text: "Bus fünf zum Bahnhof fährt in drei Minuten von Steig zwei." }], { ...one, plays: 2, betweenPlaysSeconds: 4, situation: "Sie hören eine Ansage." }) },
-    stimuli: [1, 2, 3, 4, 5].map((n) => {
-      const speakers = [TANJA, JONAS, INGRID, JAN, LENI];
-      const who = speakers[n - 1];
-      const lines = [
-        "Die Stadtbibliothek hat morgen ab neun Uhr geöffnet. Heute bleibt sie zu.",
-        "Hallo, hier ist Cem. Das Essen ist nicht um sieben, sondern um acht. Ich koche Reis.",
-        "Auf der Bergstraße gibt es einen Unfall. Bitte fahren Sie über die Ringstraße.",
-        "Der Kurs Fotografie beginnt am dritten Mai, nicht am dritten April. Immer dienstags.",
-        "Im Fundbüro liegt eine blaue Tasche. Sie können sie bis Freitag abholen.",
-      ];
-      return {
-        kind: "audio" as const,
-        id: `ga2-h-${n}`,
-        itemIds: [`ga2-h-${n}`],
-        audio: dialogue(`ga2-h-${n}`, [who], [{ who, text: lines[n - 1] }], { ...two, situation: "Sie hören einen kurzen Text.", readCue: `Nummer ${n}.` }),
-      };
-    }),
+    exampleStimulus: { kind: "audio", id: "ga2-h-bsp", itemIds: ["ga2-h-bsp"], audio: dialogue("ga2-h-bsp", [JAN], [
+      { who: JAN, text: "Achtung an der Haltestelle Markt." },
+      { who: JAN, text: "Bus fünf zum Bahnhof fährt in drei Minuten von Steig zwei." },
+    ], { ...one, plays: 2, betweenPlaysSeconds: 4, situation: "Sie hören eine Durchsage an der Bushaltestelle.", scene: "station" }) },
+    stimuli: [
+      { kind: "audio" as const, id: "ga2-h-1", itemIds: ["ga2-h-1"], audio: dialogue("ga2-h-1", [TANJA], [
+        { who: TANJA, text: "Achtung, eine Durchsage der Stadtbibliothek." },
+        { who: TANJA, text: "Heute bleibt die Bibliothek zu." },
+        { who: TANJA, text: "Morgen hat sie ab neun Uhr wieder geöffnet." },
+      ], { ...two, situation: "Sie hören eine Durchsage in der Stadtbibliothek.", scene: "shop", readCue: "Nummer 1." }) },
+      { kind: "audio" as const, id: "ga2-h-2", itemIds: ["ga2-h-2"], audio: dialogue("ga2-h-2", [JONAS], [
+        { who: JONAS, text: "Hallo, hier ist Cem." },
+        { who: JONAS, text: "Das Essen ist nicht um sieben, sondern um acht." },
+        { who: JONAS, text: "Ich koche Reis." },
+      ], { ...two, situation: "Sie hören eine Mailbox-Nachricht von Cem.", scene: "phone", readCue: "Nummer 2." }) },
+      { kind: "audio" as const, id: "ga2-h-3", itemIds: ["ga2-h-3"], audio: dialogue("ga2-h-3", [INGRID], [
+        { who: INGRID, text: "Verkehrsmeldung für die Innenstadt." },
+        { who: INGRID, text: "Auf der Bergstraße gibt es einen Unfall." },
+        { who: INGRID, text: "Bitte fahren Sie über die Ringstraße." },
+      ], { ...two, situation: "Sie hören eine Verkehrsmeldung im Radio.", scene: "radio", readCue: "Nummer 3." }) },
+      { kind: "audio" as const, id: "ga2-h-4", itemIds: ["ga2-h-4"], audio: dialogue("ga2-h-4", [JAN], [
+        { who: JAN, text: "Hinweis der Volkshochschule." },
+        { who: JAN, text: "Der Kurs Fotografie beginnt am dritten Mai, nicht am dritten April." },
+        { who: JAN, text: "Immer dienstags." },
+      ], { ...two, situation: "Sie hören eine Ansage der Volkshochschule.", scene: "lecture", readCue: "Nummer 4." }) },
+      { kind: "audio" as const, id: "ga2-h-5", itemIds: ["ga2-h-5"], audio: dialogue("ga2-h-5", [LENI], [
+        { who: LENI, text: "Hallo, hier ist das Fundbüro." },
+        { who: LENI, text: "Bei uns liegt eine blaue Tasche." },
+        { who: LENI, text: "Sie können sie bis Freitag abholen." },
+      ], { ...two, situation: "Sie hören eine Mailbox-Nachricht vom Fundbüro.", scene: "phone", readCue: "Nummer 5." }) },
+    ],
     items: [
       mc("ga2-h-1", 1, "Wann hat die Bibliothek geöffnet?", [{ id: "a", label: "heute" }, { id: "b", label: "morgen ab 9 Uhr" }, { id: "c", label: "nur sonntags" }], "b", "Heute bleibt sie zu, morgen ab neun."),
       mc("ga2-h-2", 2, "Wann ist das Essen?", [{ id: "a", label: "um 7 Uhr" }, { id: "b", label: "um 8 Uhr" }, { id: "c", label: "um 9 Uhr" }], "b", "Cem sagt: nicht um sieben, sondern um acht."),
@@ -74,13 +87,13 @@ export const a2Hoeren: Teil[] = [
         id: "ga2-h-t2",
         itemIds: ["ga2-h-6", "ga2-h-7", "ga2-h-8", "ga2-h-9", "ga2-h-10"],
         audio: dialogue("ga2-h-t2", [TANJA, JONAS], [
-          { who: TANJA, text: "Montag gehen wir schwimmen, das ist schon klar." },
-          { who: JONAS, text: "Dienstag habe ich um zehn den Zahnarzt." },
+          { who: TANJA, text: "Also, Montag gehen wir schwimmen. Das ist schon klar." },
+          { who: JONAS, text: "Dienstag hab' ich um zehn den Zahnarzt." },
           { who: TANJA, text: "Mittwoch koche ich mit Freunden." },
-          { who: JONAS, text: "Donnerstag fahre ich mit dem Zug zu meinen Eltern." },
-          { who: TANJA, text: "Freitag spielen wir Fußball im Park? Nein, Fußball auf dem Sportplatz." },
-          { who: JONAS, text: "Und Samstag ins Kino. Sonntag bleiben wir zu Hause." },
-        ], { ...one, situation: "Sie hören, wie zwei Personen die Woche planen." }),
+          { who: JONAS, text: "Und Donnerstag fahre ich mit dem Zug zu meinen Eltern." },
+          { who: TANJA, text: "Freitag spielen wir Fußball im Park? Nein, warte: Fußball auf dem Sportplatz." },
+          { who: JONAS, text: "Samstag dann ins Kino. Sonntag bleiben wir zu Hause." },
+        ], { ...one, situation: "Sie hören zwei Freunde in einem Café. Sie planen die Woche.", scene: "cafe" }),
       },
     ],
     items: [
@@ -100,11 +113,26 @@ export const a2Hoeren: Teil[] = [
     introAudio: narrate("ga2-h-t3-intro", ["Teil 3.", "Sie hören fünf kurze Gespräche.", "Sie hören jedes Gespräch einmal."]),
     endAudio: narrate("ga2-h-t3-ende", ["Ende von Teil 3."]),
     stimuli: [
-      { kind: "audio" as const, id: "ga2-h-11", itemIds: ["ga2-h-11"], audio: dialogue("ga2-h-11", [TANJA, JONAS], [{ who: TANJA, text: "Wo ist der Ausgang?" }, { who: JONAS, text: "Links, neben der Treppe. Nicht rechts." }], { ...one, readCue: "Nummer 11.", situation: "Sie hören ein kurzes Gespräch." }) },
-      { kind: "audio" as const, id: "ga2-h-12", itemIds: ["ga2-h-12"], audio: dialogue("ga2-h-12", [INGRID, JAN], [{ who: INGRID, text: "Ist der Tisch am Fenster noch frei?" }, { who: JAN, text: "Nein, nehmen Sie den Tisch an der Tür." }], { ...one, readCue: "Nummer 12.", situation: "Sie hören ein kurzes Gespräch." }) },
-      { kind: "audio" as const, id: "ga2-h-13", itemIds: ["ga2-h-13"], audio: dialogue("ga2-h-13", [LENI, ANDREW], [{ who: LENI, text: "Wie viel kostet die Fahrkarte nach Bremen?" }, { who: ANDREW, text: "Einfach zwölf Euro, hin und zurück zwanzig." }], { ...one, readCue: "Nummer 13.", situation: "Sie hören ein kurzes Gespräch." }) },
-      { kind: "audio" as const, id: "ga2-h-14", itemIds: ["ga2-h-14"], audio: dialogue("ga2-h-14", [AVA, BRIAN], [{ who: AVA, text: "Kann ich die Jacke umtauschen?" }, { who: BRIAN, text: "Ja, aber nur mit dem Bon, bis sieben Tage nach dem Kauf." }], { ...one, readCue: "Nummer 14.", situation: "Sie hören ein kurzes Gespräch." }) },
-      { kind: "audio" as const, id: "ga2-h-15", itemIds: ["ga2-h-15"], audio: dialogue("ga2-h-15", [EMMA, REMY], [{ who: EMMA, text: "Wann kommt der Arzt?" }, { who: REMY, text: "Er ist in einer Stunde da, nicht sofort." }], { ...one, readCue: "Nummer 15.", situation: "Sie hören ein kurzes Gespräch." }) },
+      { kind: "audio" as const, id: "ga2-h-11", itemIds: ["ga2-h-11"], audio: dialogue("ga2-h-11", [TANJA, JONAS], [
+        { who: TANJA, text: "Entschuldigung, wo ist der Ausgang?" },
+        { who: JONAS, text: "Links, neben der Treppe. Nicht rechts." },
+      ], { ...one, readCue: "Nummer 11.", situation: "Sie hören ein Gespräch in der Bahnhofshalle.", scene: "station" }) },
+      { kind: "audio" as const, id: "ga2-h-12", itemIds: ["ga2-h-12"], audio: dialogue("ga2-h-12", [INGRID, JAN], [
+        { who: INGRID, text: "Ist der Tisch am Fenster noch frei?" },
+        { who: JAN, text: "Nein, der ist belegt. Nehmen Sie den Tisch an der Tür." },
+      ], { ...one, readCue: "Nummer 12.", situation: "Sie hören ein Gespräch im Café Linde.", scene: "cafe" }) },
+      { kind: "audio" as const, id: "ga2-h-13", itemIds: ["ga2-h-13"], audio: dialogue("ga2-h-13", [LENI, ANDREW], [
+        { who: LENI, text: "Was kostet die Fahrkarte nach Bremen?" },
+        { who: ANDREW, text: "Einfach zwölf Euro, hin und zurück zwanzig." },
+      ], { ...one, readCue: "Nummer 13.", situation: "Sie hören ein Gespräch am Fahrkartenschalter.", scene: "station" }) },
+      { kind: "audio" as const, id: "ga2-h-14", itemIds: ["ga2-h-14"], audio: dialogue("ga2-h-14", [AVA, BRIAN], [
+        { who: AVA, text: "Kann ich die Jacke noch umtauschen?" },
+        { who: BRIAN, text: "Ja, aber nur mit dem Bon, und nur bis sieben Tage nach dem Kauf." },
+      ], { ...one, readCue: "Nummer 14.", situation: "Sie hören ein Gespräch an der Kasse im Kaufhaus.", scene: "shop" }) },
+      { kind: "audio" as const, id: "ga2-h-15", itemIds: ["ga2-h-15"], audio: dialogue("ga2-h-15", [EMMA, REMY], [
+        { who: EMMA, text: "Wann kommt der Arzt?" },
+        { who: REMY, text: "Nicht sofort. Er ist in einer Stunde da." },
+      ], { ...one, readCue: "Nummer 15.", situation: "Sie hören ein Gespräch am Empfang einer Arztpraxis.", scene: "quiet" }) },
     ],
     items: [
       mc("ga2-h-11", 11, "Wo ist der Ausgang?", [{ id: "a", label: "links neben der Treppe" }, { id: "b", label: "rechts" }, { id: "c", label: "im Keller" }], "a", "Links, neben der Treppe."),
@@ -128,15 +156,15 @@ export const a2Hoeren: Teil[] = [
         id: "ga2-h-t4",
         itemIds: ["ga2-h-16", "ga2-h-17", "ga2-h-18", "ga2-h-19", "ga2-h-20"],
         audio: dialogue("ga2-h-t4", [JAN, LENI], [
-          { who: JAN, text: "Sie backen Brot in einer kleinen Bäckerei. Seit wann?" },
-          { who: LENI, text: "Seit drei Jahren. Vorher habe ich in einem Büro gearbeitet." },
+          { who: JAN, text: "Sie backen Brot in einer kleinen Bäckerei in der Altstadt. Seit wann machen Sie das?" },
+          { who: LENI, text: "Seit drei Jahren. Vorher hab' ich in einem Büro gearbeitet." },
           { who: JAN, text: "Arbeiten Sie allein?" },
-          { who: LENI, text: "Nein, meine Schwester hilft am Wochenende. Unter der Woche bin ich allein." },
-          { who: JAN, text: "Ist der Laden auch sonntags offen?" },
+          { who: LENI, text: "Nein. Meine Schwester hilft am Wochenende. Unter der Woche bin ich allein." },
+          { who: JAN, text: "Und sonntags, ist der Laden da auch offen?" },
           { who: LENI, text: "Nein, sonntags haben wir zu. Samstags bis zwölf Uhr." },
           { who: JAN, text: "Was verkauft sich am besten?" },
-          { who: LENI, text: "Das Vollkornbrot, nicht die süßen Teilchen." },
-        ], { ...two, situation: "Sie hören ein Interview im Radio." }),
+          { who: LENI, text: "Das Vollkornbrot. Nicht die süßen Teilchen." },
+        ], { ...two, situation: "Sie hören ein Interview im Morgenmagazin von Radio Kirchfeld.", scene: "radio" }),
       },
     ],
     items: [

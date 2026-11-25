@@ -12,20 +12,21 @@ function person(
   return { id, name, role, gender, voice, rate, pitch };
 }
 
-export const NARRATOR = person("narrator", "Ansager", "narrator", "m", "de-DE-ChristophNeural", "-5%");
+/** Calm exam voice. Not used as a character in the same Teil. */
+export const NARRATOR = person("narrator", "Ansager", "narrator", "m", "de-DE-ConradNeural", "-8%", "-2Hz");
 
-export const TANJA = person("tanja", "Tanja", "character", "f", "de-DE-TanjaNeural");
-export const JONAS = person("jonas", "Jonas", "character", "m", "de-AT-JonasNeural");
-export const INGRID = person("ingrid", "Ingrid", "character", "f", "de-AT-IngridNeural");
-export const JAN = person("jan", "Jan", "character", "m", "de-CH-JanNeural", "-4%");
-export const LENI = person("leni", "Leni", "character", "f", "de-CH-LeniNeural");
-export const ANDREW = person("andrew", "Andrew", "character", "m", "en-US-AndrewMultilingualNeural", "-8%");
-export const BRIAN = person("brian", "Brian", "character", "m", "en-US-BrianMultilingualNeural", "-8%");
-export const AVA = person("ava", "Ava", "character", "f", "en-US-AvaMultilingualNeural", "-8%");
-export const EMMA = person("emma", "Emma", "character", "f", "en-US-EmmaMultilingualNeural", "-8%");
-export const VIVIENNE = person("vivienne", "Vivienne", "character", "f", "fr-FR-VivienneMultilingualNeural", "-6%");
-export const REMY = person("remy", "Remy", "character", "m", "fr-FR-RemyMultilingualNeural", "-6%");
-export const GIUSEPPE = person("giuseppe", "Giuseppe", "character", "m", "it-IT-GiuseppeMultilingualNeural", "-6%");
+export const TANJA = person("tanja", "Tanja", "character", "f", "de-DE-SeraphinaMultilingualNeural", "+2%", "+1Hz");
+export const JONAS = person("jonas", "Jonas", "character", "m", "de-DE-FlorianMultilingualNeural", "+4%", "+0Hz");
+export const INGRID = person("ingrid", "Ingrid", "announcer", "f", "de-DE-KatjaNeural", "-6%", "-2Hz");
+export const JAN = person("jan", "Jan", "announcer", "m", "de-CH-JanNeural", "-8%", "-3Hz");
+export const LENI = person("leni", "Leni", "character", "f", "de-CH-LeniNeural", "-2%", "+0Hz");
+export const ANDREW = person("andrew", "Andreas", "character", "m", "de-DE-ChristophNeural", "-2%", "+0Hz");
+export const BRIAN = person("brian", "Kilian", "character", "m", "de-DE-KillianNeural", "+6%", "+2Hz");
+export const AVA = person("ava", "Amala", "character", "f", "de-DE-AmalaNeural", "+8%", "+2Hz");
+export const EMMA = person("emma", "Ingrid", "character", "f", "de-AT-IngridNeural", "+0%", "+0Hz");
+export const REMY = person("remy", "Jonas", "character", "m", "de-AT-JonasNeural", "+2%", "-1Hz");
+export const VIVIENNE = person("vivienne", "Tanja", "character", "f", "de-DE-TanjaNeural", "+10%", "+1Hz");
+export const GIUSEPPE = person("giuseppe", "Andrew", "character", "m", "en-US-AndrewMultilingualNeural", "-4%", "+0Hz");
 
 export function asSpeaker(base: Speaker, id: string, name: string, role: Speaker["role"] = base.role): Speaker {
   return { ...base, id, name, role };

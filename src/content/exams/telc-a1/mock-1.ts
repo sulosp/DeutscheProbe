@@ -31,7 +31,12 @@ const hoeren: Teil[] = [
         { who: b as typeof TANJA, text: lines[1] as string },
         { who: a as typeof TANJA, text: lines[2] as string },
         { who: b as typeof TANJA, text: lines[3] as string },
-      ], { ...twice, situation: "Sie hören ein kurzes Gespräch.", readCue: `Nummer ${n}.` }),
+      ], {
+        ...twice,
+        situation: ["Sie hören ein Gespräch beim Bäcker.", "Sie hören ein Gespräch an der Bushaltestelle.", "Sie hören ein Gespräch auf der Straße.", "Sie hören ein Gespräch in der Apotheke.", "Sie hören ein Gespräch auf der Straße.", "Sie hören ein Gespräch in der Sprachschule."][Number(n) - 1],
+        scene: (["shop", "station", "street", "shop", "street", "quiet"] as const)[Number(n) - 1],
+        readCue: `Nummer ${n}.`,
+      }),
     })),
     items: [
       mc("ta1-h-1", 1, "Was kostet das große Brot?", [{ id: "a", label: "1,50 Euro" }, { id: "b", label: "2 Euro" }, { id: "c", label: "3 Euro" }], "b", "Das große Brot kostet zwei Euro."),
@@ -51,15 +56,15 @@ const hoeren: Teil[] = [
     introAudio: narrate("ta1-h-t2-intro", ["Teil 2.", "Sie hören vier Ansagen.", "Sie hören jede Ansage nur einmal."]),
     endAudio: narrate("ta1-h-t2-ende", ["Ende von Teil 2."]),
     stimuli: [
-      ["7", JAN, "Der Markt auf dem Rathausplatz fällt heute aus. Er findet morgen statt."],
-      ["8", LENI, "Im Park ist Grillen verboten. Picknick ohne Feuer ist erlaubt."],
-      ["9", INGRID, "Die Bücherei hat heute bis sechzehn Uhr geöffnet, nicht bis achtzehn Uhr."],
-      ["10", ANDREW, "Zug neun nach Lübeck fährt von Gleis vier. Er ist pünktlich."],
-    ].map(([n, who, text]) => ({
+      ["7", JAN, "Achtung auf dem Rathausplatz. Der Markt fällt heute aus. Er findet morgen statt.", "station"],
+      ["8", LENI, "Achtung im Stadtpark. Grillen ist verboten. Picknick ohne Feuer ist erlaubt.", "street"],
+      ["9", INGRID, "Hinweis der Stadtbücherei. Heute haben wir bis sechzehn Uhr geöffnet, nicht bis achtzehn Uhr.", "shop"],
+      ["10", ANDREW, "Achtung am Hauptbahnhof. Zug neun nach Lübeck fährt von Gleis vier. Er ist pünktlich.", "station"],
+    ].map(([n, who, text, scene]) => ({
       kind: "audio" as const,
       id: `ta1-h-${n}`,
       itemIds: [`ta1-h-${n}`],
-      audio: dialogue(`ta1-h-${n}`, [who as typeof JAN], [{ who: who as typeof JAN, text: text as string }], { ...once, situation: "Sie hören eine Ansage.", readCue: `Nummer ${n}.` }),
+      audio: dialogue(`ta1-h-${n}`, [who as typeof JAN], (text as string).split(". ").filter(Boolean).map((sentence) => ({ who: who as typeof JAN, text: sentence.endsWith(".") ? sentence : `${sentence}.` })), { ...once, situation: "Sie hören eine Durchsage.", scene: scene as "station", readCue: `Nummer ${n}.` }),
     })),
     items: [
       rf("ta1-h-7", 7, "Der Markt findet heute statt.", "falsch", "Er fällt heute aus und ist morgen."),
@@ -77,16 +82,16 @@ const hoeren: Teil[] = [
     introAudio: narrate("ta1-h-t3-intro", ["Teil 3.", "Sie hören fünf kurze Nachrichten.", "Sie hören jede Nachricht zweimal."]),
     endAudio: narrate("ta1-h-t3-ende", ["Ende des Hörtests.", "Übertragen Sie die Lösungen 1 bis 15."]),
     stimuli: [
-      ["11", BRIAN, "Hallo, das Kino ruft an. Ihr Film beginnt um zwanzig Uhr fünfzehn, Saal zwei."],
-      ["12", EMMA, "Die Fahrradwerkstatt hat Ihr Rad fertig. Abholung bis Freitag um fünfzehn Uhr."],
-      ["13", REMY, "Der Ausflug der Klasse ist am Mittwoch, nicht am Dienstag. Treffpunkt sieben Uhr vierzig im Schulhof."],
-      ["14", AVA, "Im Supermarkt an der Ecke gibt es heute Brot im Angebot, ein Euro statt zwei."],
-      ["15", GIUSEPPE, "Ihre Bestellung vom Buchladen liegt ab morgen bereit. Die Buchhandlung schließt um achtzehn Uhr."],
+      ["11", BRIAN, "Hallo, hier ist das Kino am Markt. Ihr Film beginnt um zwanzig Uhr fünfzehn, Saal zwei."],
+      ["12", EMMA, "Hallo, hier ist die Fahrradwerkstatt. Ihr Rad ist fertig. Abholung bis Freitag um fünfzehn Uhr."],
+      ["13", REMY, "Hallo, hier ist die Schule. Der Ausflug der Klasse ist am Mittwoch, nicht am Dienstag. Treffpunkt sieben Uhr vierzig im Schulhof."],
+      ["14", AVA, "Hallo, hier ist der Supermarkt an der Ecke. Heute gibt es Brot im Angebot, ein Euro statt zwei."],
+      ["15", GIUSEPPE, "Guten Tag, hier ist die Buchhandlung. Ihre Bestellung liegt ab morgen bereit. Wir schließen um achtzehn Uhr."],
     ].map(([n, who, text]) => ({
       kind: "audio" as const,
       id: `ta1-h-${n}`,
       itemIds: [`ta1-h-${n}`],
-      audio: dialogue(`ta1-h-${n}`, [who as typeof JAN], [{ who: who as typeof JAN, text: text as string }], { ...twice, situation: "Sie hören eine Nachricht.", readCue: `Nummer ${n}.` }),
+      audio: dialogue(`ta1-h-${n}`, [who as typeof JAN], (text as string).split(". ").filter(Boolean).map((sentence) => ({ who: who as typeof JAN, text: sentence.endsWith(".") ? sentence : `${sentence}.` })), { ...twice, situation: "Sie hören eine Nachricht auf der Mailbox.", scene: "phone", readCue: `Nummer ${n}.` }),
     })),
     items: [
       mc("ta1-h-11", 11, "Wann beginnt der Film?", [{ id: "a", label: "um 20.00 Uhr" }, { id: "b", label: "um 20.15 Uhr" }, { id: "c", label: "um 21.15 Uhr" }], "b", "Um zwanzig Uhr fünfzehn, Saal zwei."),
