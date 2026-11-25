@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "audio": "npx tsx scripts/tts/export-audio.ts && python3 scripts/tts/build-audio.py",
+    "test:scoring": "npx tsx scripts/scoring-check.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.6.1",

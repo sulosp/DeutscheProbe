@@ -1,10 +1,14 @@
 import { getTask } from "@/content";
+import { findTeil } from "@/content/exams";
 import { assessSpeaking, assessWriting } from "@/lib/scoring";
+import { assessSpeakingTask, assessWritingTask } from "@/lib/scoring-rules";
 import type { Feedback } from "@/lib/types";
 import { NextResponse } from "next/server";
 
 type Body = {
   taskId?: string;
+  mockId?: string;
+  teilId?: string;
   text?: string;
   notes?: string;
   checklist?: string[];
@@ -13,18 +17,32 @@ type Body = {
 
 export async function POST(request: Request) {
   const body = (await request.json().catch(() => ({}))) as Body;
-  const task = body.taskId ? getTask(body.taskId) : null;
-  if (!task || (!task.writing && !task.speaking)) {
-    return NextResponse.json({ error: "Unbekannte Aufgabe." }, { status: 400 });
-  }
-
   const text = (body.text ?? "").slice(0, 8000);
   const notes = (body.notes ?? "").slice(0, 4000);
   const checklist = Array.isArray(body.checklist) ? body.checklist.map(String).slice(0, 12) : [];
   const durationSec = Number.isFinite(body.durationSec) ? Math.max(0, Math.round(body.durationSec ?? 0)) : 0;
-  const mock = task.writing
-    ? assessWriting(task, text)
-    : assessSpeaking(task, { notes, checklist }, durationSec);
+
+  const located = body.teilId ? findTeil(body.teilId) : null;
+  const examTeil = located && (!body.mockId || located.exam.id === body.mockId) ? located : null;
+  const task = !examTeil && body.taskId ? getTask(body.taskId) : null;
+  if (examTeil && !examTeil.teil.writing && !examTeil.teil.speaking) {
+    return NextResponse.json({ error: "Für diesen Teil gibt es keine Texteinschätzung." }, { status: 400 });
+  }
+  if (!examTeil && (!task || (!task.writing && !task.speaking))) {
+    return NextResponse.json({ error: "Unbekannte Aufgabe." }, { status: 400 });
+  }
+
+  const mock = examTeil?.teil.writing
+    ? assessWritingTask(examTeil.teil.writing, text)
+    : examTeil?.teil.speaking
+      ? assessSpeakingTask(examTeil.teil.speaking, { notes, checklist, durationSec })
+      : task?.writing
+        ? assessWriting(task, text)
+        : assessSpeaking(task!, { notes, checklist }, durationSec);
+  const level = examTeil?.exam.level ?? task?.level;
+  const skill = examTeil?.module.skill ?? task?.skill;
+  const title = examTeil?.teil.title ?? task?.title ?? "";
+  const situation = examTeil?.teil.writing?.situation ?? examTeil?.teil.speaking?.situation ?? task?.writing?.situation ?? task?.speaking?.situation ?? "";
 
   const key = process.env.GEMINI_API_KEY;
   if (!key) return NextResponse.json(mock);
@@ -37,10 +55,11 @@ export async function POST(request: Request) {
     const prompt = [
       "Du bewertest eine Deutschprüfung als Übung. Antworte nur mit JSON.",
       "Keine offizielle Note, keine Musterlösung in voller Länge.",
-      `Niveau ${task.level}, Fertigkeit ${task.skill}, Titel: ${task.title}.`,
+      `Niveau ${level}, Fertigkeit ${skill}, Titel: ${title}.`,
+      "Bei Schreiben gilt: ist die Aufgabenerfüllung 0, ist die ganze Aufgabe 0.",
       `Kriterien: ${criteria}.`,
       "Form: {\"summary\":string,\"criteria\":[{\"id\":string,\"label\":string,\"points\":number,\"max\":number,\"comment\":string}],\"strengths\":string[],\"improvements\":string[]}",
-      `Situation: ${task.writing?.situation ?? task.speaking?.situation ?? ""}`,
+      `Situation: ${situation}`,
       `Text: ${text || "(kein Text)"}`,
       `Notizen: ${notes || "(keine)"}`,
       `Markierte Stichpunkte: ${checklist.join("; ") || "(keine)"}`,
@@ -70,6 +89,12 @@ export async function POST(request: Request) {
       const points = Math.max(0, Math.min(item.max, Math.round(match?.points ?? item.points)));
       return { ...item, points, comment: match?.comment || item.comment };
     });
+    const erfuellung = criteriaOut.find((item) => item.id === "erfuellung");
+    if (skill === "schreiben" && erfuellung && erfuellung.points === 0) {
+      criteriaOut.forEach((item) => {
+        item.points = 0;
+      });
+    }
     const score = criteriaOut.reduce((sum, item) => sum + item.points, 0);
     const maxScore = criteriaOut.reduce((sum, item) => sum + item.max, 0) || mock.maxScore;
     const feedback: Feedback = {
