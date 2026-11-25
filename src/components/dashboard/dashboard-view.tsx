@@ -161,17 +161,17 @@ export function DashboardView({ track }: { track: Track }) {
 
         <BrandPanel className="col-span-2 flex flex-col justify-between p-4 lg:col-span-1">
           <div>
-            <p className="text-micro font-semibold text-brand-text dark:font-normal dark:text-white/80">
+            <p className="text-micro font-semibold text-brand-text dark:font-normal dark:text-brand-foreground/80">
               Probeprüfung · {track.title.replace("Goethe-Zertifikat ", "Goethe ").replace("telc Deutsch ", "telc ")}
             </p>
             <h2 className="mt-2 text-h3 font-extrabold leading-tight">Probe starten</h2>
-            <p className="mt-2 text-small text-muted dark:text-white/85">
+            <p className="mt-2 text-small text-muted dark:text-brand-foreground/85">
               {track.layout === "goethe" ? "Teile in der echten Reihenfolge, mit Timer." : track.parts.map((part) => part.label).join(", ") + "."}
             </p>
           </div>
           <div className="mt-4 flex flex-wrap gap-1.5">
             {track.parts.map((part) => (
-              <span key={part.taskId} className="rounded-full bg-white px-2.5 py-1 text-micro font-semibold text-brand-text dark:bg-white/15 dark:text-white">
+              <span key={part.taskId} className="rounded-full bg-raised px-2.5 py-1 text-micro font-semibold text-brand-text dark:bg-brand-foreground/15 dark:text-brand-foreground">
                 {part.label} {part.minutes}m
               </span>
             ))}

@@ -274,7 +274,7 @@ function NoticeBell({
         onClick={() => setOpen((value) => !value)}
       >
         <IconBell />
-        {items.length > 0 ? <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-brand-vivid" /> : null}
+        {items.length > 0 ? <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-brand" /> : null}
       </button>
       {open ? (
         <div id={panelId} className="absolute right-0 top-11 z-20 w-72 rounded-2xl border border-border bg-raised p-3 shadow-pop">
