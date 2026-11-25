@@ -2,7 +2,7 @@
 
 Kostenlose Web-App zum Üben der Goethe- und telc-Prüfungen Deutsch A1 bis B2. Lesen, Hören, Schreiben, Sprechen und, bei telc B1 und B2, Sprachbausteine.
 
-Goethe A1, A2, B1 und B2 haben je einen vollständigen Modellsatz: Module in der Prüfungsreihenfolge, alle Teile mit Aufgabenzahl, Zeit und, beim Hören, Anzahl der Wiedergaben. Die telc-Strecken behalten vorerst die kürzeren Aufgaben. Alle Texte sind eigene Beispieldaten. DeutscheProbe ist nicht mit dem Goethe-Institut oder telc verbunden und verwendet keine Prüfungslogos und keine offiziellen Aufgaben.
+Goethe und telc, jeweils A1 bis B2, haben je einen vollständigen Modellsatz: Module in der Prüfungsreihenfolge, alle Teile mit Aufgabenzahl, Zeit und, beim Hören, Anzahl der Wiedergaben. Bei telc B1 und B2 gehören die Sprachbausteine dazu. Alle Texte sind eigene Beispieldaten. DeutscheProbe ist nicht mit dem Goethe-Institut oder telc verbunden und verwendet keine Prüfungslogos und keine offiziellen Aufgaben.
 
 ## Demo-Modus
 

@@ -729,6 +729,726 @@
     "gb2-s-t2": {
       "src": "/audio/goethe-b2/gb2-s-t2.mp3",
       "durationSec": 5.95
+    },
+    "ta1-h-intro": {
+      "src": "/audio/telc-a1/ta1-h-intro.mp3",
+      "durationSec": 9.94
+    },
+    "ta1-h-t1-intro": {
+      "src": "/audio/telc-a1/ta1-h-t1-intro.mp3",
+      "durationSec": 8.74
+    },
+    "ta1-h-t1-ende": {
+      "src": "/audio/telc-a1/ta1-h-t1-ende.mp3",
+      "durationSec": 2.28
+    },
+    "ta1-h-1__readcue": {
+      "src": "/audio/telc-a1/ta1-h-1__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-1__situation": {
+      "src": "/audio/telc-a1/ta1-h-1__situation.mp3",
+      "durationSec": 2.95
+    },
+    "ta1-h-1": {
+      "src": "/audio/telc-a1/ta1-h-1.mp3",
+      "durationSec": 12.77
+    },
+    "ta1-h-2__readcue": {
+      "src": "/audio/telc-a1/ta1-h-2__readcue.mp3",
+      "durationSec": 1.94
+    },
+    "ta1-h-2__situation": {
+      "src": "/audio/telc-a1/ta1-h-2__situation.mp3",
+      "durationSec": 2.95
+    },
+    "ta1-h-2": {
+      "src": "/audio/telc-a1/ta1-h-2.mp3",
+      "durationSec": 11.45
+    },
+    "ta1-h-3__readcue": {
+      "src": "/audio/telc-a1/ta1-h-3__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-3__situation": {
+      "src": "/audio/telc-a1/ta1-h-3__situation.mp3",
+      "durationSec": 2.95
+    },
+    "ta1-h-3": {
+      "src": "/audio/telc-a1/ta1-h-3.mp3",
+      "durationSec": 11.23
+    },
+    "ta1-h-4__readcue": {
+      "src": "/audio/telc-a1/ta1-h-4__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-4__situation": {
+      "src": "/audio/telc-a1/ta1-h-4__situation.mp3",
+      "durationSec": 2.95
+    },
+    "ta1-h-4": {
+      "src": "/audio/telc-a1/ta1-h-4.mp3",
+      "durationSec": 11.18
+    },
+    "ta1-h-5__readcue": {
+      "src": "/audio/telc-a1/ta1-h-5__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-5__situation": {
+      "src": "/audio/telc-a1/ta1-h-5__situation.mp3",
+      "durationSec": 2.95
+    },
+    "ta1-h-5": {
+      "src": "/audio/telc-a1/ta1-h-5.mp3",
+      "durationSec": 10.58
+    },
+    "ta1-h-6__readcue": {
+      "src": "/audio/telc-a1/ta1-h-6__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-6__situation": {
+      "src": "/audio/telc-a1/ta1-h-6__situation.mp3",
+      "durationSec": 2.95
+    },
+    "ta1-h-6": {
+      "src": "/audio/telc-a1/ta1-h-6.mp3",
+      "durationSec": 11.14
+    },
+    "ta1-h-t2-intro": {
+      "src": "/audio/telc-a1/ta1-h-t2-intro.mp3",
+      "durationSec": 8.06
+    },
+    "ta1-h-t2-ende": {
+      "src": "/audio/telc-a1/ta1-h-t2-ende.mp3",
+      "durationSec": 2.38
+    },
+    "ta1-h-7__readcue": {
+      "src": "/audio/telc-a1/ta1-h-7__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-7__situation": {
+      "src": "/audio/telc-a1/ta1-h-7__situation.mp3",
+      "durationSec": 2.57
+    },
+    "ta1-h-7": {
+      "src": "/audio/telc-a1/ta1-h-7.mp3",
+      "durationSec": 5.86
+    },
+    "ta1-h-8__readcue": {
+      "src": "/audio/telc-a1/ta1-h-8__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-8__situation": {
+      "src": "/audio/telc-a1/ta1-h-8__situation.mp3",
+      "durationSec": 2.57
+    },
+    "ta1-h-8": {
+      "src": "/audio/telc-a1/ta1-h-8.mp3",
+      "durationSec": 6.05
+    },
+    "ta1-h-9__readcue": {
+      "src": "/audio/telc-a1/ta1-h-9__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-9__situation": {
+      "src": "/audio/telc-a1/ta1-h-9__situation.mp3",
+      "durationSec": 2.57
+    },
+    "ta1-h-9": {
+      "src": "/audio/telc-a1/ta1-h-9.mp3",
+      "durationSec": 5.06
+    },
+    "ta1-h-10__readcue": {
+      "src": "/audio/telc-a1/ta1-h-10__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-10__situation": {
+      "src": "/audio/telc-a1/ta1-h-10__situation.mp3",
+      "durationSec": 2.57
+    },
+    "ta1-h-10": {
+      "src": "/audio/telc-a1/ta1-h-10.mp3",
+      "durationSec": 4.8
+    },
+    "ta1-h-t3-intro": {
+      "src": "/audio/telc-a1/ta1-h-t3-intro.mp3",
+      "durationSec": 8.45
+    },
+    "ta1-h-t3-ende": {
+      "src": "/audio/telc-a1/ta1-h-t3-ende.mp3",
+      "durationSec": 6.41
+    },
+    "ta1-h-11__readcue": {
+      "src": "/audio/telc-a1/ta1-h-11__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta1-h-11__situation": {
+      "src": "/audio/telc-a1/ta1-h-11__situation.mp3",
+      "durationSec": 2.52
+    },
+    "ta1-h-11": {
+      "src": "/audio/telc-a1/ta1-h-11.mp3",
+      "durationSec": 7.42
+    },
+    "ta1-h-12__readcue": {
+      "src": "/audio/telc-a1/ta1-h-12__readcue.mp3",
+      "durationSec": 1.94
+    },
+    "ta1-h-12__situation": {
+      "src": "/audio/telc-a1/ta1-h-12__situation.mp3",
+      "durationSec": 2.52
+    },
+    "ta1-h-12": {
+      "src": "/audio/telc-a1/ta1-h-12.mp3",
+      "durationSec": 6.36
+    },
+    "ta1-h-13__readcue": {
+      "src": "/audio/telc-a1/ta1-h-13__readcue.mp3",
+      "durationSec": 2.06
+    },
+    "ta1-h-13__situation": {
+      "src": "/audio/telc-a1/ta1-h-13__situation.mp3",
+      "durationSec": 2.52
+    },
+    "ta1-h-13": {
+      "src": "/audio/telc-a1/ta1-h-13.mp3",
+      "durationSec": 7.44
+    },
+    "ta1-h-14__readcue": {
+      "src": "/audio/telc-a1/ta1-h-14__readcue.mp3",
+      "durationSec": 2.04
+    },
+    "ta1-h-14__situation": {
+      "src": "/audio/telc-a1/ta1-h-14__situation.mp3",
+      "durationSec": 2.52
+    },
+    "ta1-h-14": {
+      "src": "/audio/telc-a1/ta1-h-14.mp3",
+      "durationSec": 5.26
+    },
+    "ta1-h-15__readcue": {
+      "src": "/audio/telc-a1/ta1-h-15__readcue.mp3",
+      "durationSec": 2.06
+    },
+    "ta1-h-15__situation": {
+      "src": "/audio/telc-a1/ta1-h-15__situation.mp3",
+      "durationSec": 2.52
+    },
+    "ta1-h-15": {
+      "src": "/audio/telc-a1/ta1-h-15.mp3",
+      "durationSec": 6.7
+    },
+    "ta1-s-t1": {
+      "src": "/audio/telc-a1/ta1-s-t1.mp3",
+      "durationSec": 2.88
+    },
+    "ta1-s-t2": {
+      "src": "/audio/telc-a1/ta1-s-t2.mp3",
+      "durationSec": 4.39
+    },
+    "ta1-s-t3": {
+      "src": "/audio/telc-a1/ta1-s-t3.mp3",
+      "durationSec": 3.24
+    },
+    "ta2-h-intro": {
+      "src": "/audio/telc-a2/ta2-h-intro.mp3",
+      "durationSec": 6.26
+    },
+    "ta2-h-t1-intro": {
+      "src": "/audio/telc-a2/ta2-h-t1-intro.mp3",
+      "durationSec": 12.14
+    },
+    "ta2-h-t1-ende": {
+      "src": "/audio/telc-a2/ta2-h-t1-ende.mp3",
+      "durationSec": 2.28
+    },
+    "ta2-h-1__readcue": {
+      "src": "/audio/telc-a2/ta2-h-1__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta2-h-1__situation": {
+      "src": "/audio/telc-a2/ta2-h-1__situation.mp3",
+      "durationSec": 3.0
+    },
+    "ta2-h-1": {
+      "src": "/audio/telc-a2/ta2-h-1.mp3",
+      "durationSec": 4.97
+    },
+    "ta2-h-2__readcue": {
+      "src": "/audio/telc-a2/ta2-h-2__readcue.mp3",
+      "durationSec": 1.94
+    },
+    "ta2-h-2__situation": {
+      "src": "/audio/telc-a2/ta2-h-2__situation.mp3",
+      "durationSec": 3.0
+    },
+    "ta2-h-2": {
+      "src": "/audio/telc-a2/ta2-h-2.mp3",
+      "durationSec": 3.29
+    },
+    "ta2-h-3__readcue": {
+      "src": "/audio/telc-a2/ta2-h-3__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta2-h-3__situation": {
+      "src": "/audio/telc-a2/ta2-h-3__situation.mp3",
+      "durationSec": 3.0
+    },
+    "ta2-h-3": {
+      "src": "/audio/telc-a2/ta2-h-3.mp3",
+      "durationSec": 3.91
+    },
+    "ta2-h-4__readcue": {
+      "src": "/audio/telc-a2/ta2-h-4__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta2-h-4__situation": {
+      "src": "/audio/telc-a2/ta2-h-4__situation.mp3",
+      "durationSec": 3.0
+    },
+    "ta2-h-4": {
+      "src": "/audio/telc-a2/ta2-h-4.mp3",
+      "durationSec": 5.09
+    },
+    "ta2-h-5__readcue": {
+      "src": "/audio/telc-a2/ta2-h-5__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta2-h-5__situation": {
+      "src": "/audio/telc-a2/ta2-h-5__situation.mp3",
+      "durationSec": 3.0
+    },
+    "ta2-h-5": {
+      "src": "/audio/telc-a2/ta2-h-5.mp3",
+      "durationSec": 4.46
+    },
+    "ta2-h-t2-intro": {
+      "src": "/audio/telc-a2/ta2-h-t2-intro.mp3",
+      "durationSec": 9.34
+    },
+    "ta2-h-t2-ende": {
+      "src": "/audio/telc-a2/ta2-h-t2-ende.mp3",
+      "durationSec": 2.38
+    },
+    "ta2-h-6__readcue": {
+      "src": "/audio/telc-a2/ta2-h-6__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta2-h-6__situation": {
+      "src": "/audio/telc-a2/ta2-h-6__situation.mp3",
+      "durationSec": 2.16
+    },
+    "ta2-h-6": {
+      "src": "/audio/telc-a2/ta2-h-6.mp3",
+      "durationSec": 6.53
+    },
+    "ta2-h-7__readcue": {
+      "src": "/audio/telc-a2/ta2-h-7__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta2-h-7__situation": {
+      "src": "/audio/telc-a2/ta2-h-7__situation.mp3",
+      "durationSec": 2.16
+    },
+    "ta2-h-7": {
+      "src": "/audio/telc-a2/ta2-h-7.mp3",
+      "durationSec": 6.94
+    },
+    "ta2-h-8__readcue": {
+      "src": "/audio/telc-a2/ta2-h-8__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta2-h-8__situation": {
+      "src": "/audio/telc-a2/ta2-h-8__situation.mp3",
+      "durationSec": 2.16
+    },
+    "ta2-h-8": {
+      "src": "/audio/telc-a2/ta2-h-8.mp3",
+      "durationSec": 7.25
+    },
+    "ta2-h-9__readcue": {
+      "src": "/audio/telc-a2/ta2-h-9__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta2-h-9__situation": {
+      "src": "/audio/telc-a2/ta2-h-9__situation.mp3",
+      "durationSec": 2.16
+    },
+    "ta2-h-9": {
+      "src": "/audio/telc-a2/ta2-h-9.mp3",
+      "durationSec": 5.83
+    },
+    "ta2-h-10__readcue": {
+      "src": "/audio/telc-a2/ta2-h-10__readcue.mp3",
+      "durationSec": 1.92
+    },
+    "ta2-h-10__situation": {
+      "src": "/audio/telc-a2/ta2-h-10__situation.mp3",
+      "durationSec": 2.16
+    },
+    "ta2-h-10": {
+      "src": "/audio/telc-a2/ta2-h-10.mp3",
+      "durationSec": 5.4
+    },
+    "ta2-h-t3-intro": {
+      "src": "/audio/telc-a2/ta2-h-t3-intro.mp3",
+      "durationSec": 7.7
+    },
+    "ta2-h-t3-ende": {
+      "src": "/audio/telc-a2/ta2-h-t3-ende.mp3",
+      "durationSec": 2.3
+    },
+    "ta2-h-t3__situation": {
+      "src": "/audio/telc-a2/ta2-h-t3__situation.mp3",
+      "durationSec": 3.43
+    },
+    "ta2-h-t3": {
+      "src": "/audio/telc-a2/ta2-h-t3.mp3",
+      "durationSec": 22.44
+    },
+    "ta2-s-t1": {
+      "src": "/audio/telc-a2/ta2-s-t1.mp3",
+      "durationSec": 2.88
+    },
+    "ta2-s-t2": {
+      "src": "/audio/telc-a2/ta2-s-t2.mp3",
+      "durationSec": 4.68
+    },
+    "ta2-s-t3": {
+      "src": "/audio/telc-a2/ta2-s-t3.mp3",
+      "durationSec": 4.85
+    },
+    "tb1-h-intro": {
+      "src": "/audio/telc-b1/tb1-h-intro.mp3",
+      "durationSec": 5.78
+    },
+    "tb1-h-t1-intro": {
+      "src": "/audio/telc-b1/tb1-h-t1-intro.mp3",
+      "durationSec": 8.57
+    },
+    "tb1-h-t1-ende": {
+      "src": "/audio/telc-b1/tb1-h-t1-ende.mp3",
+      "durationSec": 2.28
+    },
+    "tb1-h-41__readcue": {
+      "src": "/audio/telc-b1/tb1-h-41__readcue.mp3",
+      "durationSec": 2.52
+    },
+    "tb1-h-41__situation": {
+      "src": "/audio/telc-b1/tb1-h-41__situation.mp3",
+      "durationSec": 2.86
+    },
+    "tb1-h-41": {
+      "src": "/audio/telc-b1/tb1-h-41.mp3",
+      "durationSec": 5.78
+    },
+    "tb1-h-42__readcue": {
+      "src": "/audio/telc-b1/tb1-h-42__readcue.mp3",
+      "durationSec": 2.64
+    },
+    "tb1-h-42__situation": {
+      "src": "/audio/telc-b1/tb1-h-42__situation.mp3",
+      "durationSec": 2.86
+    },
+    "tb1-h-42": {
+      "src": "/audio/telc-b1/tb1-h-42.mp3",
+      "durationSec": 4.37
+    },
+    "tb1-h-43__readcue": {
+      "src": "/audio/telc-b1/tb1-h-43__readcue.mp3",
+      "durationSec": 2.59
+    },
+    "tb1-h-43__situation": {
+      "src": "/audio/telc-b1/tb1-h-43__situation.mp3",
+      "durationSec": 2.86
+    },
+    "tb1-h-43": {
+      "src": "/audio/telc-b1/tb1-h-43.mp3",
+      "durationSec": 5.57
+    },
+    "tb1-h-44__readcue": {
+      "src": "/audio/telc-b1/tb1-h-44__readcue.mp3",
+      "durationSec": 2.54
+    },
+    "tb1-h-44__situation": {
+      "src": "/audio/telc-b1/tb1-h-44__situation.mp3",
+      "durationSec": 2.86
+    },
+    "tb1-h-44": {
+      "src": "/audio/telc-b1/tb1-h-44.mp3",
+      "durationSec": 4.9
+    },
+    "tb1-h-45__readcue": {
+      "src": "/audio/telc-b1/tb1-h-45__readcue.mp3",
+      "durationSec": 2.54
+    },
+    "tb1-h-45__situation": {
+      "src": "/audio/telc-b1/tb1-h-45__situation.mp3",
+      "durationSec": 2.86
+    },
+    "tb1-h-45": {
+      "src": "/audio/telc-b1/tb1-h-45.mp3",
+      "durationSec": 5.28
+    },
+    "tb1-h-t2-intro": {
+      "src": "/audio/telc-b1/tb1-h-t2-intro.mp3",
+      "durationSec": 7.92
+    },
+    "tb1-h-t2-ende": {
+      "src": "/audio/telc-b1/tb1-h-t2-ende.mp3",
+      "durationSec": 2.38
+    },
+    "tb1-h-t2__situation": {
+      "src": "/audio/telc-b1/tb1-h-t2__situation.mp3",
+      "durationSec": 3.19
+    },
+    "tb1-h-t2": {
+      "src": "/audio/telc-b1/tb1-h-t2.mp3",
+      "durationSec": 48.36
+    },
+    "tb1-h-t3-intro": {
+      "src": "/audio/telc-b1/tb1-h-t3-intro.mp3",
+      "durationSec": 8.16
+    },
+    "tb1-h-t3-ende": {
+      "src": "/audio/telc-b1/tb1-h-t3-ende.mp3",
+      "durationSec": 2.52
+    },
+    "tb1-h-56__readcue": {
+      "src": "/audio/telc-b1/tb1-h-56__readcue.mp3",
+      "durationSec": 2.62
+    },
+    "tb1-h-56__situation": {
+      "src": "/audio/telc-b1/tb1-h-56__situation.mp3",
+      "durationSec": 2.95
+    },
+    "tb1-h-56": {
+      "src": "/audio/telc-b1/tb1-h-56.mp3",
+      "durationSec": 4.92
+    },
+    "tb1-h-57__readcue": {
+      "src": "/audio/telc-b1/tb1-h-57__readcue.mp3",
+      "durationSec": 2.71
+    },
+    "tb1-h-57__situation": {
+      "src": "/audio/telc-b1/tb1-h-57__situation.mp3",
+      "durationSec": 2.95
+    },
+    "tb1-h-57": {
+      "src": "/audio/telc-b1/tb1-h-57.mp3",
+      "durationSec": 6.14
+    },
+    "tb1-h-58__readcue": {
+      "src": "/audio/telc-b1/tb1-h-58__readcue.mp3",
+      "durationSec": 2.52
+    },
+    "tb1-h-58__situation": {
+      "src": "/audio/telc-b1/tb1-h-58__situation.mp3",
+      "durationSec": 2.95
+    },
+    "tb1-h-58": {
+      "src": "/audio/telc-b1/tb1-h-58.mp3",
+      "durationSec": 4.37
+    },
+    "tb1-h-59__readcue": {
+      "src": "/audio/telc-b1/tb1-h-59__readcue.mp3",
+      "durationSec": 2.62
+    },
+    "tb1-h-59__situation": {
+      "src": "/audio/telc-b1/tb1-h-59__situation.mp3",
+      "durationSec": 2.95
+    },
+    "tb1-h-59": {
+      "src": "/audio/telc-b1/tb1-h-59.mp3",
+      "durationSec": 4.1
+    },
+    "tb1-h-60__readcue": {
+      "src": "/audio/telc-b1/tb1-h-60__readcue.mp3",
+      "durationSec": 2.06
+    },
+    "tb1-h-60__situation": {
+      "src": "/audio/telc-b1/tb1-h-60__situation.mp3",
+      "durationSec": 2.95
+    },
+    "tb1-h-60": {
+      "src": "/audio/telc-b1/tb1-h-60.mp3",
+      "durationSec": 6.05
+    },
+    "tb1-s-t1": {
+      "src": "/audio/telc-b1/tb1-s-t1.mp3",
+      "durationSec": 4.1
+    },
+    "tb1-s-t2": {
+      "src": "/audio/telc-b1/tb1-s-t2.mp3",
+      "durationSec": 5.93
+    },
+    "tb1-s-t3": {
+      "src": "/audio/telc-b1/tb1-s-t3.mp3",
+      "durationSec": 4.94
+    },
+    "tb2-h-intro": {
+      "src": "/audio/telc-b2/tb2-h-intro.mp3",
+      "durationSec": 5.3
+    },
+    "tb2-h-t1-intro": {
+      "src": "/audio/telc-b2/tb2-h-t1-intro.mp3",
+      "durationSec": 7.73
+    },
+    "tb2-h-41__readcue": {
+      "src": "/audio/telc-b2/tb2-h-41__readcue.mp3",
+      "durationSec": 2.66
+    },
+    "tb2-h-41__situation": {
+      "src": "/audio/telc-b2/tb2-h-41__situation.mp3",
+      "durationSec": 2.45
+    },
+    "tb2-h-41": {
+      "src": "/audio/telc-b2/tb2-h-41.mp3",
+      "durationSec": 4.44
+    },
+    "tb2-h-42__readcue": {
+      "src": "/audio/telc-b2/tb2-h-42__readcue.mp3",
+      "durationSec": 2.78
+    },
+    "tb2-h-42__situation": {
+      "src": "/audio/telc-b2/tb2-h-42__situation.mp3",
+      "durationSec": 2.45
+    },
+    "tb2-h-42": {
+      "src": "/audio/telc-b2/tb2-h-42.mp3",
+      "durationSec": 4.66
+    },
+    "tb2-h-43__readcue": {
+      "src": "/audio/telc-b2/tb2-h-43__readcue.mp3",
+      "durationSec": 2.74
+    },
+    "tb2-h-43__situation": {
+      "src": "/audio/telc-b2/tb2-h-43__situation.mp3",
+      "durationSec": 2.45
+    },
+    "tb2-h-43": {
+      "src": "/audio/telc-b2/tb2-h-43.mp3",
+      "durationSec": 4.3
+    },
+    "tb2-h-44__readcue": {
+      "src": "/audio/telc-b2/tb2-h-44__readcue.mp3",
+      "durationSec": 2.74
+    },
+    "tb2-h-44__situation": {
+      "src": "/audio/telc-b2/tb2-h-44__situation.mp3",
+      "durationSec": 2.45
+    },
+    "tb2-h-44": {
+      "src": "/audio/telc-b2/tb2-h-44.mp3",
+      "durationSec": 4.85
+    },
+    "tb2-h-45__readcue": {
+      "src": "/audio/telc-b2/tb2-h-45__readcue.mp3",
+      "durationSec": 2.71
+    },
+    "tb2-h-45__situation": {
+      "src": "/audio/telc-b2/tb2-h-45__situation.mp3",
+      "durationSec": 2.45
+    },
+    "tb2-h-45": {
+      "src": "/audio/telc-b2/tb2-h-45.mp3",
+      "durationSec": 6.48
+    },
+    "tb2-h-t2-intro": {
+      "src": "/audio/telc-b2/tb2-h-t2-intro.mp3",
+      "durationSec": 7.44
+    },
+    "tb2-h-t2-ende": {
+      "src": "/audio/telc-b2/tb2-h-t2-ende.mp3",
+      "durationSec": 2.38
+    },
+    "tb2-h-t2__situation": {
+      "src": "/audio/telc-b2/tb2-h-t2__situation.mp3",
+      "durationSec": 2.52
+    },
+    "tb2-h-t2": {
+      "src": "/audio/telc-b2/tb2-h-t2.mp3",
+      "durationSec": 45.43
+    },
+    "tb2-h-t3-intro": {
+      "src": "/audio/telc-b2/tb2-h-t3-intro.mp3",
+      "durationSec": 8.3
+    },
+    "tb2-h-t3-ende": {
+      "src": "/audio/telc-b2/tb2-h-t3-ende.mp3",
+      "durationSec": 2.52
+    },
+    "tb2-h-56__readcue": {
+      "src": "/audio/telc-b2/tb2-h-56__readcue.mp3",
+      "durationSec": 2.62
+    },
+    "tb2-h-56__situation": {
+      "src": "/audio/telc-b2/tb2-h-56__situation.mp3",
+      "durationSec": 2.57
+    },
+    "tb2-h-56": {
+      "src": "/audio/telc-b2/tb2-h-56.mp3",
+      "durationSec": 4.99
+    },
+    "tb2-h-57__readcue": {
+      "src": "/audio/telc-b2/tb2-h-57__readcue.mp3",
+      "durationSec": 2.71
+    },
+    "tb2-h-57__situation": {
+      "src": "/audio/telc-b2/tb2-h-57__situation.mp3",
+      "durationSec": 2.57
+    },
+    "tb2-h-57": {
+      "src": "/audio/telc-b2/tb2-h-57.mp3",
+      "durationSec": 5.11
+    },
+    "tb2-h-58__readcue": {
+      "src": "/audio/telc-b2/tb2-h-58__readcue.mp3",
+      "durationSec": 2.52
+    },
+    "tb2-h-58__situation": {
+      "src": "/audio/telc-b2/tb2-h-58__situation.mp3",
+      "durationSec": 2.57
+    },
+    "tb2-h-58": {
+      "src": "/audio/telc-b2/tb2-h-58.mp3",
+      "durationSec": 4.34
+    },
+    "tb2-h-59__readcue": {
+      "src": "/audio/telc-b2/tb2-h-59__readcue.mp3",
+      "durationSec": 2.62
+    },
+    "tb2-h-59__situation": {
+      "src": "/audio/telc-b2/tb2-h-59__situation.mp3",
+      "durationSec": 2.57
+    },
+    "tb2-h-59": {
+      "src": "/audio/telc-b2/tb2-h-59.mp3",
+      "durationSec": 5.38
+    },
+    "tb2-h-60__readcue": {
+      "src": "/audio/telc-b2/tb2-h-60__readcue.mp3",
+      "durationSec": 2.06
+    },
+    "tb2-h-60__situation": {
+      "src": "/audio/telc-b2/tb2-h-60__situation.mp3",
+      "durationSec": 2.57
+    },
+    "tb2-h-60": {
+      "src": "/audio/telc-b2/tb2-h-60.mp3",
+      "durationSec": 4.97
+    },
+    "tb2-s-t1": {
+      "src": "/audio/telc-b2/tb2-s-t1.mp3",
+      "durationSec": 6.82
+    },
+    "tb2-s-t2": {
+      "src": "/audio/telc-b2/tb2-s-t2.mp3",
+      "durationSec": 6.6
+    },
+    "tb2-s-t3": {
+      "src": "/audio/telc-b2/tb2-s-t3.mp3",
+      "durationSec": 5.86
     }
   }
 }

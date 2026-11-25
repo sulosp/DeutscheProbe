@@ -82,6 +82,8 @@ export type WritingTask = {
   bullets: string[];
   /** Keywords per bullet. A bullet counts when any keyword appears in the text. */
   signals: string[][];
+  /** How many bullets must appear for full credit. Defaults to all of them. */
+  requiredBullets?: number;
   minWords: number;
   maxWords: number;
   targetWords: number;

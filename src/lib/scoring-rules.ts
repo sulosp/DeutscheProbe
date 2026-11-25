@@ -194,7 +194,8 @@ export function assessWritingTask(task: WritingTask, text: string): Feedback {
   const rubric = task.rubric;
   const byId = Object.fromEntries(rubric.map((criterion) => [criterion.id, criterion])) as Record<string, RubricCriterion | undefined>;
   const erfuellungMax = byId.erfuellung?.max ?? rubric[0]?.max ?? 10;
-  const coverage = task.signals.length === 0 ? 0 : covered / task.signals.length;
+  const needed = task.requiredBullets ?? task.signals.length;
+  const coverage = needed === 0 ? 0 : Math.min(1, covered / needed);
   let erfuellung = clamp(coverage * erfuellungMax, erfuellungMax);
   if (count === 0) erfuellung = 0;
 

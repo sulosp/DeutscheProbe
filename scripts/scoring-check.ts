@@ -2,6 +2,7 @@ import { goetheA1Mock } from "../src/content/exams/goethe-a1/mock-1";
 import { goetheA2Mock } from "../src/content/exams/goethe-a2/mock-1";
 import { goetheB1Mock } from "../src/content/exams/goethe-b1/mock-1";
 import { goetheB2Mock } from "../src/content/exams/goethe-b2/mock-1";
+import { telcB1Mock } from "../src/content/exams/telc-b1/mock-1";
 import { validateGoetheB1 } from "../src/content/exams/validate";
 import { convertMesspunkte, passGoetheA1, passGoetheA2, passTelc300, passTelc60, scoreMockExam } from "../src/lib/scoring-rules";
 
@@ -84,5 +85,14 @@ const a2Raw = scoreMockExam(goetheA2Mock, {
 });
 const a2Speak = a2Raw.modules.find((entry) => entry.skill === "sprechen");
 assert(a2Speak?.points === 0 && a2Raw.passed === false, "A2 ohne Sprechen nicht bestanden");
+
+const telcAnswers = Object.fromEntries(
+  telcB1Mock.modules.flatMap((part) =>
+    part.teile.flatMap((teil) => teil.items.map((item) => [item.id, Array.isArray(item.correct) ? item.correct[0] : item.correct])),
+  ),
+);
+const telcFull = scoreMockExam(telcB1Mock, { answers: telcAnswers, writing: {}, speaking: {} });
+assert(telcFull.written === 75 + 30 + 75, `telc schriftlich ohne Aufsatz ${telcFull.written}`);
+assert(telcFull.passed === false, "telc ohne mündlich nicht bestanden");
 
 console.log("scoring checks ok");
