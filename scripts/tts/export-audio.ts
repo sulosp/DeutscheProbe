@@ -7,12 +7,20 @@ import { REPEAT_CUE, clipVoiceError, clipsForScript, scriptsInModule, teilSpeake
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 
+function gapMs(seed: string, sameSpeaker: boolean) {
+  let hash = 0;
+  for (const char of seed) hash = (hash * 33 + char.charCodeAt(0)) >>> 0;
+  const base = sameSpeaker ? 160 : 280;
+  return Math.min(480, Math.max(150, base + (hash % 170)));
+}
+
 function linesOf(clip: AudioClip) {
   return clip.lines.map((line, index) => {
     const speaker = clip.speakers.find((entry) => entry.id === line.speaker);
     if (!speaker) throw new Error(`${clip.id}: Sprecher ${line.speaker} fehlt`);
     const next = clip.lines[index + 1];
-    const pauseAfterMs = line.pauseAfterMs ?? (next ? (next.speaker === line.speaker ? 250 : 550) : 0);
+    const pauseAfterMs =
+      line.pauseAfterMs ?? (next ? gapMs(`${clip.id}:${index}:${line.text}`, next.speaker === line.speaker) : 0);
     return {
       speaker: speaker.id,
       voice: speaker.voice,
@@ -48,7 +56,7 @@ const groups = mocks.map((exam) => {
   }
   return {
     folder: exam.trackId,
-    clips: clips.map((clip) => ({ id: clip.id, lines: linesOf(clip) })),
+    clips: clips.map((clip) => ({ id: clip.id, scene: clip.scene ?? "quiet", lines: linesOf(clip) })),
     teile: exam.modules.flatMap((part) =>
       part.teile.map((teil) => ({
         id: `${exam.id}-${part.skill}-${teil.number}`,

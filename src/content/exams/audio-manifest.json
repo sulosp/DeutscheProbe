@@ -6,33 +6,33 @@
     },
     "repeat": {
       "src": "/audio/cues/repeat.mp3",
-      "durationSec": 3.22
+      "durationSec": 3.31
     },
     "headphone": {
       "src": "/audio/cues/headphone.mp3",
-      "durationSec": 9.55
+      "durationSec": 9.86
     }
   },
   "clips": {
     "ga1-h-intro": {
       "src": "/audio/goethe-a1/ga1-h-intro.mp3",
-      "durationSec": 25.61
+      "durationSec": 26.35
     },
     "ga1-h-t1-intro": {
       "src": "/audio/goethe-a1/ga1-h-t1-intro.mp3",
-      "durationSec": 15.38
+      "durationSec": 15.77
     },
     "ga1-h-t1-ende": {
       "src": "/audio/goethe-a1/ga1-h-t1-ende.mp3",
-      "durationSec": 2.28
+      "durationSec": 2.35
     },
     "ga1-h-bsp__situation": {
       "src": "/audio/goethe-a1/ga1-h-bsp__situation.mp3",
-      "durationSec": 3.05
+      "durationSec": 3.58
     },
     "ga1-h-bsp": {
       "src": "/audio/goethe-a1/ga1-h-bsp.mp3",
-      "durationSec": 14.33
+      "durationSec": 15.79
     },
     "ga1-h-1__readcue": {
       "src": "/audio/goethe-a1/ga1-h-1__readcue.mp3",
@@ -40,23 +40,23 @@
     },
     "ga1-h-1__situation": {
       "src": "/audio/goethe-a1/ga1-h-1__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 4.08
     },
     "ga1-h-1": {
       "src": "/audio/goethe-a1/ga1-h-1.mp3",
-      "durationSec": 13.66
+      "durationSec": 14.5
     },
     "ga1-h-2__readcue": {
       "src": "/audio/goethe-a1/ga1-h-2__readcue.mp3",
-      "durationSec": 1.94
+      "durationSec": 1.99
     },
     "ga1-h-2__situation": {
       "src": "/audio/goethe-a1/ga1-h-2__situation.mp3",
-      "durationSec": 3.19
+      "durationSec": 4.08
     },
     "ga1-h-2": {
       "src": "/audio/goethe-a1/ga1-h-2.mp3",
-      "durationSec": 12.26
+      "durationSec": 12.94
     },
     "ga1-h-3__readcue": {
       "src": "/audio/goethe-a1/ga1-h-3__readcue.mp3",
@@ -64,11 +64,11 @@
     },
     "ga1-h-3__situation": {
       "src": "/audio/goethe-a1/ga1-h-3__situation.mp3",
-      "durationSec": 3.53
+      "durationSec": 3.96
     },
     "ga1-h-3": {
       "src": "/audio/goethe-a1/ga1-h-3.mp3",
-      "durationSec": 13.78
+      "durationSec": 14.26
     },
     "ga1-h-4__readcue": {
       "src": "/audio/goethe-a1/ga1-h-4__readcue.mp3",
@@ -76,11 +76,11 @@
     },
     "ga1-h-4__situation": {
       "src": "/audio/goethe-a1/ga1-h-4__situation.mp3",
-      "durationSec": 3.36
+      "durationSec": 4.68
     },
     "ga1-h-4": {
       "src": "/audio/goethe-a1/ga1-h-4.mp3",
-      "durationSec": 12.55
+      "durationSec": 13.75
     },
     "ga1-h-5__readcue": {
       "src": "/audio/goethe-a1/ga1-h-5__readcue.mp3",
@@ -88,51 +88,51 @@
     },
     "ga1-h-5__situation": {
       "src": "/audio/goethe-a1/ga1-h-5__situation.mp3",
-      "durationSec": 3.36
+      "durationSec": 4.13
     },
     "ga1-h-5": {
       "src": "/audio/goethe-a1/ga1-h-5.mp3",
-      "durationSec": 12.1
+      "durationSec": 12.17
     },
     "ga1-h-6__readcue": {
       "src": "/audio/goethe-a1/ga1-h-6__readcue.mp3",
-      "durationSec": 1.92
+      "durationSec": 1.94
     },
     "ga1-h-6__situation": {
       "src": "/audio/goethe-a1/ga1-h-6__situation.mp3",
-      "durationSec": 3.26
+      "durationSec": 4.13
     },
     "ga1-h-6": {
       "src": "/audio/goethe-a1/ga1-h-6.mp3",
-      "durationSec": 15.38
+      "durationSec": 14.86
     },
     "ga1-h-t2-intro": {
       "src": "/audio/goethe-a1/ga1-h-t2-intro.mp3",
-      "durationSec": 14.4
+      "durationSec": 14.78
     },
     "ga1-h-t2-ende": {
       "src": "/audio/goethe-a1/ga1-h-t2-ende.mp3",
-      "durationSec": 2.38
+      "durationSec": 2.45
     },
     "ga1-h-bsp-2__situation": {
       "src": "/audio/goethe-a1/ga1-h-bsp-2__situation.mp3",
-      "durationSec": 3.1
+      "durationSec": 3.58
     },
     "ga1-h-bsp-2": {
       "src": "/audio/goethe-a1/ga1-h-bsp-2.mp3",
-      "durationSec": 6.62
+      "durationSec": 12.84
     },
     "ga1-h-7__readcue": {
       "src": "/audio/goethe-a1/ga1-h-7__readcue.mp3",
-      "durationSec": 1.92
+      "durationSec": 1.94
     },
     "ga1-h-7__situation": {
       "src": "/audio/goethe-a1/ga1-h-7__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.34
     },
     "ga1-h-7": {
       "src": "/audio/goethe-a1/ga1-h-7.mp3",
-      "durationSec": 7.1
+      "durationSec": 11.14
     },
     "ga1-h-8__readcue": {
       "src": "/audio/goethe-a1/ga1-h-8__readcue.mp3",
@@ -140,11 +140,11 @@
     },
     "ga1-h-8__situation": {
       "src": "/audio/goethe-a1/ga1-h-8__situation.mp3",
-      "durationSec": 3.48
+      "durationSec": 3.82
     },
     "ga1-h-8": {
       "src": "/audio/goethe-a1/ga1-h-8.mp3",
-      "durationSec": 5.52
+      "durationSec": 10.58
     },
     "ga1-h-9__readcue": {
       "src": "/audio/goethe-a1/ga1-h-9__readcue.mp3",
@@ -152,11 +152,11 @@
     },
     "ga1-h-9__situation": {
       "src": "/audio/goethe-a1/ga1-h-9__situation.mp3",
-      "durationSec": 3.07
+      "durationSec": 3.31
     },
     "ga1-h-9": {
       "src": "/audio/goethe-a1/ga1-h-9.mp3",
-      "durationSec": 7.18
+      "durationSec": 14.38
     },
     "ga1-h-10__readcue": {
       "src": "/audio/goethe-a1/ga1-h-10__readcue.mp3",
@@ -164,19 +164,19 @@
     },
     "ga1-h-10__situation": {
       "src": "/audio/goethe-a1/ga1-h-10__situation.mp3",
-      "durationSec": 3.17
+      "durationSec": 3.43
     },
     "ga1-h-10": {
       "src": "/audio/goethe-a1/ga1-h-10.mp3",
-      "durationSec": 6.55
+      "durationSec": 8.88
     },
     "ga1-h-t3-intro": {
       "src": "/audio/goethe-a1/ga1-h-t3-intro.mp3",
-      "durationSec": 8.69
+      "durationSec": 8.81
     },
     "ga1-h-t3-ende": {
       "src": "/audio/goethe-a1/ga1-h-t3-ende.mp3",
-      "durationSec": 7.7
+      "durationSec": 7.99
     },
     "ga1-h-11__readcue": {
       "src": "/audio/goethe-a1/ga1-h-11__readcue.mp3",
@@ -184,63 +184,63 @@
     },
     "ga1-h-11__situation": {
       "src": "/audio/goethe-a1/ga1-h-11__situation.mp3",
-      "durationSec": 3.89
+      "durationSec": 3.48
     },
     "ga1-h-11": {
       "src": "/audio/goethe-a1/ga1-h-11.mp3",
-      "durationSec": 8.28
+      "durationSec": 10.03
     },
     "ga1-h-12__readcue": {
       "src": "/audio/goethe-a1/ga1-h-12__readcue.mp3",
-      "durationSec": 1.94
+      "durationSec": 1.99
     },
     "ga1-h-12__situation": {
       "src": "/audio/goethe-a1/ga1-h-12__situation.mp3",
-      "durationSec": 3.55
+      "durationSec": 4.13
     },
     "ga1-h-12": {
       "src": "/audio/goethe-a1/ga1-h-12.mp3",
-      "durationSec": 7.58
+      "durationSec": 11.33
     },
     "ga1-h-13__readcue": {
       "src": "/audio/goethe-a1/ga1-h-13__readcue.mp3",
-      "durationSec": 2.06
+      "durationSec": 2.14
     },
     "ga1-h-13__situation": {
       "src": "/audio/goethe-a1/ga1-h-13__situation.mp3",
-      "durationSec": 3.38
+      "durationSec": 3.77
     },
     "ga1-h-13": {
       "src": "/audio/goethe-a1/ga1-h-13.mp3",
-      "durationSec": 7.99
+      "durationSec": 9.55
     },
     "ga1-h-14__readcue": {
       "src": "/audio/goethe-a1/ga1-h-14__readcue.mp3",
-      "durationSec": 2.04
+      "durationSec": 2.11
     },
     "ga1-h-14__situation": {
       "src": "/audio/goethe-a1/ga1-h-14__situation.mp3",
-      "durationSec": 3.55
+      "durationSec": 4.13
     },
     "ga1-h-14": {
       "src": "/audio/goethe-a1/ga1-h-14.mp3",
-      "durationSec": 8.35
+      "durationSec": 8.3
     },
     "ga1-h-15__readcue": {
       "src": "/audio/goethe-a1/ga1-h-15__readcue.mp3",
-      "durationSec": 2.06
+      "durationSec": 2.11
     },
     "ga1-h-15__situation": {
       "src": "/audio/goethe-a1/ga1-h-15__situation.mp3",
-      "durationSec": 3.41
+      "durationSec": 3.98
     },
     "ga1-h-15": {
       "src": "/audio/goethe-a1/ga1-h-15.mp3",
-      "durationSec": 6.77
+      "durationSec": 10.37
     },
     "ga1-s-t1": {
       "src": "/audio/goethe-a1/ga1-s-t1.mp3",
-      "durationSec": 8.5
+      "durationSec": 8.76
     },
     "ga1-s-t2": {
       "src": "/audio/goethe-a1/ga1-s-t2.mp3",
@@ -248,27 +248,27 @@
     },
     "ga1-s-t3": {
       "src": "/audio/goethe-a1/ga1-s-t3.mp3",
-      "durationSec": 8.16
+      "durationSec": 8.06
     },
     "ga2-h-intro": {
       "src": "/audio/goethe-a2/ga2-h-intro.mp3",
-      "durationSec": 15.46
+      "durationSec": 15.91
     },
     "ga2-h-t1-intro": {
       "src": "/audio/goethe-a2/ga2-h-t1-intro.mp3",
-      "durationSec": 14.66
+      "durationSec": 14.98
     },
     "ga2-h-t1-ende": {
       "src": "/audio/goethe-a2/ga2-h-t1-ende.mp3",
-      "durationSec": 2.28
+      "durationSec": 2.35
     },
     "ga2-h-bsp__situation": {
       "src": "/audio/goethe-a2/ga2-h-bsp__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 3.82
     },
     "ga2-h-bsp": {
       "src": "/audio/goethe-a2/ga2-h-bsp.mp3",
-      "durationSec": 4.58
+      "durationSec": 8.35
     },
     "ga2-h-1__readcue": {
       "src": "/audio/goethe-a2/ga2-h-1__readcue.mp3",
@@ -276,23 +276,23 @@
     },
     "ga2-h-1__situation": {
       "src": "/audio/goethe-a2/ga2-h-1__situation.mp3",
-      "durationSec": 2.78
+      "durationSec": 3.89
     },
     "ga2-h-1": {
       "src": "/audio/goethe-a2/ga2-h-1.mp3",
-      "durationSec": 6.86
+      "durationSec": 11.83
     },
     "ga2-h-2__readcue": {
       "src": "/audio/goethe-a2/ga2-h-2__readcue.mp3",
-      "durationSec": 1.94
+      "durationSec": 1.99
     },
     "ga2-h-2__situation": {
       "src": "/audio/goethe-a2/ga2-h-2__situation.mp3",
-      "durationSec": 2.78
+      "durationSec": 3.6
     },
     "ga2-h-2": {
       "src": "/audio/goethe-a2/ga2-h-2.mp3",
-      "durationSec": 7.46
+      "durationSec": 8.66
     },
     "ga2-h-3__readcue": {
       "src": "/audio/goethe-a2/ga2-h-3__readcue.mp3",
@@ -300,11 +300,11 @@
     },
     "ga2-h-3__situation": {
       "src": "/audio/goethe-a2/ga2-h-3__situation.mp3",
-      "durationSec": 2.78
+      "durationSec": 3.58
     },
     "ga2-h-3": {
       "src": "/audio/goethe-a2/ga2-h-3.mp3",
-      "durationSec": 6.1
+      "durationSec": 11.86
     },
     "ga2-h-4__readcue": {
       "src": "/audio/goethe-a2/ga2-h-4__readcue.mp3",
@@ -312,11 +312,11 @@
     },
     "ga2-h-4__situation": {
       "src": "/audio/goethe-a2/ga2-h-4__situation.mp3",
-      "durationSec": 2.78
+      "durationSec": 3.65
     },
     "ga2-h-4": {
       "src": "/audio/goethe-a2/ga2-h-4.mp3",
-      "durationSec": 6.62
+      "durationSec": 10.42
     },
     "ga2-h-5__readcue": {
       "src": "/audio/goethe-a2/ga2-h-5__readcue.mp3",
@@ -324,35 +324,35 @@
     },
     "ga2-h-5__situation": {
       "src": "/audio/goethe-a2/ga2-h-5__situation.mp3",
-      "durationSec": 2.78
+      "durationSec": 3.98
     },
     "ga2-h-5": {
       "src": "/audio/goethe-a2/ga2-h-5.mp3",
-      "durationSec": 6.34
+      "durationSec": 10.13
     },
     "ga2-h-t2-intro": {
       "src": "/audio/goethe-a2/ga2-h-t2-intro.mp3",
-      "durationSec": 13.87
+      "durationSec": 14.23
     },
     "ga2-h-t2-ende": {
       "src": "/audio/goethe-a2/ga2-h-t2-ende.mp3",
-      "durationSec": 2.38
+      "durationSec": 2.45
     },
     "ga2-h-t2__situation": {
       "src": "/audio/goethe-a2/ga2-h-t2__situation.mp3",
-      "durationSec": 3.89
+      "durationSec": 5.64
     },
     "ga2-h-t2": {
       "src": "/audio/goethe-a2/ga2-h-t2.mp3",
-      "durationSec": 27.82
+      "durationSec": 29.78
     },
     "ga2-h-t3-intro": {
       "src": "/audio/goethe-a2/ga2-h-t3-intro.mp3",
-      "durationSec": 8.35
+      "durationSec": 8.52
     },
     "ga2-h-t3-ende": {
       "src": "/audio/goethe-a2/ga2-h-t3-ende.mp3",
-      "durationSec": 2.33
+      "durationSec": 2.4
     },
     "ga2-h-11__readcue": {
       "src": "/audio/goethe-a2/ga2-h-11__readcue.mp3",
@@ -360,31 +360,31 @@
     },
     "ga2-h-11__situation": {
       "src": "/audio/goethe-a2/ga2-h-11__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.58
     },
     "ga2-h-11": {
       "src": "/audio/goethe-a2/ga2-h-11.mp3",
-      "durationSec": 6.94
+      "durationSec": 8.14
     },
     "ga2-h-12__readcue": {
       "src": "/audio/goethe-a2/ga2-h-12__readcue.mp3",
-      "durationSec": 1.94
+      "durationSec": 1.99
     },
     "ga2-h-12__situation": {
       "src": "/audio/goethe-a2/ga2-h-12__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.43
     },
     "ga2-h-12": {
       "src": "/audio/goethe-a2/ga2-h-12.mp3",
-      "durationSec": 6.36
+      "durationSec": 9.12
     },
     "ga2-h-13__readcue": {
       "src": "/audio/goethe-a2/ga2-h-13__readcue.mp3",
-      "durationSec": 2.06
+      "durationSec": 2.14
     },
     "ga2-h-13__situation": {
       "src": "/audio/goethe-a2/ga2-h-13__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.77
     },
     "ga2-h-13": {
       "src": "/audio/goethe-a2/ga2-h-13.mp3",
@@ -392,227 +392,227 @@
     },
     "ga2-h-14__readcue": {
       "src": "/audio/goethe-a2/ga2-h-14__readcue.mp3",
-      "durationSec": 2.04
+      "durationSec": 2.11
     },
     "ga2-h-14__situation": {
       "src": "/audio/goethe-a2/ga2-h-14__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.96
     },
     "ga2-h-14": {
       "src": "/audio/goethe-a2/ga2-h-14.mp3",
-      "durationSec": 7.42
+      "durationSec": 8.23
     },
     "ga2-h-15__readcue": {
       "src": "/audio/goethe-a2/ga2-h-15__readcue.mp3",
-      "durationSec": 2.06
+      "durationSec": 2.11
     },
     "ga2-h-15__situation": {
       "src": "/audio/goethe-a2/ga2-h-15__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 4.13
     },
     "ga2-h-15": {
       "src": "/audio/goethe-a2/ga2-h-15.mp3",
-      "durationSec": 5.9
+      "durationSec": 6.36
     },
     "ga2-h-t4-intro": {
       "src": "/audio/goethe-a2/ga2-h-t4-intro.mp3",
-      "durationSec": 14.09
+      "durationSec": 14.4
     },
     "ga2-h-t4-ende": {
       "src": "/audio/goethe-a2/ga2-h-t4-ende.mp3",
-      "durationSec": 5.33
+      "durationSec": 5.42
     },
     "ga2-h-t4__situation": {
       "src": "/audio/goethe-a2/ga2-h-t4__situation.mp3",
-      "durationSec": 3.07
+      "durationSec": 4.97
     },
     "ga2-h-t4": {
       "src": "/audio/goethe-a2/ga2-h-t4.mp3",
-      "durationSec": 36.14
+      "durationSec": 40.61
     },
     "ga2-s-t1": {
       "src": "/audio/goethe-a2/ga2-s-t1.mp3",
-      "durationSec": 4.51
+      "durationSec": 4.66
     },
     "ga2-s-t2": {
       "src": "/audio/goethe-a2/ga2-s-t2.mp3",
-      "durationSec": 6.24
+      "durationSec": 6.43
     },
     "ga2-s-t3": {
       "src": "/audio/goethe-a2/ga2-s-t3.mp3",
-      "durationSec": 5.35
+      "durationSec": 5.52
     },
     "gb1-h-intro": {
       "src": "/audio/goethe-b1/gb1-h-intro.mp3",
-      "durationSec": 28.51
+      "durationSec": 29.52
     },
     "gb1-h-t1-intro": {
       "src": "/audio/goethe-b1/gb1-h-t1-intro.mp3",
-      "durationSec": 22.63
+      "durationSec": 23.26
     },
     "gb1-h-t1-ende": {
       "src": "/audio/goethe-b1/gb1-h-t1-ende.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.05
     },
     "gb1-h-bsp__situation": {
       "src": "/audio/goethe-b1/gb1-h-bsp__situation.mp3",
-      "durationSec": 3.26
+      "durationSec": 3.98
     },
     "gb1-h-bsp": {
       "src": "/audio/goethe-b1/gb1-h-bsp.mp3",
-      "durationSec": 13.1
+      "durationSec": 14.09
     },
     "gb1-h-t1-1__readcue": {
       "src": "/audio/goethe-b1/gb1-h-t1-1__readcue.mp3",
-      "durationSec": 6.74
+      "durationSec": 6.96
     },
     "gb1-h-t1-1__situation": {
       "src": "/audio/goethe-b1/gb1-h-t1-1__situation.mp3",
-      "durationSec": 3.89
+      "durationSec": 5.4
     },
     "gb1-h-t1-1": {
       "src": "/audio/goethe-b1/gb1-h-t1-1.mp3",
-      "durationSec": 29.06
+      "durationSec": 30.65
     },
     "gb1-h-t1-2__readcue": {
       "src": "/audio/goethe-b1/gb1-h-t1-2__readcue.mp3",
-      "durationSec": 6.7
+      "durationSec": 6.91
     },
     "gb1-h-t1-2__situation": {
       "src": "/audio/goethe-b1/gb1-h-t1-2__situation.mp3",
-      "durationSec": 3.62
+      "durationSec": 4.27
     },
     "gb1-h-t1-2": {
       "src": "/audio/goethe-b1/gb1-h-t1-2.mp3",
-      "durationSec": 18.29
+      "durationSec": 20.06
     },
     "gb1-h-t1-3__readcue": {
       "src": "/audio/goethe-b1/gb1-h-t1-3__readcue.mp3",
-      "durationSec": 6.67
+      "durationSec": 6.89
     },
     "gb1-h-t1-3__situation": {
       "src": "/audio/goethe-b1/gb1-h-t1-3__situation.mp3",
-      "durationSec": 3.19
+      "durationSec": 4.27
     },
     "gb1-h-t1-3": {
       "src": "/audio/goethe-b1/gb1-h-t1-3.mp3",
-      "durationSec": 20.06
+      "durationSec": 23.64
     },
     "gb1-h-t1-4__readcue": {
       "src": "/audio/goethe-b1/gb1-h-t1-4__readcue.mp3",
-      "durationSec": 6.82
+      "durationSec": 7.03
     },
     "gb1-h-t1-4__situation": {
       "src": "/audio/goethe-b1/gb1-h-t1-4__situation.mp3",
-      "durationSec": 3.36
+      "durationSec": 3.6
     },
     "gb1-h-t1-4": {
       "src": "/audio/goethe-b1/gb1-h-t1-4.mp3",
-      "durationSec": 19.03
+      "durationSec": 18.05
     },
     "gb1-h-t1-5__readcue": {
       "src": "/audio/goethe-b1/gb1-h-t1-5__readcue.mp3",
-      "durationSec": 6.72
+      "durationSec": 6.94
     },
     "gb1-h-t1-5__situation": {
       "src": "/audio/goethe-b1/gb1-h-t1-5__situation.mp3",
-      "durationSec": 3.07
+      "durationSec": 3.43
     },
     "gb1-h-t1-5": {
       "src": "/audio/goethe-b1/gb1-h-t1-5.mp3",
-      "durationSec": 24.29
+      "durationSec": 26.33
     },
     "gb1-h-t2-intro": {
       "src": "/audio/goethe-b1/gb1-h-t2-intro.mp3",
-      "durationSec": 18.48
+      "durationSec": 19.1
     },
     "gb1-h-t2-ende": {
       "src": "/audio/goethe-b1/gb1-h-t2-ende.mp3",
-      "durationSec": 3.02
+      "durationSec": 3.12
     },
     "gb1-h-t2__situation": {
       "src": "/audio/goethe-b1/gb1-h-t2__situation.mp3",
-      "durationSec": 3.5
+      "durationSec": 5.54
     },
     "gb1-h-t2": {
       "src": "/audio/goethe-b1/gb1-h-t2.mp3",
-      "durationSec": 80.9
+      "durationSec": 82.7
     },
     "gb1-h-t3-intro": {
       "src": "/audio/goethe-b1/gb1-h-t3-intro.mp3",
-      "durationSec": 19.3
+      "durationSec": 19.8
     },
     "gb1-h-t3-ende": {
       "src": "/audio/goethe-b1/gb1-h-t3-ende.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.05
     },
     "gb1-h-t3__situation": {
       "src": "/audio/goethe-b1/gb1-h-t3__situation.mp3",
-      "durationSec": 5.74
+      "durationSec": 5.93
     },
     "gb1-h-t3": {
       "src": "/audio/goethe-b1/gb1-h-t3.mp3",
-      "durationSec": 73.7
+      "durationSec": 71.86
     },
     "gb1-h-t4-intro": {
       "src": "/audio/goethe-b1/gb1-h-t4-intro.mp3",
-      "durationSec": 22.68
+      "durationSec": 23.26
     },
     "gb1-h-t4-ende": {
       "src": "/audio/goethe-b1/gb1-h-t4-ende.mp3",
-      "durationSec": 9.34
+      "durationSec": 9.6
     },
     "gb1-h-t4__situation": {
       "src": "/audio/goethe-b1/gb1-h-t4__situation.mp3",
-      "durationSec": 9.55
+      "durationSec": 10.39
     },
     "gb1-h-t4": {
       "src": "/audio/goethe-b1/gb1-h-t4.mp3",
-      "durationSec": 104.45
+      "durationSec": 106.27
     },
     "gb1-s-t1": {
       "src": "/audio/goethe-b1/gb1-s-t1.mp3",
-      "durationSec": 14.93
+      "durationSec": 16.39
     },
     "gb1-s-t2": {
       "src": "/audio/goethe-b1/gb1-s-t2.mp3",
-      "durationSec": 16.94
+      "durationSec": 17.52
     },
     "gb1-s-t3": {
       "src": "/audio/goethe-b1/gb1-s-t3.mp3",
-      "durationSec": 7.3
+      "durationSec": 7.54
     },
     "gb1-s-t3-home": {
       "src": "/audio/goethe-b1/gb1-s-t3-home.mp3",
-      "durationSec": 6.34
+      "durationSec": 7.32
     },
     "gb1-s-t3-verkehr": {
       "src": "/audio/goethe-b1/gb1-s-t3-verkehr.mp3",
-      "durationSec": 5.54
+      "durationSec": 6.48
     },
     "gb1-s-t3-default": {
       "src": "/audio/goethe-b1/gb1-s-t3-default.mp3",
-      "durationSec": 3.48
+      "durationSec": 4.03
     },
     "gb2-h-intro": {
       "src": "/audio/goethe-b2/gb2-h-intro.mp3",
-      "durationSec": 17.83
+      "durationSec": 18.29
     },
     "gb2-h-t1-intro": {
       "src": "/audio/goethe-b2/gb2-h-t1-intro.mp3",
-      "durationSec": 14.86
+      "durationSec": 15.12
     },
     "gb2-h-t1-ende": {
       "src": "/audio/goethe-b2/gb2-h-t1-ende.mp3",
-      "durationSec": 2.28
+      "durationSec": 2.35
     },
     "gb2-h-bsp__situation": {
       "src": "/audio/goethe-b2/gb2-h-bsp__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.38
     },
     "gb2-h-bsp": {
       "src": "/audio/goethe-b2/gb2-h-bsp.mp3",
-      "durationSec": 5.95
+      "durationSec": 8.04
     },
     "gb2-h-a__readcue": {
       "src": "/audio/goethe-b2/gb2-h-a__readcue.mp3",
@@ -620,23 +620,23 @@
     },
     "gb2-h-a__situation": {
       "src": "/audio/goethe-b2/gb2-h-a__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 3.72
     },
     "gb2-h-a": {
       "src": "/audio/goethe-b2/gb2-h-a.mp3",
-      "durationSec": 10.2
+      "durationSec": 11.35
     },
     "gb2-h-b__readcue": {
       "src": "/audio/goethe-b2/gb2-h-b__readcue.mp3",
-      "durationSec": 1.94
+      "durationSec": 1.99
     },
     "gb2-h-b__situation": {
       "src": "/audio/goethe-b2/gb2-h-b__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 4.39
     },
     "gb2-h-b": {
       "src": "/audio/goethe-b2/gb2-h-b.mp3",
-      "durationSec": 9.58
+      "durationSec": 9.77
     },
     "gb2-h-c__readcue": {
       "src": "/audio/goethe-b2/gb2-h-c__readcue.mp3",
@@ -644,11 +644,11 @@
     },
     "gb2-h-c__situation": {
       "src": "/audio/goethe-b2/gb2-h-c__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 3.14
     },
     "gb2-h-c": {
       "src": "/audio/goethe-b2/gb2-h-c.mp3",
-      "durationSec": 9.02
+      "durationSec": 9.0
     },
     "gb2-h-d__readcue": {
       "src": "/audio/goethe-b2/gb2-h-d__readcue.mp3",
@@ -656,11 +656,11 @@
     },
     "gb2-h-d__situation": {
       "src": "/audio/goethe-b2/gb2-h-d__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 4.03
     },
     "gb2-h-d": {
       "src": "/audio/goethe-b2/gb2-h-d.mp3",
-      "durationSec": 7.61
+      "durationSec": 7.87
     },
     "gb2-h-e__readcue": {
       "src": "/audio/goethe-b2/gb2-h-e__readcue.mp3",
@@ -668,79 +668,79 @@
     },
     "gb2-h-e__situation": {
       "src": "/audio/goethe-b2/gb2-h-e__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 3.96
     },
     "gb2-h-e": {
       "src": "/audio/goethe-b2/gb2-h-e.mp3",
-      "durationSec": 9.43
+      "durationSec": 9.91
     },
     "gb2-h-t2-intro": {
       "src": "/audio/goethe-b2/gb2-h-t2-intro.mp3",
-      "durationSec": 14.06
+      "durationSec": 14.42
     },
     "gb2-h-t2-ende": {
       "src": "/audio/goethe-b2/gb2-h-t2-ende.mp3",
-      "durationSec": 2.38
+      "durationSec": 2.45
     },
     "gb2-h-t2__situation": {
       "src": "/audio/goethe-b2/gb2-h-t2__situation.mp3",
-      "durationSec": 2.81
+      "durationSec": 5.06
     },
     "gb2-h-t2": {
       "src": "/audio/goethe-b2/gb2-h-t2.mp3",
-      "durationSec": 39.46
+      "durationSec": 42.55
     },
     "gb2-h-t3-intro": {
       "src": "/audio/goethe-b2/gb2-h-t3-intro.mp3",
-      "durationSec": 14.26
+      "durationSec": 14.52
     },
     "gb2-h-t3-ende": {
       "src": "/audio/goethe-b2/gb2-h-t3-ende.mp3",
-      "durationSec": 2.33
+      "durationSec": 2.4
     },
     "gb2-h-t3__situation": {
       "src": "/audio/goethe-b2/gb2-h-t3__situation.mp3",
-      "durationSec": 6.12
+      "durationSec": 7.39
     },
     "gb2-h-t3": {
       "src": "/audio/goethe-b2/gb2-h-t3.mp3",
-      "durationSec": 40.97
+      "durationSec": 43.94
     },
     "gb2-h-t4-intro": {
       "src": "/audio/goethe-b2/gb2-h-t4-intro.mp3",
-      "durationSec": 14.14
+      "durationSec": 14.38
     },
     "gb2-h-t4-ende": {
       "src": "/audio/goethe-b2/gb2-h-t4-ende.mp3",
-      "durationSec": 9.19
+      "durationSec": 9.48
     },
     "gb2-h-t4__situation": {
       "src": "/audio/goethe-b2/gb2-h-t4__situation.mp3",
-      "durationSec": 2.62
+      "durationSec": 4.13
     },
     "gb2-h-t4": {
       "src": "/audio/goethe-b2/gb2-h-t4.mp3",
-      "durationSec": 51.07
+      "durationSec": 52.85
     },
     "gb2-s-t1": {
       "src": "/audio/goethe-b2/gb2-s-t1.mp3",
-      "durationSec": 8.28
+      "durationSec": 8.54
     },
     "gb2-s-t2": {
       "src": "/audio/goethe-b2/gb2-s-t2.mp3",
-      "durationSec": 5.95
+      "durationSec": 6.14
     },
     "ta1-h-intro": {
       "src": "/audio/telc-a1/ta1-h-intro.mp3",
-      "durationSec": 9.94
+      "durationSec": 10.22
     },
     "ta1-h-t1-intro": {
       "src": "/audio/telc-a1/ta1-h-t1-intro.mp3",
-      "durationSec": 8.74
+      "durationSec": 8.98
     },
     "ta1-h-t1-ende": {
       "src": "/audio/telc-a1/ta1-h-t1-ende.mp3",
-      "durationSec": 2.28
+      "durationSec": 2.35
     },
     "ta1-h-1__readcue": {
       "src": "/audio/telc-a1/ta1-h-1__readcue.mp3",
@@ -748,23 +748,23 @@
     },
     "ta1-h-1__situation": {
       "src": "/audio/telc-a1/ta1-h-1__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.14
     },
     "ta1-h-1": {
       "src": "/audio/telc-a1/ta1-h-1.mp3",
-      "durationSec": 12.77
+      "durationSec": 12.41
     },
     "ta1-h-2__readcue": {
       "src": "/audio/telc-a1/ta1-h-2__readcue.mp3",
-      "durationSec": 1.94
+      "durationSec": 1.99
     },
     "ta1-h-2__situation": {
       "src": "/audio/telc-a1/ta1-h-2__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.77
     },
     "ta1-h-2": {
       "src": "/audio/telc-a1/ta1-h-2.mp3",
-      "durationSec": 11.45
+      "durationSec": 12.1
     },
     "ta1-h-3__readcue": {
       "src": "/audio/telc-a1/ta1-h-3__readcue.mp3",
@@ -772,11 +772,11 @@
     },
     "ta1-h-3__situation": {
       "src": "/audio/telc-a1/ta1-h-3__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.31
     },
     "ta1-h-3": {
       "src": "/audio/telc-a1/ta1-h-3.mp3",
-      "durationSec": 11.23
+      "durationSec": 12.02
     },
     "ta1-h-4__readcue": {
       "src": "/audio/telc-a1/ta1-h-4__readcue.mp3",
@@ -784,11 +784,11 @@
     },
     "ta1-h-4__situation": {
       "src": "/audio/telc-a1/ta1-h-4__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.41
     },
     "ta1-h-4": {
       "src": "/audio/telc-a1/ta1-h-4.mp3",
-      "durationSec": 11.18
+      "durationSec": 11.04
     },
     "ta1-h-5__readcue": {
       "src": "/audio/telc-a1/ta1-h-5__readcue.mp3",
@@ -796,43 +796,43 @@
     },
     "ta1-h-5__situation": {
       "src": "/audio/telc-a1/ta1-h-5__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.31
     },
     "ta1-h-5": {
       "src": "/audio/telc-a1/ta1-h-5.mp3",
-      "durationSec": 10.58
+      "durationSec": 10.42
     },
     "ta1-h-6__readcue": {
       "src": "/audio/telc-a1/ta1-h-6__readcue.mp3",
-      "durationSec": 1.92
+      "durationSec": 1.94
     },
     "ta1-h-6__situation": {
       "src": "/audio/telc-a1/ta1-h-6__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.53
     },
     "ta1-h-6": {
       "src": "/audio/telc-a1/ta1-h-6.mp3",
-      "durationSec": 11.14
+      "durationSec": 10.82
     },
     "ta1-h-t2-intro": {
       "src": "/audio/telc-a1/ta1-h-t2-intro.mp3",
-      "durationSec": 8.06
+      "durationSec": 8.23
     },
     "ta1-h-t2-ende": {
       "src": "/audio/telc-a1/ta1-h-t2-ende.mp3",
-      "durationSec": 2.38
+      "durationSec": 2.45
     },
     "ta1-h-7__readcue": {
       "src": "/audio/telc-a1/ta1-h-7__readcue.mp3",
-      "durationSec": 1.92
+      "durationSec": 1.94
     },
     "ta1-h-7__situation": {
       "src": "/audio/telc-a1/ta1-h-7__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 2.66
     },
     "ta1-h-7": {
       "src": "/audio/telc-a1/ta1-h-7.mp3",
-      "durationSec": 5.86
+      "durationSec": 8.93
     },
     "ta1-h-8__readcue": {
       "src": "/audio/telc-a1/ta1-h-8__readcue.mp3",
@@ -840,11 +840,11 @@
     },
     "ta1-h-8__situation": {
       "src": "/audio/telc-a1/ta1-h-8__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 2.66
     },
     "ta1-h-8": {
       "src": "/audio/telc-a1/ta1-h-8.mp3",
-      "durationSec": 6.05
+      "durationSec": 9.14
     },
     "ta1-h-9__readcue": {
       "src": "/audio/telc-a1/ta1-h-9__readcue.mp3",
@@ -852,11 +852,11 @@
     },
     "ta1-h-9__situation": {
       "src": "/audio/telc-a1/ta1-h-9__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 2.66
     },
     "ta1-h-9": {
       "src": "/audio/telc-a1/ta1-h-9.mp3",
-      "durationSec": 5.06
+      "durationSec": 9.86
     },
     "ta1-h-10__readcue": {
       "src": "/audio/telc-a1/ta1-h-10__readcue.mp3",
@@ -864,19 +864,19 @@
     },
     "ta1-h-10__situation": {
       "src": "/audio/telc-a1/ta1-h-10__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 2.66
     },
     "ta1-h-10": {
       "src": "/audio/telc-a1/ta1-h-10.mp3",
-      "durationSec": 4.8
+      "durationSec": 8.76
     },
     "ta1-h-t3-intro": {
       "src": "/audio/telc-a1/ta1-h-t3-intro.mp3",
-      "durationSec": 8.45
+      "durationSec": 8.64
     },
     "ta1-h-t3-ende": {
       "src": "/audio/telc-a1/ta1-h-t3-ende.mp3",
-      "durationSec": 6.41
+      "durationSec": 6.53
     },
     "ta1-h-11__readcue": {
       "src": "/audio/telc-a1/ta1-h-11__readcue.mp3",
@@ -884,83 +884,83 @@
     },
     "ta1-h-11__situation": {
       "src": "/audio/telc-a1/ta1-h-11__situation.mp3",
-      "durationSec": 2.52
+      "durationSec": 3.48
     },
     "ta1-h-11": {
       "src": "/audio/telc-a1/ta1-h-11.mp3",
-      "durationSec": 7.42
+      "durationSec": 7.54
     },
     "ta1-h-12__readcue": {
       "src": "/audio/telc-a1/ta1-h-12__readcue.mp3",
-      "durationSec": 1.94
+      "durationSec": 1.99
     },
     "ta1-h-12__situation": {
       "src": "/audio/telc-a1/ta1-h-12__situation.mp3",
-      "durationSec": 2.52
+      "durationSec": 3.48
     },
     "ta1-h-12": {
       "src": "/audio/telc-a1/ta1-h-12.mp3",
-      "durationSec": 6.36
+      "durationSec": 9.62
     },
     "ta1-h-13__readcue": {
       "src": "/audio/telc-a1/ta1-h-13__readcue.mp3",
-      "durationSec": 2.06
+      "durationSec": 2.14
     },
     "ta1-h-13__situation": {
       "src": "/audio/telc-a1/ta1-h-13__situation.mp3",
-      "durationSec": 2.52
+      "durationSec": 3.48
     },
     "ta1-h-13": {
       "src": "/audio/telc-a1/ta1-h-13.mp3",
-      "durationSec": 7.44
+      "durationSec": 10.44
     },
     "ta1-h-14__readcue": {
       "src": "/audio/telc-a1/ta1-h-14__readcue.mp3",
-      "durationSec": 2.04
+      "durationSec": 2.11
     },
     "ta1-h-14__situation": {
       "src": "/audio/telc-a1/ta1-h-14__situation.mp3",
-      "durationSec": 2.52
+      "durationSec": 3.48
     },
     "ta1-h-14": {
       "src": "/audio/telc-a1/ta1-h-14.mp3",
-      "durationSec": 5.26
+      "durationSec": 9.22
     },
     "ta1-h-15__readcue": {
       "src": "/audio/telc-a1/ta1-h-15__readcue.mp3",
-      "durationSec": 2.06
+      "durationSec": 2.11
     },
     "ta1-h-15__situation": {
       "src": "/audio/telc-a1/ta1-h-15__situation.mp3",
-      "durationSec": 2.52
+      "durationSec": 3.48
     },
     "ta1-h-15": {
       "src": "/audio/telc-a1/ta1-h-15.mp3",
-      "durationSec": 6.7
+      "durationSec": 8.74
     },
     "ta1-s-t1": {
       "src": "/audio/telc-a1/ta1-s-t1.mp3",
-      "durationSec": 2.88
+      "durationSec": 2.95
     },
     "ta1-s-t2": {
       "src": "/audio/telc-a1/ta1-s-t2.mp3",
-      "durationSec": 4.39
+      "durationSec": 4.54
     },
     "ta1-s-t3": {
       "src": "/audio/telc-a1/ta1-s-t3.mp3",
-      "durationSec": 3.24
+      "durationSec": 3.34
     },
     "ta2-h-intro": {
       "src": "/audio/telc-a2/ta2-h-intro.mp3",
-      "durationSec": 6.26
+      "durationSec": 6.48
     },
     "ta2-h-t1-intro": {
       "src": "/audio/telc-a2/ta2-h-t1-intro.mp3",
-      "durationSec": 12.14
+      "durationSec": 12.36
     },
     "ta2-h-t1-ende": {
       "src": "/audio/telc-a2/ta2-h-t1-ende.mp3",
-      "durationSec": 2.28
+      "durationSec": 2.35
     },
     "ta2-h-1__readcue": {
       "src": "/audio/telc-a2/ta2-h-1__readcue.mp3",
@@ -968,23 +968,23 @@
     },
     "ta2-h-1__situation": {
       "src": "/audio/telc-a2/ta2-h-1__situation.mp3",
-      "durationSec": 3.0
+      "durationSec": 3.48
     },
     "ta2-h-1": {
       "src": "/audio/telc-a2/ta2-h-1.mp3",
-      "durationSec": 4.97
+      "durationSec": 8.95
     },
     "ta2-h-2__readcue": {
       "src": "/audio/telc-a2/ta2-h-2__readcue.mp3",
-      "durationSec": 1.94
+      "durationSec": 1.99
     },
     "ta2-h-2__situation": {
       "src": "/audio/telc-a2/ta2-h-2__situation.mp3",
-      "durationSec": 3.0
+      "durationSec": 3.48
     },
     "ta2-h-2": {
       "src": "/audio/telc-a2/ta2-h-2.mp3",
-      "durationSec": 3.29
+      "durationSec": 7.01
     },
     "ta2-h-3__readcue": {
       "src": "/audio/telc-a2/ta2-h-3__readcue.mp3",
@@ -992,11 +992,11 @@
     },
     "ta2-h-3__situation": {
       "src": "/audio/telc-a2/ta2-h-3__situation.mp3",
-      "durationSec": 3.0
+      "durationSec": 3.48
     },
     "ta2-h-3": {
       "src": "/audio/telc-a2/ta2-h-3.mp3",
-      "durationSec": 3.91
+      "durationSec": 8.95
     },
     "ta2-h-4__readcue": {
       "src": "/audio/telc-a2/ta2-h-4__readcue.mp3",
@@ -1004,11 +1004,11 @@
     },
     "ta2-h-4__situation": {
       "src": "/audio/telc-a2/ta2-h-4__situation.mp3",
-      "durationSec": 3.0
+      "durationSec": 3.48
     },
     "ta2-h-4": {
       "src": "/audio/telc-a2/ta2-h-4.mp3",
-      "durationSec": 5.09
+      "durationSec": 7.42
     },
     "ta2-h-5__readcue": {
       "src": "/audio/telc-a2/ta2-h-5__readcue.mp3",
@@ -1016,43 +1016,43 @@
     },
     "ta2-h-5__situation": {
       "src": "/audio/telc-a2/ta2-h-5__situation.mp3",
-      "durationSec": 3.0
+      "durationSec": 3.48
     },
     "ta2-h-5": {
       "src": "/audio/telc-a2/ta2-h-5.mp3",
-      "durationSec": 4.46
+      "durationSec": 8.33
     },
     "ta2-h-t2-intro": {
       "src": "/audio/telc-a2/ta2-h-t2-intro.mp3",
-      "durationSec": 9.34
+      "durationSec": 9.48
     },
     "ta2-h-t2-ende": {
       "src": "/audio/telc-a2/ta2-h-t2-ende.mp3",
-      "durationSec": 2.38
+      "durationSec": 2.45
     },
     "ta2-h-6__readcue": {
       "src": "/audio/telc-a2/ta2-h-6__readcue.mp3",
-      "durationSec": 1.92
+      "durationSec": 1.94
     },
     "ta2-h-6__situation": {
       "src": "/audio/telc-a2/ta2-h-6__situation.mp3",
-      "durationSec": 2.16
+      "durationSec": 3.14
     },
     "ta2-h-6": {
       "src": "/audio/telc-a2/ta2-h-6.mp3",
-      "durationSec": 6.53
+      "durationSec": 9.79
     },
     "ta2-h-7__readcue": {
       "src": "/audio/telc-a2/ta2-h-7__readcue.mp3",
-      "durationSec": 1.92
+      "durationSec": 1.94
     },
     "ta2-h-7__situation": {
       "src": "/audio/telc-a2/ta2-h-7__situation.mp3",
-      "durationSec": 2.16
+      "durationSec": 3.14
     },
     "ta2-h-7": {
       "src": "/audio/telc-a2/ta2-h-7.mp3",
-      "durationSec": 6.94
+      "durationSec": 9.48
     },
     "ta2-h-8__readcue": {
       "src": "/audio/telc-a2/ta2-h-8__readcue.mp3",
@@ -1060,11 +1060,11 @@
     },
     "ta2-h-8__situation": {
       "src": "/audio/telc-a2/ta2-h-8__situation.mp3",
-      "durationSec": 2.16
+      "durationSec": 3.14
     },
     "ta2-h-8": {
       "src": "/audio/telc-a2/ta2-h-8.mp3",
-      "durationSec": 7.25
+      "durationSec": 10.3
     },
     "ta2-h-9__readcue": {
       "src": "/audio/telc-a2/ta2-h-9__readcue.mp3",
@@ -1072,11 +1072,11 @@
     },
     "ta2-h-9__situation": {
       "src": "/audio/telc-a2/ta2-h-9__situation.mp3",
-      "durationSec": 2.16
+      "durationSec": 3.14
     },
     "ta2-h-9": {
       "src": "/audio/telc-a2/ta2-h-9.mp3",
-      "durationSec": 5.83
+      "durationSec": 8.23
     },
     "ta2-h-10__readcue": {
       "src": "/audio/telc-a2/ta2-h-10__readcue.mp3",
@@ -1084,371 +1084,371 @@
     },
     "ta2-h-10__situation": {
       "src": "/audio/telc-a2/ta2-h-10__situation.mp3",
-      "durationSec": 2.16
+      "durationSec": 3.14
     },
     "ta2-h-10": {
       "src": "/audio/telc-a2/ta2-h-10.mp3",
-      "durationSec": 5.4
+      "durationSec": 9.17
     },
     "ta2-h-t3-intro": {
       "src": "/audio/telc-a2/ta2-h-t3-intro.mp3",
-      "durationSec": 7.7
+      "durationSec": 7.87
     },
     "ta2-h-t3-ende": {
       "src": "/audio/telc-a2/ta2-h-t3-ende.mp3",
-      "durationSec": 2.3
+      "durationSec": 2.35
     },
     "ta2-h-t3__situation": {
       "src": "/audio/telc-a2/ta2-h-t3__situation.mp3",
-      "durationSec": 3.43
+      "durationSec": 5.71
     },
     "ta2-h-t3": {
       "src": "/audio/telc-a2/ta2-h-t3.mp3",
-      "durationSec": 22.44
+      "durationSec": 23.28
     },
     "ta2-s-t1": {
       "src": "/audio/telc-a2/ta2-s-t1.mp3",
-      "durationSec": 2.88
+      "durationSec": 2.95
     },
     "ta2-s-t2": {
       "src": "/audio/telc-a2/ta2-s-t2.mp3",
-      "durationSec": 4.68
+      "durationSec": 4.85
     },
     "ta2-s-t3": {
       "src": "/audio/telc-a2/ta2-s-t3.mp3",
-      "durationSec": 4.85
+      "durationSec": 4.99
     },
     "tb1-h-intro": {
       "src": "/audio/telc-b1/tb1-h-intro.mp3",
-      "durationSec": 5.78
+      "durationSec": 6.02
     },
     "tb1-h-t1-intro": {
       "src": "/audio/telc-b1/tb1-h-t1-intro.mp3",
-      "durationSec": 8.57
+      "durationSec": 8.64
     },
     "tb1-h-t1-ende": {
       "src": "/audio/telc-b1/tb1-h-t1-ende.mp3",
-      "durationSec": 2.28
+      "durationSec": 2.35
     },
     "tb1-h-41__readcue": {
       "src": "/audio/telc-b1/tb1-h-41__readcue.mp3",
-      "durationSec": 2.52
+      "durationSec": 2.59
     },
     "tb1-h-41__situation": {
       "src": "/audio/telc-b1/tb1-h-41__situation.mp3",
-      "durationSec": 2.86
+      "durationSec": 2.93
     },
     "tb1-h-41": {
       "src": "/audio/telc-b1/tb1-h-41.mp3",
-      "durationSec": 5.78
+      "durationSec": 10.15
     },
     "tb1-h-42__readcue": {
       "src": "/audio/telc-b1/tb1-h-42__readcue.mp3",
-      "durationSec": 2.64
+      "durationSec": 2.74
     },
     "tb1-h-42__situation": {
       "src": "/audio/telc-b1/tb1-h-42__situation.mp3",
-      "durationSec": 2.86
+      "durationSec": 2.93
     },
     "tb1-h-42": {
       "src": "/audio/telc-b1/tb1-h-42.mp3",
-      "durationSec": 4.37
+      "durationSec": 7.32
     },
     "tb1-h-43__readcue": {
       "src": "/audio/telc-b1/tb1-h-43__readcue.mp3",
-      "durationSec": 2.59
+      "durationSec": 2.69
     },
     "tb1-h-43__situation": {
       "src": "/audio/telc-b1/tb1-h-43__situation.mp3",
-      "durationSec": 2.86
+      "durationSec": 2.93
     },
     "tb1-h-43": {
       "src": "/audio/telc-b1/tb1-h-43.mp3",
-      "durationSec": 5.57
+      "durationSec": 9.86
     },
     "tb1-h-44__readcue": {
       "src": "/audio/telc-b1/tb1-h-44__readcue.mp3",
-      "durationSec": 2.54
+      "durationSec": 2.62
     },
     "tb1-h-44__situation": {
       "src": "/audio/telc-b1/tb1-h-44__situation.mp3",
-      "durationSec": 2.86
+      "durationSec": 2.93
     },
     "tb1-h-44": {
       "src": "/audio/telc-b1/tb1-h-44.mp3",
-      "durationSec": 4.9
+      "durationSec": 10.3
     },
     "tb1-h-45__readcue": {
       "src": "/audio/telc-b1/tb1-h-45__readcue.mp3",
-      "durationSec": 2.54
+      "durationSec": 2.64
     },
     "tb1-h-45__situation": {
       "src": "/audio/telc-b1/tb1-h-45__situation.mp3",
-      "durationSec": 2.86
+      "durationSec": 2.93
     },
     "tb1-h-45": {
       "src": "/audio/telc-b1/tb1-h-45.mp3",
-      "durationSec": 5.28
+      "durationSec": 8.98
     },
     "tb1-h-t2-intro": {
       "src": "/audio/telc-b1/tb1-h-t2-intro.mp3",
-      "durationSec": 7.92
+      "durationSec": 8.14
     },
     "tb1-h-t2-ende": {
       "src": "/audio/telc-b1/tb1-h-t2-ende.mp3",
-      "durationSec": 2.38
+      "durationSec": 2.45
     },
     "tb1-h-t2__situation": {
       "src": "/audio/telc-b1/tb1-h-t2__situation.mp3",
-      "durationSec": 3.19
+      "durationSec": 4.2
     },
     "tb1-h-t2": {
       "src": "/audio/telc-b1/tb1-h-t2.mp3",
-      "durationSec": 48.36
+      "durationSec": 46.15
     },
     "tb1-h-t3-intro": {
       "src": "/audio/telc-b1/tb1-h-t3-intro.mp3",
-      "durationSec": 8.16
+      "durationSec": 8.23
     },
     "tb1-h-t3-ende": {
       "src": "/audio/telc-b1/tb1-h-t3-ende.mp3",
-      "durationSec": 2.52
+      "durationSec": 2.62
     },
     "tb1-h-56__readcue": {
       "src": "/audio/telc-b1/tb1-h-56__readcue.mp3",
-      "durationSec": 2.62
+      "durationSec": 2.71
     },
     "tb1-h-56__situation": {
       "src": "/audio/telc-b1/tb1-h-56__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.05
     },
     "tb1-h-56": {
       "src": "/audio/telc-b1/tb1-h-56.mp3",
-      "durationSec": 4.92
+      "durationSec": 8.42
     },
     "tb1-h-57__readcue": {
       "src": "/audio/telc-b1/tb1-h-57__readcue.mp3",
-      "durationSec": 2.71
+      "durationSec": 2.78
     },
     "tb1-h-57__situation": {
       "src": "/audio/telc-b1/tb1-h-57__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.05
     },
     "tb1-h-57": {
       "src": "/audio/telc-b1/tb1-h-57.mp3",
-      "durationSec": 6.14
+      "durationSec": 9.94
     },
     "tb1-h-58__readcue": {
       "src": "/audio/telc-b1/tb1-h-58__readcue.mp3",
-      "durationSec": 2.52
+      "durationSec": 2.62
     },
     "tb1-h-58__situation": {
       "src": "/audio/telc-b1/tb1-h-58__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.05
     },
     "tb1-h-58": {
       "src": "/audio/telc-b1/tb1-h-58.mp3",
-      "durationSec": 4.37
+      "durationSec": 10.61
     },
     "tb1-h-59__readcue": {
       "src": "/audio/telc-b1/tb1-h-59__readcue.mp3",
-      "durationSec": 2.62
+      "durationSec": 2.69
     },
     "tb1-h-59__situation": {
       "src": "/audio/telc-b1/tb1-h-59__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.05
     },
     "tb1-h-59": {
       "src": "/audio/telc-b1/tb1-h-59.mp3",
-      "durationSec": 4.1
+      "durationSec": 7.15
     },
     "tb1-h-60__readcue": {
       "src": "/audio/telc-b1/tb1-h-60__readcue.mp3",
-      "durationSec": 2.06
+      "durationSec": 2.14
     },
     "tb1-h-60__situation": {
       "src": "/audio/telc-b1/tb1-h-60__situation.mp3",
-      "durationSec": 2.95
+      "durationSec": 3.05
     },
     "tb1-h-60": {
       "src": "/audio/telc-b1/tb1-h-60.mp3",
-      "durationSec": 6.05
+      "durationSec": 9.53
     },
     "tb1-s-t1": {
       "src": "/audio/telc-b1/tb1-s-t1.mp3",
-      "durationSec": 4.1
+      "durationSec": 4.22
     },
     "tb1-s-t2": {
       "src": "/audio/telc-b1/tb1-s-t2.mp3",
-      "durationSec": 5.93
+      "durationSec": 6.12
     },
     "tb1-s-t3": {
       "src": "/audio/telc-b1/tb1-s-t3.mp3",
-      "durationSec": 4.94
+      "durationSec": 5.11
     },
     "tb2-h-intro": {
       "src": "/audio/telc-b2/tb2-h-intro.mp3",
-      "durationSec": 5.3
+      "durationSec": 5.45
     },
     "tb2-h-t1-intro": {
       "src": "/audio/telc-b2/tb2-h-t1-intro.mp3",
-      "durationSec": 7.73
+      "durationSec": 7.92
     },
     "tb2-h-41__readcue": {
       "src": "/audio/telc-b2/tb2-h-41__readcue.mp3",
-      "durationSec": 2.66
+      "durationSec": 2.76
     },
     "tb2-h-41__situation": {
       "src": "/audio/telc-b2/tb2-h-41__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 3.17
     },
     "tb2-h-41": {
       "src": "/audio/telc-b2/tb2-h-41.mp3",
-      "durationSec": 4.44
+      "durationSec": 7.7
     },
     "tb2-h-42__readcue": {
       "src": "/audio/telc-b2/tb2-h-42__readcue.mp3",
-      "durationSec": 2.78
+      "durationSec": 2.86
     },
     "tb2-h-42__situation": {
       "src": "/audio/telc-b2/tb2-h-42__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 3.17
     },
     "tb2-h-42": {
       "src": "/audio/telc-b2/tb2-h-42.mp3",
-      "durationSec": 4.66
+      "durationSec": 7.39
     },
     "tb2-h-43__readcue": {
       "src": "/audio/telc-b2/tb2-h-43__readcue.mp3",
-      "durationSec": 2.74
+      "durationSec": 2.81
     },
     "tb2-h-43__situation": {
       "src": "/audio/telc-b2/tb2-h-43__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 3.17
     },
     "tb2-h-43": {
       "src": "/audio/telc-b2/tb2-h-43.mp3",
-      "durationSec": 4.3
+      "durationSec": 8.35
     },
     "tb2-h-44__readcue": {
       "src": "/audio/telc-b2/tb2-h-44__readcue.mp3",
-      "durationSec": 2.74
+      "durationSec": 2.81
     },
     "tb2-h-44__situation": {
       "src": "/audio/telc-b2/tb2-h-44__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 3.17
     },
     "tb2-h-44": {
       "src": "/audio/telc-b2/tb2-h-44.mp3",
-      "durationSec": 4.85
+      "durationSec": 7.32
     },
     "tb2-h-45__readcue": {
       "src": "/audio/telc-b2/tb2-h-45__readcue.mp3",
-      "durationSec": 2.71
+      "durationSec": 2.81
     },
     "tb2-h-45__situation": {
       "src": "/audio/telc-b2/tb2-h-45__situation.mp3",
-      "durationSec": 2.45
+      "durationSec": 3.17
     },
     "tb2-h-45": {
       "src": "/audio/telc-b2/tb2-h-45.mp3",
-      "durationSec": 6.48
+      "durationSec": 8.86
     },
     "tb2-h-t2-intro": {
       "src": "/audio/telc-b2/tb2-h-t2-intro.mp3",
-      "durationSec": 7.44
+      "durationSec": 7.46
     },
     "tb2-h-t2-ende": {
       "src": "/audio/telc-b2/tb2-h-t2-ende.mp3",
-      "durationSec": 2.38
+      "durationSec": 2.45
     },
     "tb2-h-t2__situation": {
       "src": "/audio/telc-b2/tb2-h-t2__situation.mp3",
-      "durationSec": 2.52
+      "durationSec": 3.86
     },
     "tb2-h-t2": {
       "src": "/audio/telc-b2/tb2-h-t2.mp3",
-      "durationSec": 45.43
+      "durationSec": 51.86
     },
     "tb2-h-t3-intro": {
       "src": "/audio/telc-b2/tb2-h-t3-intro.mp3",
-      "durationSec": 8.3
+      "durationSec": 8.4
     },
     "tb2-h-t3-ende": {
       "src": "/audio/telc-b2/tb2-h-t3-ende.mp3",
-      "durationSec": 2.52
+      "durationSec": 2.62
     },
     "tb2-h-56__readcue": {
       "src": "/audio/telc-b2/tb2-h-56__readcue.mp3",
-      "durationSec": 2.62
+      "durationSec": 2.71
     },
     "tb2-h-56__situation": {
       "src": "/audio/telc-b2/tb2-h-56__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 2.64
     },
     "tb2-h-56": {
       "src": "/audio/telc-b2/tb2-h-56.mp3",
-      "durationSec": 4.99
+      "durationSec": 7.63
     },
     "tb2-h-57__readcue": {
       "src": "/audio/telc-b2/tb2-h-57__readcue.mp3",
-      "durationSec": 2.71
+      "durationSec": 2.78
     },
     "tb2-h-57__situation": {
       "src": "/audio/telc-b2/tb2-h-57__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 2.64
     },
     "tb2-h-57": {
       "src": "/audio/telc-b2/tb2-h-57.mp3",
-      "durationSec": 5.11
+      "durationSec": 7.9
     },
     "tb2-h-58__readcue": {
       "src": "/audio/telc-b2/tb2-h-58__readcue.mp3",
-      "durationSec": 2.52
+      "durationSec": 2.62
     },
     "tb2-h-58__situation": {
       "src": "/audio/telc-b2/tb2-h-58__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 2.64
     },
     "tb2-h-58": {
       "src": "/audio/telc-b2/tb2-h-58.mp3",
-      "durationSec": 4.34
+      "durationSec": 8.18
     },
     "tb2-h-59__readcue": {
       "src": "/audio/telc-b2/tb2-h-59__readcue.mp3",
-      "durationSec": 2.62
+      "durationSec": 2.69
     },
     "tb2-h-59__situation": {
       "src": "/audio/telc-b2/tb2-h-59__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 2.64
     },
     "tb2-h-59": {
       "src": "/audio/telc-b2/tb2-h-59.mp3",
-      "durationSec": 5.38
+      "durationSec": 8.57
     },
     "tb2-h-60__readcue": {
       "src": "/audio/telc-b2/tb2-h-60__readcue.mp3",
-      "durationSec": 2.06
+      "durationSec": 2.14
     },
     "tb2-h-60__situation": {
       "src": "/audio/telc-b2/tb2-h-60__situation.mp3",
-      "durationSec": 2.57
+      "durationSec": 2.64
     },
     "tb2-h-60": {
       "src": "/audio/telc-b2/tb2-h-60.mp3",
-      "durationSec": 4.97
+      "durationSec": 8.74
     },
     "tb2-s-t1": {
       "src": "/audio/telc-b2/tb2-s-t1.mp3",
-      "durationSec": 6.82
+      "durationSec": 7.03
     },
     "tb2-s-t2": {
       "src": "/audio/telc-b2/tb2-s-t2.mp3",
-      "durationSec": 6.6
+      "durationSec": 6.82
     },
     "tb2-s-t3": {
       "src": "/audio/telc-b2/tb2-s-t3.mp3",
-      "durationSec": 5.86
+      "durationSec": 6.02
     }
   }
 }
