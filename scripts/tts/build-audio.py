@@ -9,6 +9,8 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import json
+import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -143,52 +145,32 @@ def concat_raw(parts: list[Path], dest: Path) -> None:
     )
 
 
-def ensure_sting(kind: str) -> Path:
-    dest = CACHE / f"sting-{kind}.mp3"
-    if dest.exists():
-        return dest
-    if kind == "station":
-        run(
-            [
-                "ffmpeg", "-y", "-loglevel", "error",
-                "-f", "lavfi", "-i", "sine=frequency=740:sample_rate=24000:duration=0.18",
-                "-f", "lavfi", "-i", "sine=frequency=980:sample_rate=24000:duration=0.28",
-                "-filter_complex", "[0:a][1:a]concat=n=2:v=0:a=1,afade=t=in:d=0.02,afade=t=out:st=0.32:d=0.12,volume=0.45",
-                "-ac", "1", "-c:a", "libmp3lame", "-b:a", "64k", str(dest),
-            ]
-        )
-    else:
-        run(
-            [
-                "ffmpeg", "-y", "-loglevel", "error",
-                "-f", "lavfi", "-i", "sine=frequency=523:sample_rate=24000:duration=0.12",
-                "-f", "lavfi", "-i", "sine=frequency=659:sample_rate=24000:duration=0.12",
-                "-f", "lavfi", "-i", "sine=frequency=784:sample_rate=24000:duration=0.2",
-                "-filter_complex", "[0:a][1:a][2:a]concat=n=3:v=0:a=1,afade=t=out:st=0.28:d=0.14,volume=0.35",
-                "-ac", "1", "-c:a", "libmp3lame", "-b:a", "64k", str(dest),
-            ]
-        )
-    return dest
+LOUDNORM = "loudnorm=I=-19:TP=-1.5:LRA=7"
+
+# Seconds of scene bed before the first word. Reading pauses stay digital silence in the player.
+PREROLL = {"phone": 4.0, "station": 2.8, "shop": 1.6}
+BED_DELAY = {"station": 1.0, "shop": 0.6}
 
 
 def finish_mix(speech: Path, dest: Path, scene: str) -> None:
-    """Mix procedural ambience under the speech and set one loudness for every clip.
+    """Mix a quiet generated bed under the speech and set one loudness.
 
-    Beds are generated with ffmpeg lavfi. They are not recordings.
+    Beds are ffmpeg noise, not recordings. Station and radio clips have no opening chime.
+    Phone clips start with a few seconds of line hiss. The exam cue is not passed through here.
     """
     length = max(duration(speech), 0.4)
     bed = WORK / f"{dest.stem}-bed.mp3"
     filtered = WORK / f"{dest.stem}-speech.mp3"
     scene = scene if scene in {"station", "shop", "phone", "radio", "cafe", "street", "lecture"} else "quiet"
     speech_filters = {
-        "station": "highpass=f=140,aecho=0.8:0.72:40|75:0.22|0.12,volume=1.35",
-        "shop": "aecho=0.8:0.9:20:0.1,volume=1.2",
-        "phone": "highpass=f=300,lowpass=f=3400,volume=1.45",
-        "radio": "acompressor=threshold=-20dB:ratio=2.5:attack=5:release=80,volume=1.25",
-        "cafe": "aecho=0.85:0.9:12:0.06,volume=1.15",
-        "street": "highpass=f=80,volume=1.15",
-        "lecture": "aecho=0.8:0.78:55:0.16,volume=1.2",
-        "quiet": "volume=1.2",
+        "station": "highpass=f=120,aecho=0.8:0.85:70|140|260:0.28|0.14|0.07,volume=1.15",
+        "shop": "highpass=f=120,aecho=0.85:0.88:50|110:0.16|0.08,volume=1.1",
+        "phone": "highpass=f=250,lowpass=f=2300,volume=1.2",
+        "radio": "acompressor=threshold=-20dB:ratio=2.5:attack=5:release=80,volume=1.15",
+        "cafe": "aecho=0.9:0.95:15:0.04,volume=1.05",
+        "street": "highpass=f=80,volume=1.05",
+        "lecture": "aecho=0.85:0.9:40:0.08,volume=1.05",
+        "quiet": "volume=1.05",
     }[scene]
     run(
         [
@@ -197,43 +179,43 @@ def finish_mix(speech: Path, dest: Path, scene: str) -> None:
             "-c:a", "libmp3lame", "-b:a", "64k", str(filtered),
         ]
     )
+    preroll = PREROLL.get(scene, 0.0)
+    bed_delay = BED_DELAY.get(scene, 0.0)
     if scene == "quiet":
-        sources = [filtered]
-    else:
-        noise = {
-            "station": f"anoisesrc=color=brown:sample_rate=24000:duration={length + 0.4},lowpass=f=350,volume=0.07",
-            "shop": f"anoisesrc=color=pink:sample_rate=24000:duration={length + 0.4},highpass=f=180,lowpass=f=2200,volume=0.045",
-            "phone": f"anoisesrc=color=white:sample_rate=24000:duration={length + 0.4},highpass=f=300,lowpass=f=3400,volume=0.025",
-            "radio": f"anoisesrc=color=white:sample_rate=24000:duration={length + 0.4},lowpass=f=5000,volume=0.012",
-            "cafe": f"anoisesrc=color=pink:sample_rate=24000:duration={length + 0.4},bandpass=f=450:width_type=h:w=500,volume=0.055",
-            "street": f"anoisesrc=color=brown:sample_rate=24000:duration={length + 0.4},lowpass=f=220,volume=0.06",
-            "lecture": f"anoisesrc=color=pink:sample_rate=24000:duration={length + 0.4},lowpass=f=280,volume=0.03",
-        }[scene]
         run(
             [
-                "ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", noise,
-                "-ac", "1", "-ar", "24000", "-c:a", "libmp3lame", "-b:a", "64k", str(bed),
+                "ffmpeg", "-y", "-loglevel", "error", "-i", str(filtered),
+                "-af", LOUDNORM, "-ac", "1", "-ar", "24000",
+                "-c:a", "libmp3lame", "-b:a", "64k", str(dest),
             ]
         )
-        sources = [filtered, bed]
-    inputs: list[str] = []
-    for source in sources:
-        inputs.extend(["-i", str(source)])
-    if scene == "station":
-        sting = ensure_sting("station")
-        inputs = ["-i", str(sting), *inputs]
-    elif scene == "radio":
-        sting = ensure_sting("radio")
-        inputs = ["-i", str(sting), *inputs]
-    count = len(inputs) // 2
-    if count == 1:
-        mix = "[0:a]loudnorm=I=-16:TP=-1.5:LRA=11[a]"
-    else:
-        labels = "".join(f"[{i}:a]" for i in range(count))
-        mix = f"{labels}amix=inputs={count}:duration=longest:dropout_transition=0:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=11[a]"
+        return
+    bed_len = length + preroll + 0.4
+    noise = {
+        "station": f"anoisesrc=color=brown:sample_rate=24000:duration={bed_len:.2f},lowpass=f=180,volume=0.025",
+        "shop": f"anoisesrc=color=brown:sample_rate=24000:duration={bed_len:.2f},lowpass=f=220,volume=0.02",
+        "phone": f"anoisesrc=color=white:sample_rate=24000:duration={bed_len:.2f},highpass=f=250,lowpass=f=2300,volume=0.01",
+        "radio": f"anoisesrc=color=brown:sample_rate=24000:duration={bed_len:.2f},lowpass=f=140,volume=0.04",
+        "cafe": f"anoisesrc=color=pink:sample_rate=24000:duration={bed_len:.2f},bandpass=f=400:width_type=h:w=500,volume=0.018",
+        "street": f"anoisesrc=color=brown:sample_rate=24000:duration={bed_len:.2f},lowpass=f=200,volume=0.02",
+        "lecture": f"anoisesrc=color=pink:sample_rate=24000:duration={bed_len:.2f},lowpass=f=250,volume=0.012",
+    }[scene]
     run(
         [
-            "ffmpeg", "-y", "-loglevel", "error", *inputs,
+            "ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", noise,
+            "-ac", "1", "-ar", "24000", "-c:a", "libmp3lame", "-b:a", "64k", str(bed),
+        ]
+    )
+    speech_ms = int(preroll * 1000)
+    bed_ms = int(bed_delay * 1000)
+    mix = (
+        f"[0:a]adelay={speech_ms}:all=1[sp];"
+        f"[1:a]adelay={bed_ms}:all=1[bd];"
+        f"[sp][bd]amix=inputs=2:duration=longest:dropout_transition=0:normalize=0,{LOUDNORM}[a]"
+    )
+    run(
+        [
+            "ffmpeg", "-y", "-loglevel", "error", "-i", str(filtered), "-i", str(bed),
             "-filter_complex", mix, "-map", "[a]",
             "-ac", "1", "-ar", "24000", "-c:a", "libmp3lame", "-b:a", "64k", str(dest),
         ]
@@ -257,7 +239,7 @@ def duration(path: Path) -> float:
     return round(float(raw.strip()), 2)
 
 
-MIX_VERSION = "natural-2"
+MIX_VERSION = "exam-cue-3"
 STAMPS = CACHE / "built-stamps.json"
 
 
@@ -281,25 +263,18 @@ def save_stamps(stamps: dict) -> None:
 
 
 def write_gong(dest: Path) -> None:
+    """Exam cue: 547.2 Hz, 1.62 s, sustain about -27 dBFS. Not loudness-normalised."""
     run(
         [
-            "ffmpeg",
-            "-y",
-            "-loglevel",
-            "error",
-            "-f",
-            "lavfi",
-            "-i",
-            "sine=frequency=880:sample_rate=24000:duration=0.5",
-            "-af",
-            "afade=t=in:st=0:d=0.02,afade=t=out:st=0.28:d=0.22,volume=0.55",
-            "-ac",
-            "1",
-            "-c:a",
-            "libmp3lame",
-            "-b:a",
-            "64k",
-            str(dest),
+            "ffmpeg", "-y", "-loglevel", "error",
+            "-f", "lavfi", "-i", "sine=frequency=547.2:sample_rate=24000:duration=1.62",
+            "-f", "lavfi", "-i", "sine=frequency=1520.8:sample_rate=24000:duration=1.62",
+            "-filter_complex",
+            "[0:a]volume=0.507[f];[1:a]volume=0.076[h];"
+            "[f][h]amix=inputs=2:duration=first:normalize=0,"
+            "afade=t=in:st=0:d=0.02,afade=t=out:st=0.92:d=0.70[a]",
+            "-map", "[a]", "-ac", "1", "-ar", "24000",
+            "-c:a", "libmp3lame", "-b:a", "64k", str(dest),
         ]
     )
 
@@ -362,7 +337,11 @@ async def main() -> None:
     stamps = load_stamps()
     jobs = []
 
+    skip = os.environ.get("AUDIO_SKIP", "")
+
     def needs_build(clip: dict, dest: Path) -> bool:
+        if skip and re.search(skip, clip["id"]):
+            return False
         key = str(dest)
         return not (dest.exists() and dest.stat().st_size > 400 and stamps.get(key) == clip_stamp(clip))
 
@@ -384,25 +363,42 @@ async def main() -> None:
 
     manifest = {"cues": {}, "clips": {}}
     gong = OUT_CUES / "gong.mp3"
-    if not gong.exists():
-        write_gong(gong)
+    write_gong(gong)
     manifest["cues"]["gong"] = {"src": "/audio/cues/gong.mp3", "durationSec": duration(gong)}
+
+    def line_parts(lines: list[dict]) -> list[Path]:
+        parts: list[Path] = []
+        for index, line in enumerate(lines):
+            parts.append(CACHE / f"{sha(line['voice'], line['rate'], line['pitch'], line['text'])}.mp3")
+            pause_ms = int(line.get("pauseAfterMs") or 0)
+            if pause_ms > 0 and index < len(lines) - 1:
+                parts.append(silence(pause_ms))
+        return parts
 
     def render(clip: dict, folder: Path, web_dir: str, bucket: str) -> None:
         folder.mkdir(parents=True, exist_ok=True)
         dest = folder / f"{clip['id']}.mp3"
         if needs_build(clip, dest):
-            parts: list[Path] = []
-            for index, line in enumerate(clip["lines"]):
-                parts.append(CACHE / f"{sha(line['voice'], line['rate'], line['pitch'], line['text'])}.mp3")
-                pause_ms = int(line.get("pauseAfterMs") or 0)
-                if pause_ms > 0 and index < len(clip["lines"]) - 1:
-                    parts.append(silence(pause_ms))
-            dry = WORK / f"{dest.stem}-dry.mp3"
-            concat_raw(parts, dry)
-            finish_mix(dry, dest, clip.get("scene", "quiet"))
+            lines = clip["lines"]
+            signal_at = next((index for index, line in enumerate(lines) if "dieses Signal" in line["text"]), None)
+            scene = clip.get("scene", "quiet")
+            if signal_at is None:
+                dry = WORK / f"{dest.stem}-dry.mp3"
+                concat_raw(line_parts(lines), dry)
+                finish_mix(dry, dest, scene)
+            else:
+                head = WORK / f"{dest.stem}-head.mp3"
+                concat_raw(line_parts(lines[: signal_at + 1]), WORK / f"{dest.stem}-head-dry.mp3")
+                finish_mix(WORK / f"{dest.stem}-head-dry.mp3", head, "quiet")
+                pieces = [head, gong, silence(400)]
+                if signal_at + 1 < len(lines):
+                    tail = WORK / f"{dest.stem}-tail.mp3"
+                    concat_raw(line_parts(lines[signal_at + 1 :]), WORK / f"{dest.stem}-tail-dry.mp3")
+                    finish_mix(WORK / f"{dest.stem}-tail-dry.mp3", tail, "quiet")
+                    pieces.append(tail)
+                concat_raw(pieces, dest)
             stamps[str(dest)] = clip_stamp(clip)
-            print("built", clip["id"], clip.get("scene", "quiet"))
+            print("built", clip["id"], scene)
         else:
             print("keep", clip["id"])
         manifest[bucket][clip["id"]] = {"src": f"{web_dir}/{clip['id']}.mp3", "durationSec": duration(dest)}

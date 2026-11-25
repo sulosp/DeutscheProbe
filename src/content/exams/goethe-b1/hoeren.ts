@@ -15,7 +15,7 @@ import {
   VOGT,
 } from "@/content/exams/goethe-b1/speakers";
 
-function narrate(id: string, lines: string[]): AudioScript {
+function narrate(id: string, lines: string[], rate?: string): AudioScript {
   return {
     id,
     plays: 1,
@@ -23,7 +23,7 @@ function narrate(id: string, lines: string[]): AudioScript {
     betweenPlaysSeconds: 0,
     answerSeconds: 0,
     speakers: [NARRATOR],
-    lines: lines.map((text) => ({ speaker: NARRATOR.id, text })),
+    lines: lines.map((text) => ({ speaker: NARRATOR.id, text, ...(rate ? { rate } : {}) })),
   };
 }
 
@@ -31,9 +31,9 @@ function spoken(id: string, speaker: Speaker, lines: string[], extra: Partial<Au
   return {
     id,
     plays: 2,
-    readSeconds: 10,
-    betweenPlaysSeconds: 5,
-    answerSeconds: 8,
+    readSeconds: 10.5,
+    betweenPlaysSeconds: 3.8,
+    answerSeconds: 6.5,
     repeatCue: REPEAT_CUE,
     speakers: [speaker],
     lines: lines.map((text) => ({ speaker: speaker.id, text })),
@@ -54,7 +54,7 @@ const moduleIntro = narrate("gb1-h-intro", [
   "Das Modul hat vier Teile.",
   "Sie hören mehrere Texte und lösen Aufgaben dazu.",
   "Vor den Aufgaben haben Sie Zeit, die Aufgaben zu lesen.",
-  "Am Ende dieser Zeit hören Sie ein Signal.",
+  "Am Ende jeder Pause hören Sie dieses Signal.",
   "Übertragen Sie Ihre Lösungen danach auf den Antwortbogen.",
   "Dafür haben Sie am Ende des Hörverstehens fünf Minuten Zeit.",
 ]);
@@ -87,7 +87,7 @@ export const hoerenTeile: Teil[] = [
       "Wählen Sie bei jeder Aufgabe die richtige Lösung.",
       "Lesen Sie zuerst das Beispiel.",
       "Dazu haben Sie zehn Sekunden Zeit.",
-    ]),
+    ], "-12%"),
     endAudio: narrate("gb1-h-t1-ende", ["Ende von Hören, Teil 1."]),
     example: { ...rf(0, "Das Schwimmbad bleibt eine ganze Woche geschlossen.", "falsch", "Es ist nur heute geschlossen und öffnet morgen wieder um acht Uhr."), id: "gb1-h-bsp-1" },
     exampleStimulus: {
@@ -102,7 +102,7 @@ export const hoerenTeile: Teil[] = [
           "Das Schwimmbad bleibt heute geschlossen, weil die Heizung ausgefallen ist.",
           "Morgen früh um acht Uhr öffnen wir wieder wie gewohnt.",
         ],
-        { situation: "Sie hören eine Durchsage im Stadtbad Kirchfeld.", scene: "shop", readSeconds: 10 },
+        { situation: "Sie hören eine Durchsage im Stadtbad Kirchfeld.", scene: "shop", readSeconds: 10.5 },
       ),
     },
     stimuli: [
@@ -239,7 +239,7 @@ export const hoerenTeile: Teil[] = [
       "Dazu lösen Sie fünf Aufgaben.",
       "Lesen Sie jetzt die Aufgaben 11 bis 15.",
       "Dazu haben Sie sechzig Sekunden Zeit.",
-    ]),
+    ], "-12%"),
     endAudio: narrate("gb1-h-t2-ende", ["Ende von Hören, Teil 2."]),
     example: {
       ...mc(0, "Wer spricht?", [
@@ -278,7 +278,7 @@ export const hoerenTeile: Teil[] = [
           ],
           {
             plays: 1,
-            readSeconds: 60,
+            readSeconds: 60.8,
             betweenPlaysSeconds: 0,
             answerSeconds: 10,
             repeatCue: undefined,
@@ -329,7 +329,7 @@ export const hoerenTeile: Teil[] = [
       "Dazu lösen Sie sieben Aufgaben.",
       "Lesen Sie jetzt die Aufgaben 16 bis 22.",
       "Dazu haben Sie sechzig Sekunden Zeit.",
-    ]),
+    ], "-12%"),
     endAudio: narrate("gb1-h-t3-ende", ["Ende von Hören, Teil 3."]),
     example: { ...rf(0, "Lea und Martin sprechen über einen Ausflug an die Küste.", "richtig", "Sie planen ein Wochenende an die Küste."), id: "gb1-h-bsp-3" },
     stimuli: [
@@ -340,7 +340,7 @@ export const hoerenTeile: Teil[] = [
         audio: {
           id: "gb1-h-t3",
           plays: 1,
-          readSeconds: 60,
+          readSeconds: 60.8,
           betweenPlaysSeconds: 0,
           answerSeconds: 10,
           situation: "Sie sitzen in der Straßenbahn und hören, wie sich Lea und Martin unterhalten.",
@@ -389,7 +389,7 @@ export const hoerenTeile: Teil[] = [
       "Wer sagt das?",
       "Lesen Sie jetzt die Aufgaben 23 bis 30.",
       "Dazu haben Sie sechzig Sekunden Zeit.",
-    ]),
+    ], "-12%"),
     endAudio: narrate("gb1-h-t4-ende", [
       "Ende von Hören, Teil 4.",
       "Sie haben nun fünf Minuten Zeit, Ihre Ergebnisse auf den Antwortbogen zu übertragen.",
@@ -403,8 +403,8 @@ export const hoerenTeile: Teil[] = [
         audio: {
           id: "gb1-h-t4",
           plays: 2,
-          readSeconds: 60,
-          betweenPlaysSeconds: 5,
+          readSeconds: 60.8,
+          betweenPlaysSeconds: 3.8,
           answerSeconds: 10,
           repeatCue: REPEAT_CUE,
           situation: "Sie hören eine Podiumsdiskussion im Stadtradio. Der Moderator ist Herr Kranz. Zu Gast sind Frau Okonkwo und Herr Vogt.",

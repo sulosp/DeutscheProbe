@@ -32,6 +32,7 @@ export const a1HoerenIntro = narrate("ga1-h-intro", [
   "Sie hören kurze Gespräche und Ansagen.",
   "Zu jedem Text gibt es eine Aufgabe.",
   "Lesen Sie zuerst die Aufgabe, hören Sie dann den Text.",
+  "Am Ende jeder Pause hören Sie dieses Signal.",
   "Kreuzen Sie die richtige Lösung an.",
   "Am Ende übertragen Sie die Lösungen auf den Antwortbogen.",
 ]);

@@ -9,7 +9,7 @@ export const a2HoerenIntro = narrate("ga2-h-intro", [
   "Zertifikat A2, Modul Hören.",
   "Sie hören mehrere Texte und lösen Aufgaben dazu.",
   "Vor den Aufgaben haben Sie Zeit zum Lesen.",
-  "Am Ende jeder Pause hören Sie ein Signal.",
+  "Am Ende jeder Pause hören Sie dieses Signal.",
 ]);
 
 export const a2Hoeren: Teil[] = [

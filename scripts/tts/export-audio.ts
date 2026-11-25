@@ -10,8 +10,10 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 function gapMs(seed: string, sameSpeaker: boolean) {
   let hash = 0;
   for (const char of seed) hash = (hash * 33 + char.charCodeAt(0)) >>> 0;
-  const base = sameSpeaker ? 160 : 280;
-  return Math.min(480, Math.max(150, base + (hash % 170)));
+  if (sameSpeaker) return 150 + (hash % 101);
+  const gap = 320 + (hash % 261);
+  if (hash % 8 === 0) return Math.min(700, gap + 80);
+  return gap;
 }
 
 function linesOf(clip: AudioClip) {
@@ -24,7 +26,7 @@ function linesOf(clip: AudioClip) {
     return {
       speaker: speaker.id,
       voice: speaker.voice,
-      rate: speaker.rate ?? "+0%",
+      rate: line.rate ?? speaker.rate ?? "+0%",
       pitch: speaker.pitch ?? "+0Hz",
       text: line.text,
       pauseAfterMs,

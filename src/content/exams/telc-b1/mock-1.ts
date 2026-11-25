@@ -304,7 +304,7 @@ export const telcB1Mock: MockExam = {
   modules: [
     { id: "lesen", skill: "lesen", title: "Lesen", minutes: 90, intro: { text: "Leseverstehen und Sprachbausteine haben zusammen 90 Minuten. Sie wählen die Reihenfolge." }, teile: lesen },
     { id: "sprachbausteine", skill: "sprachbausteine", title: "Sprachbausteine", minutes: 90, sharedClockWith: "lesen", intro: { text: "Sprachbausteine gehören zum 90-Minuten-Block." }, teile: sb },
-    { id: "hoeren", skill: "hoeren", title: "Hören", minutes: 30, intro: { text: "Hören dauert etwa 30 Minuten.", audio: narrate("tb1-h-intro", ["Modul Hören.", "Sie hören kurze Texte und ein Gespräch."]) }, teile: hoeren },
+    { id: "hoeren", skill: "hoeren", title: "Hören", minutes: 30, intro: { text: "Hören dauert etwa 30 Minuten.", audio: narrate("tb1-h-intro", ["Modul Hören.", "Sie hören kurze Texte und ein Gespräch.", "Am Ende jeder Pause hören Sie dieses Signal."]) }, teile: hoeren },
     { id: "schreiben", skill: "schreiben", title: "Schreiben", minutes: 30, intro: { text: "Schriftlicher Ausdruck, 30 Minuten, eine E-Mail mit vier Leitpunkten." }, teile: schreiben },
     { id: "sprechen", skill: "sprechen", title: "Sprechen", minutes: 15, prepMinutes: 20, intro: { text: "Mündliche Prüfung, etwa 15 Minuten, 20 Minuten Vorbereitung." }, teile: sprechen },
   ],
