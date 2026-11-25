@@ -306,7 +306,7 @@ export const telcB2Mock: MockExam = {
   modules: [
     { id: "lesen", skill: "lesen", title: "Lesen", minutes: 90, intro: { text: "Leseverstehen und Sprachbausteine, zusammen 90 Minuten." }, teile: [lesen1, lesen2, lesen3] },
     { id: "sprachbausteine", skill: "sprachbausteine", title: "Sprachbausteine", minutes: 90, sharedClockWith: "lesen", intro: { text: "Sprachbausteine im gleichen 90-Minuten-Block." }, teile: sb },
-    { id: "hoeren", skill: "hoeren", title: "Hören", minutes: 20, intro: { text: "Hören dauert etwa 20 Minuten. Jeder Text nur einmal.", audio: narrate("tb2-h-intro", ["Modul Hören.", "Sie hören alle Texte nur einmal."]) }, teile: hoeren },
+    { id: "hoeren", skill: "hoeren", title: "Hören", minutes: 20, intro: { text: "Hören dauert etwa 20 Minuten. Jeder Text nur einmal.", audio: narrate("tb2-h-intro", ["Modul Hören.", "Sie hören alle Texte nur einmal.", "Am Ende jeder Pause hören Sie dieses Signal."]) }, teile: hoeren },
     {
       id: "schreiben",
       skill: "schreiben",

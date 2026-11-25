@@ -56,6 +56,15 @@ function pushStimulus(
       highlightItemIds: itemIds,
       showExample,
     });
+    steps.push({
+      kind: "pause",
+      seconds: 0.4,
+      label: "Signal",
+      teilIndex,
+      stimulusId,
+      highlightItemIds: itemIds,
+      showExample,
+    });
   }
   if (audio.situation) {
     steps.push({

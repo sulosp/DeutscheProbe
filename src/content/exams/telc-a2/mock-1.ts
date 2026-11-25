@@ -247,7 +247,7 @@ export const telcA2Mock: MockExam = {
   scoring: { kind: "telc-60", max: 60, pass: 36, grades: [[54, "sehr gut"], [48, "gut"], [42, "befriedigend"], [36, "ausreichend"]] },
   breaks: [],
   modules: [
-    { id: "hoeren", skill: "hoeren", title: "Hören", minutes: 20, intro: { text: "Hören hat drei Teile, etwa 20 Minuten.", audio: narrate("ta2-h-intro", ["Modul Hören.", "Sie hören Nachrichten, Radio und ein Gespräch."]) }, teile: hoeren },
+    { id: "hoeren", skill: "hoeren", title: "Hören", minutes: 20, intro: { text: "Hören hat drei Teile, etwa 20 Minuten.", audio: narrate("ta2-h-intro", ["Modul Hören.", "Sie hören Nachrichten, Radio und ein Gespräch.", "Am Ende jeder Pause hören Sie dieses Signal."]) }, teile: hoeren },
     { id: "lesen", skill: "lesen", title: "Lesen", minutes: 50, intro: { text: "Lesen und Schreiben haben zusammen 50 Minuten. Sie wählen die Reihenfolge." }, teile: lesen },
     { id: "schreiben", skill: "schreiben", title: "Schreiben", minutes: 50, sharedClockWith: "lesen", intro: { text: "Schreiben gehört zum Block mit dem Lesen." }, teile: schreiben },
     { id: "sprechen", skill: "sprechen", title: "Sprechen", minutes: 15, intro: { text: "Sprechen dauert etwa 15 Minuten zu zweit." }, teile: sprechen },

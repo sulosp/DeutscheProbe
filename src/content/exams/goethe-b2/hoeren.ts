@@ -3,12 +3,13 @@ import { dialogue, mc, narrate, rf } from "@/content/exams/factory";
 import { ANDREW, AVA, BRIAN, EMMA, INGRID, JAN, JONAS, LENI, REMY, TANJA } from "@/content/exams/voices";
 
 const once = { plays: 1 as const, readSeconds: 15, betweenPlaysSeconds: 0, answerSeconds: 10 };
-const twice = { plays: 2 as const, readSeconds: 60, betweenPlaysSeconds: 5, answerSeconds: 10, repeatCue: REPEAT_CUE };
+const twice = { plays: 2 as const, readSeconds: 60.8, betweenPlaysSeconds: 3.8, answerSeconds: 10, repeatCue: REPEAT_CUE };
 
 export const b2HoerenIntro = narrate("gb2-h-intro", [
   "Zertifikat B2, Modul Hören.",
   "Sie hören mehrere Texte und lösen Aufgaben dazu.",
   "Vor den Aufgaben haben Sie Zeit zum Lesen.",
+  "Am Ende jeder Pause hören Sie dieses Signal.",
   "Am Ende übertragen Sie die Lösungen. Dafür haben Sie fünf Minuten.",
 ]);
 
@@ -127,7 +128,7 @@ export const b2Hoeren: Teil[] = [
           { who: BRIAN, text: "Fragen an das Studio bitte bis Mittwochmittag." },
           { who: INGRID, text: "Und ein Wochenmarkt wäre ein Gewinn für die Cafés." },
           { who: JONAS, text: "Na ja, die Lieferwagen brauchen dann zwanzig Minuten länger. Das geht so nicht." },
-        ], { ...once, readSeconds: 60, situation: "Sie hören eine Podiumsdiskussion im Radio. Moderator, Frau Abel und Herr Novak.", scene: "radio" }),
+        ], { ...once, readSeconds: 60.8, situation: "Sie hören eine Podiumsdiskussion im Radio. Moderator, Frau Abel und Herr Novak.", scene: "radio" }),
       },
     ],
     items: [

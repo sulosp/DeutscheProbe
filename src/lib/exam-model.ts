@@ -32,6 +32,8 @@ export type ScriptLine = {
   speaker: string;
   text: string;
   pauseAfterMs?: number;
+  /** Overrides the speaker rate for this line only. */
+  rate?: string;
 };
 
 export type AudioScript = {
