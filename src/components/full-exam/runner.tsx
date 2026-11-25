@@ -25,7 +25,7 @@ export function FullExamStart({ exam }: { exam: MockExam }) {
   const { session, start } = useFullExamSession();
   const [mode, setMode] = useState<"exam" | "training">("exam");
   const [heard, setHeard] = useState(false);
-  const work = exam.modules.reduce((sum, module) => sum + module.minutes, 0);
+  const work = exam.modules.reduce((sum, module) => sum + (module.sharedClockWith ? 0 : module.minutes), 0);
   const prep = exam.modules.reduce((sum, module) => sum + (module.prepMinutes ?? 0), 0);
 
   function checkHeadphones() {
@@ -50,7 +50,7 @@ export function FullExamStart({ exam }: { exam: MockExam }) {
         <p className="text-small font-semibold text-brand-text">Probeprüfung · {exam.title}</p>
         <h1 className="mt-2 text-h1 font-semibold tracking-tight">Komplette Prüfung</h1>
         <p className="mt-2 max-w-2xl text-muted">
-          Lesen, Hören, Schreiben und Sprechen in der Reihenfolge des Prüfungstags. Jedes Modul gilt ab 60 von 100 Punkten als bestanden. Alle Texte sind Beispieldaten.
+          {exam.modules.map((module) => module.title).join(", ")} in der Reihenfolge des Prüfungstags. Alle Texte sind Beispieldaten.
         </p>
       </div>
       <Card className="divide-y divide-border">
@@ -66,7 +66,7 @@ export function FullExamStart({ exam }: { exam: MockExam }) {
                 {module.prepMinutes ? ` · ${module.prepMinutes} Min. Vorbereitung` : ""}
               </div>
             </div>
-            <div className="text-small font-semibold tabular-nums">{module.minutes} Min.</div>
+            <div className="text-small font-semibold tabular-nums">{module.sharedClockWith ? "gemeinsame Uhr" : `${module.minutes} Min.`}</div>
           </div>
         ))}
       </Card>
@@ -101,7 +101,9 @@ export function FullExamStart({ exam }: { exam: MockExam }) {
         </button>
       </div>
       <p className="text-small text-muted">
-        Arbeitszeit etwa {work} Minuten{prep ? `, dazu ${prep} Minuten Vorbereitung` : ""}. Zwischen Lesen und Hören und nach dem Hören ist eine Pause vorgesehen. Du kannst sie überspringen.
+        Arbeitszeit etwa {work} Minuten{prep ? `, dazu ${prep} Minuten Vorbereitung` : ""}
+        {exam.formalities ? `, dazu ${exam.formalities.minutes} Minuten für den Antwortbogen` : ""}.
+        {exam.breaks.length > 0 ? " Pausen zwischen den Modulen kannst du überspringen." : " Die Module folgen direkt aufeinander."}
       </p>
       {session?.mockId === exam.id && session.status === "active" ? (
         <Button href="/probe/pruefung" variant="secondary">
@@ -115,7 +117,9 @@ export function FullExamStart({ exam }: { exam: MockExam }) {
       ) : null}
       <Button
         onClick={() => {
-          start(exam.id, mode);
+          const phase = exam.formalities ? "formalities" : "module-intro";
+          const endsAt = exam.formalities ? Date.now() + exam.formalities.minutes * 60 * 1000 : null;
+          start(exam.id, mode, phase, endsAt);
           router.push("/probe/pruefung");
         }}
       >
@@ -145,6 +149,10 @@ export function FullExamRunner() {
     const key = `${session.phase}:${session.moduleIndex}:${session.teilIndex}:${session.endsAt}`;
     if (fired.current === key) return;
     fired.current = key;
+    if (session.phase === "formalities") {
+      patch((current) => ({ ...current, phase: "module-intro", endsAt: null }));
+      return;
+    }
     const part = exam.modules[session.moduleIndex];
     if (!part) return;
     if (session.phase === "oral-prep") {
@@ -269,6 +277,13 @@ export function FullExamRunner() {
         <ExamResults exam={exam} session={session} onFeedback={(feedback) => patch((current) => ({ ...current, feedback }))} />
       ) : null}
 
+      {session.phase === "formalities" ? (
+        <Formalities
+          notes={session.prepNotes}
+          onNotes={(prepNotes) => patch((current) => ({ ...current, prepNotes }))}
+          onDone={() => patch((current) => ({ ...current, phase: "module-intro", endsAt: null }))}
+        />
+      ) : null}
       {session.phase === "module-intro" && part ? <ModuleIntro module={part} onStart={begin} /> : null}
       {session.phase === "break" ? (
         <BreakScreen
@@ -306,8 +321,8 @@ export function FullExamRunner() {
           }
         />
       ) : null}
-      {session.phase === "run" && part && (part.skill === "lesen" || part.skill === "schreiben" || part.skill === "sprechen") ? (
-        <ModuleRun module={part} session={session} patch={patch} />
+      {session.phase === "run" && part && part.skill !== "hoeren" ? (
+        <ModuleRun exam={paper} module={part} session={session} patch={patch} />
       ) : null}
 
       <Modal open={confirm !== null} title={confirm === "cancel" ? "Prüfung abbrechen?" : "Modul beenden?"} onClose={() => setConfirm(null)}>
@@ -339,19 +354,37 @@ export function FullExamRunner() {
   );
 }
 
+function clockLastIndex(exam: MockExam, moduleIndex: number) {
+  const current = exam.modules[moduleIndex];
+  if (!current) return moduleIndex;
+  const leadId = current.sharedClockWith ?? current.id;
+  let last = moduleIndex;
+  exam.modules.forEach((entry, index) => {
+    if (entry.id === leadId || entry.sharedClockWith === leadId) last = Math.max(last, index);
+  });
+  return last;
+}
+
 function closeModule(exam: MockExam, patch: (change: (session: FullExamSession) => FullExamSession) => void) {
   patch((current) => {
-    const part = exam.modules[current.moduleIndex];
+    const last = clockLastIndex(exam, current.moduleIndex);
+    const lead = exam.modules[current.moduleIndex];
+    const leadId = lead?.sharedClockWith ?? lead?.id;
     const moduleTiming = { ...current.moduleTiming };
-    if (part) {
-      const startedAt = moduleTiming[part.id]?.startedAt ?? Date.now();
-      moduleTiming[part.id] = { startedAt, endedAt: Date.now() };
-    }
+    const now = Date.now();
+    exam.modules.forEach((entry) => {
+      if (entry.id === leadId || entry.sharedClockWith === leadId) {
+        const startedAt = moduleTiming[entry.id]?.startedAt ?? now;
+        moduleTiming[entry.id] = { startedAt, endedAt: now };
+      }
+    });
+    const part = exam.modules[last];
+    const atLast = { ...current, moduleIndex: last };
     const gap = exam.breaks.find((item) => item.afterModuleId === part?.id);
     if (gap) {
-      return { ...current, phase: "break", endsAt: Date.now() + gap.minutes * 60 * 1000, hoeren: null, moduleTiming };
+      return { ...atLast, phase: "break", endsAt: now + gap.minutes * 60 * 1000, hoeren: null, moduleTiming };
     }
-    return advance(exam, current, moduleTiming);
+    return advance(exam, atLast, moduleTiming);
   });
 }
 
@@ -373,6 +406,18 @@ function advance(exam: MockExam, current: FullExamSession, moduleTiming: FullExa
     hoeren: null,
     moduleTiming,
   };
+}
+
+function Formalities({ notes, onNotes, onDone }: { notes: string; onNotes: (value: string) => void; onDone: () => void }) {
+  return (
+    <div className="mx-auto max-w-xl space-y-4 py-6">
+      <p className="text-small font-semibold text-brand-text">Beispieldaten</p>
+      <h1 className="text-h1 font-semibold">Antwortbogen</h1>
+      <p className="text-muted">Tragen Sie Name und Datum ein. In der Prüfung ist das der Formalitäten-Schritt. Hier ist er freiwillig.</p>
+      <Textarea value={notes} onChange={(event) => onNotes(event.target.value)} aria-label="Name und Datum" placeholder="Name, Datum" />
+      <Button onClick={onDone}>Weiter zur Prüfung</Button>
+    </div>
+  );
 }
 
 function ModuleIntro({ module, onStart }: { module: ExamModule; onStart: () => void }) {
@@ -441,30 +486,61 @@ function Transfer({
 }
 
 function ModuleRun({
+  exam,
   module,
   session,
   patch,
 }: {
+  exam: MockExam;
   module: ExamModule;
   session: FullExamSession;
   patch: (change: (session: FullExamSession) => FullExamSession) => void;
 }) {
-  const teil = module.teile[session.teilIndex] ?? module.teile[0];
+  const leadId = module.sharedClockWith ?? module.id;
+  const group = exam.modules.filter((entry) => entry.id === leadId || entry.sharedClockWith === leadId);
+  const [viewId, setViewId] = useState(module.id);
+  const [localTeil, setLocalTeil] = useState(session.teilIndex);
+  const shown = group.find((entry) => entry.id === viewId) ?? module;
+  const grouped = group.length > 1;
+  const teilIndex = grouped ? localTeil : session.teilIndex;
+  const teil = shown.teile[teilIndex] ?? shown.teile[0];
   if (!teil) return null;
+  const objective = shown.skill === "lesen" || shown.skill === "sprachbausteine";
   return (
     <div className="space-y-4">
+      {grouped ? (
+        <div className="flex gap-2 overflow-x-auto">
+          {group.map((entry) => (
+            <button
+              key={entry.id}
+              type="button"
+              onClick={() => {
+                setViewId(entry.id);
+                setLocalTeil(0);
+              }}
+              className={cn(
+                "shrink-0 rounded-full px-3 py-1 text-small font-semibold",
+                shown.id === entry.id ? "bg-brand text-brand-foreground" : "bg-sunken text-muted",
+              )}
+            >
+              {entry.title}
+            </button>
+          ))}
+        </div>
+      ) : null}
       <div className="flex gap-2 overflow-x-auto pb-1">
-        {module.teile.map((entry, index) => (
+        {shown.teile.map((entry, index) => (
           <button
             key={entry.id}
             type="button"
             onClick={() => {
-              if (module.skill === "sprechen" && session.mode === "exam") return;
-              patch((current) => ({ ...current, teilIndex: index }));
+              if (shown.skill === "sprechen" && session.mode === "exam") return;
+              if (grouped) setLocalTeil(index);
+              else patch((current) => ({ ...current, teilIndex: index }));
             }}
             className={cn(
               "shrink-0 rounded-full px-3 py-1 text-small font-semibold",
-              session.teilIndex === index ? "bg-brand text-brand-foreground" : "bg-sunken text-muted",
+              teilIndex === index ? "bg-brand text-brand-foreground" : "bg-sunken text-muted",
             )}
           >
             Teil {entry.number}
@@ -472,7 +548,7 @@ function ModuleRun({
           </button>
         ))}
       </div>
-      {module.skill === "lesen" ? (
+      {objective ? (
         <div className="space-y-4">
           <p className="text-small text-muted">{teil.instruction}</p>
           <Stimuli teil={teil} />
@@ -484,21 +560,21 @@ function ModuleRun({
           />
         </div>
       ) : null}
-      {module.skill === "schreiben" ? (
+      {shown.skill === "schreiben" && teil.writing ? (
         <SchreibenTeil
           teil={teil}
           text={session.writing[teil.id] ?? ""}
           onText={(value) => patch((current) => ({ ...current, writing: { ...current.writing, [teil.id]: value } }))}
         />
       ) : null}
-      {module.skill === "sprechen" && teil.speaking ? (
+      {shown.skill === "sprechen" && teil.speaking ? (
         <SprechenTeil
           teil={teil}
           draft={session.speaking[teil.id] ?? emptySpeaking()}
-          topicId={session.answers["gb1-sprechen-2-topic"]}
+          topicId={session.answers[`${teil.id}-topic`]}
           audioScope={session.id}
           autoPlay={session.mode === "exam"}
-          onTopic={(topicId) => patch((current) => ({ ...current, answers: { ...current.answers, "gb1-sprechen-2-topic": topicId } }))}
+          onTopic={(topicId) => patch((current) => ({ ...current, answers: { ...current.answers, [`${teil.id}-topic`]: topicId } }))}
           onDraft={(draft) => patch((current) => ({ ...current, speaking: { ...current.speaking, [teil.id]: draft } }))}
         />
       ) : null}

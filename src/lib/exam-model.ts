@@ -14,7 +14,7 @@ export type ItemType =
   | "writing"
   | "speaking";
 
-export type Choice = { id: string; label: string };
+export type Choice = { id: string; label: string; image?: string };
 
 export type SpeakerRole = "narrator" | "announcer" | "character" | "moderator" | "guest";
 
@@ -118,9 +118,13 @@ export type Teil = {
   options?: Choice[];
   allowNone?: boolean;
   noneLabel?: string;
+  /** Match and word-bank items may use the same option more than once. */
+  allowReuse?: boolean;
   maxRaw: number;
   introAudio?: AudioScript;
   endAudio?: AudioScript;
+  /** If set, only the stronger Teil in the group counts (telc B2, choose A or B). */
+  alternativeGroup?: string;
   writing?: WritingTask;
   speaking?: SpeakingTask;
 };
@@ -173,6 +177,8 @@ export type MockExam = {
   modules: ExamModule[];
   breaks: ExamBreak[];
   scoring: ScoringRule;
+  /** Optional telc answer-sheet step before the first module. */
+  formalities?: { minutes: number };
 };
 
 export const REPEAT_CUE = "Sie hören jetzt den Text noch einmal.";

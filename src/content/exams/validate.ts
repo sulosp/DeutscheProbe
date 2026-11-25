@@ -7,10 +7,59 @@ import {
   voiceClash,
   type ExamModule,
   type MockExam,
+  type Speaker,
 } from "@/lib/exam-model";
 
 function numbers(module: ExamModule) {
   return module.teile.flatMap((teil) => teil.items.map((item) => item.number));
+}
+
+export function assertVoices(exam: MockExam, narrator: Speaker): string[] {
+  const errors: string[] = [];
+  for (const part of exam.modules) {
+    for (const script of scriptsInModule(part)) {
+      for (const clip of clipsForScript(script, narrator)) {
+        const clash = clipVoiceError(clip);
+        if (clash) errors.push(`${exam.id}: ${clash}`);
+      }
+    }
+    for (const teil of part.teile) {
+      const clash = voiceClash(teilSpeakers(teil, narrator));
+      if (clash) errors.push(`${exam.id} ${part.skill} Teil ${teil.number}: ${clash}`);
+    }
+  }
+  return errors;
+}
+
+export function assertTeilCounts(
+  exam: MockExam,
+  expect: { skill: string; counts: number[]; plays?: number[]; voices?: number[] }[],
+): string[] {
+  const errors: string[] = [];
+  for (const spec of expect) {
+    const part = exam.modules.find((entry) => entry.skill === spec.skill);
+    if (!part) {
+      errors.push(`${exam.id}: Modul ${spec.skill} fehlt`);
+      continue;
+    }
+    const got = part.teile.map((teil) => teil.items.length);
+    if (got.join(",") !== spec.counts.join(",")) errors.push(`${exam.id} ${spec.skill}: ${got.join(",")} statt ${spec.counts.join(",")}`);
+    if (spec.plays) {
+      const plays = part.teile.map((teil) => {
+        const stimulus = teil.stimuli.find((entry) => entry.kind === "audio");
+        return stimulus && stimulus.kind === "audio" ? stimulus.audio.plays : 0;
+      });
+      if (plays.join(",") !== spec.plays.join(",")) errors.push(`${exam.id} ${spec.skill} Plays ${plays.join(",")} statt ${spec.plays.join(",")}`);
+    }
+    if (spec.voices) {
+      const voices = part.teile.map((teil) => {
+        const stimulus = teil.stimuli.find((entry) => entry.kind === "audio");
+        return stimulus && stimulus.kind === "audio" ? stimulus.audio.speakers.length : 0;
+      });
+      if (voices.join(",") !== spec.voices.join(",")) errors.push(`${exam.id} ${spec.skill} Stimmen ${voices.join(",")} statt ${spec.voices.join(",")}`);
+    }
+  }
+  return errors;
 }
 
 export function validateGoetheB1(exam: MockExam): string[] {

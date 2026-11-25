@@ -8,7 +8,7 @@ const KEY = "deutscheprobe.full-exam";
 
 export type FullExamMode = "exam" | "training";
 
-export type FullExamPhase = "module-intro" | "run" | "transfer" | "break" | "oral-prep" | "results";
+export type FullExamPhase = "formalities" | "module-intro" | "run" | "transfer" | "break" | "oral-prep" | "results";
 
 export type SpeakingDraft = {
   notes: string;
@@ -101,7 +101,7 @@ export function useFullExamSession() {
 
   return {
     session,
-    start(mockId: string, mode: FullExamMode) {
+    start(mockId: string, mode: FullExamMode, phase: FullExamPhase = "module-intro", endsAt: number | null = null) {
       const next: FullExamSession = {
         id: uid("probe"),
         mockId,
@@ -109,9 +109,9 @@ export function useFullExamSession() {
         startedAt: new Date().toISOString(),
         status: "active",
         moduleIndex: 0,
-        phase: "module-intro",
+        phase,
         teilIndex: 0,
-        endsAt: null,
+        endsAt,
         hoeren: null,
         answers: {},
         writing: {},

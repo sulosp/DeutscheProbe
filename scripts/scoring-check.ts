@@ -1,4 +1,7 @@
+import { goetheA1Mock } from "../src/content/exams/goethe-a1/mock-1";
+import { goetheA2Mock } from "../src/content/exams/goethe-a2/mock-1";
 import { goetheB1Mock } from "../src/content/exams/goethe-b1/mock-1";
+import { goetheB2Mock } from "../src/content/exams/goethe-b2/mock-1";
 import { validateGoetheB1 } from "../src/content/exams/validate";
 import { convertMesspunkte, passGoetheA1, passGoetheA2, passTelc300, passTelc60, scoreMockExam } from "../src/lib/scoring-rules";
 
@@ -59,5 +62,27 @@ const hoeren = full.modules.find((module) => module.skill === "hoeren");
 assert(lesen?.points === 100 && lesen.passed, "Lesen voll");
 assert(hoeren?.points === 100 && hoeren.passed, "Hören voll");
 assert(full.passed === false, "Schreiben und Sprechen fehlen noch");
+
+assert(goetheA1Mock.modules.map((part) => part.skill).join(",") === "hoeren,lesen,schreiben,sprechen", "A1 Reihenfolge");
+assert(goetheA2Mock.scoring.kind === "goethe-a2", "A2 Regel");
+assert(goetheB2Mock.modules[0].teile.reduce((sum, teil) => sum + teil.maxRaw, 0) === 30, "B2 Lesen 30");
+const a1Full = scoreMockExam(goetheA1Mock, {
+  answers: Object.fromEntries(
+    goetheA1Mock.modules.flatMap((part) => part.teile.flatMap((teil) => teil.items.map((item) => [item.id, Array.isArray(item.correct) ? item.correct[0] : item.correct]))),
+  ),
+  writing: {},
+  speaking: {},
+});
+assert(a1Full.written !== undefined && a1Full.oral === 0, "A1 mündlich leer");
+assert(a1Full.passed === false, "A1 ohne Sprechen nicht bestanden");
+const a2Raw = scoreMockExam(goetheA2Mock, {
+  answers: Object.fromEntries(
+    goetheA2Mock.modules.flatMap((part) => part.teile.flatMap((teil) => teil.items.map((item) => [item.id, Array.isArray(item.correct) ? item.correct[0] : item.correct]))),
+  ),
+  writing: {},
+  speaking: {},
+});
+const a2Speak = a2Raw.modules.find((entry) => entry.skill === "sprechen");
+assert(a2Speak?.points === 0 && a2Raw.passed === false, "A2 ohne Sprechen nicht bestanden");
 
 console.log("scoring checks ok");

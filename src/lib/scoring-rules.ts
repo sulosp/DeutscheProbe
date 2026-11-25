@@ -134,6 +134,14 @@ export type ExamScore = {
   modules: ModuleScore[];
   passed: boolean;
   rule: MockExam["scoring"]["kind"];
+  percent: number;
+  total?: number;
+  maxTotal?: number;
+  written?: number;
+  oral?: number;
+  grade?: string;
+  headline: string;
+  detail: string;
 };
 
 function objectiveRaw(teil: Teil, answers: Record<string, string>) {
@@ -202,16 +210,20 @@ export function assessWritingTask(task: WritingTask, text: string): Feedback {
   const formBits = (text !== lower ? 1 : 0) + (sentences >= 3 ? 1 : sentences > 0 ? 0.5 : 0) + (/[.!?]$/.test(text.trim()) ? 0.5 : 0);
   const strukturen = emptyTask ? 0 : clamp((formBits / 2.5) * strukturenMax * Math.max(lengthRatio, 0.4), strukturenMax);
 
+  const languageRatio = emptyTask || count === 0 ? 0 : Math.min(1, Math.min(connectors, 4) / 4 * 0.4 + Math.min(uniqueWords(text) / 30, 1) * 0.35 + Math.min(formBits / 2.5, 1) * 0.25);
+  const textsorte = emptyTask ? 0 : /liebe|hallo|sehr geehrte|mit freundlichen|viele grüße|liebe grüße|gruß/i.test(lower) ? 1 : 0.4;
   const points: Record<string, number> = {
     erfuellung,
     kohaerenz,
     wortschatz,
     strukturen,
+    sprache: clamp(languageRatio * (byId.sprache?.max ?? 0), byId.sprache?.max ?? 0),
+    textsorte: clamp(textsorte * (byId.textsorte?.max ?? 0), byId.textsorte?.max ?? 0),
   };
   const criteria = rubric.map((criterion) => ({
     id: criterion.id,
     label: criterion.label,
-    points: clamp(points[criterion.id] ?? 0, criterion.max),
+    points: clamp(points[criterion.id] ?? languageRatio * criterion.max, criterion.max),
     max: criterion.max,
     comment: commentFor(criterion.id, { covered, total: task.signals.length, count, target: task.targetWords, connectors, emptyTask }),
   }));
@@ -399,6 +411,79 @@ export function scoreModule(
   };
 }
 
+function rawBySkill(
+  exam: MockExam,
+  input: {
+    answers: Record<string, string>;
+    writing: Record<string, string>;
+    speaking: Record<string, { notes: string; checklist: string[]; durationSec: number }>;
+    feedback?: Record<string, Feedback>;
+    secondsByModule?: Record<string, number>;
+  },
+) {
+  return exam.modules.map((module) => {
+const teile: TeilScore[] = [];
+  const grouped = new Map<string, TeilScore[]>();
+  for (const teil of module.teile) {
+    const scored = productiveTeilScore(teil, input.feedback?.[teil.id], input.answers, input.writing, input.speaking);
+    const row: TeilScore = { teilId: teil.id, title: teil.title, number: teil.number, raw: scored.raw, maxRaw: scored.maxRaw, skill: module.skill };
+    if (teil.alternativeGroup) {
+      const list = grouped.get(teil.alternativeGroup) ?? [];
+      list.push(row);
+      grouped.set(teil.alternativeGroup, list);
+    } else {
+      teile.push(row);
+    }
+  }
+  for (const list of grouped.values()) {
+    const best = list.reduce((left, right) => (left.raw >= right.raw ? left : right));
+    teile.push({ ...best, maxRaw: Math.max(...list.map((entry) => entry.maxRaw)) });
+  }
+  let raw = teile.reduce((sum, teil) => sum + teil.raw, 0);
+  let maxRaw = teile.reduce((sum, teil) => sum + teil.maxRaw, 0);
+    const pronunciation = module.moduleRubric?.find((criterion) => criterion.id === "aussprache");
+    if (pronunciation) {
+      const duration = Object.values(input.speaking).reduce((sum, draft) => sum + (draft.durationSec || 0), 0);
+      const spoken = input.feedback?.aussprache ?? assessPronunciation(pronunciation.max, duration);
+      raw += spoken.score;
+      maxRaw += spoken.maxScore;
+      teile.push({
+        teilId: `${module.id}-aussprache`,
+        title: "Aussprache",
+        number: module.teile.length + 1,
+        raw: spoken.score,
+        maxRaw: spoken.maxScore,
+        skill: module.skill,
+      });
+    }
+    return { module, teile, raw, maxRaw, seconds: input.secondsByModule?.[module.id] ?? 0 };
+  });
+}
+
+function asModule(
+  entry: ReturnType<typeof rawBySkill>[number],
+  points: number,
+  maxPoints: number,
+  passed: boolean,
+): ModuleScore {
+  return {
+    moduleId: entry.module.id,
+    skill: entry.module.skill,
+    title: entry.module.title,
+    raw: entry.raw,
+    maxRaw: entry.maxRaw,
+    points,
+    maxPoints,
+    passed,
+    teile: entry.teile,
+    seconds: entry.seconds,
+  };
+}
+
+function skillRaw(rows: ReturnType<typeof rawBySkill>, skill: string) {
+  return rows.find((entry) => entry.module.skill === skill)?.raw ?? 0;
+}
+
 export function scoreMockExam(
   exam: MockExam,
   input: {
@@ -409,18 +494,102 @@ export function scoreMockExam(
     secondsByModule?: Record<string, number>;
   },
 ): ExamScore {
-  const passAt = exam.scoring.kind === "goethe-modular" ? exam.scoring.pass : 60;
-  const modules = exam.modules.map((module) =>
-    scoreModule(module, {
-      ...input,
-      seconds: input.secondsByModule?.[module.id] ?? 0,
-      passAt: exam.scoring.kind === "goethe-modular" ? passAt : 60,
-    }),
-  );
+  if (exam.scoring.kind === "goethe-modular") {
+    const passAt = exam.scoring.pass;
+    const modules = exam.modules.map((module) =>
+      scoreModule(module, { ...input, seconds: input.secondsByModule?.[module.id] ?? 0, passAt }),
+    );
+    const percent = Math.round(modules.reduce((sum, module) => sum + module.points, 0) / Math.max(modules.length, 1));
+    const passed = modules.every((module) => module.passed);
+    return {
+      modules,
+      passed,
+      rule: exam.scoring.kind,
+      percent,
+      headline: passed ? "Alle Module bestanden" : "Noch nicht alle Module bestanden",
+      detail: "Jedes Modul gilt ab 60 von 100 Punkten als bestanden. Lesen und Hören rechnen 30 Rohpunkte auf 100 um. Das ist eine Übung, keine offizielle Bewertung.",
+    };
+  }
+
+  const rows = rawBySkill(exam, input);
+  if (exam.scoring.kind === "goethe-a1") {
+    const result = passGoetheA1({
+      hoeren: skillRaw(rows, "hoeren"),
+      lesen: skillRaw(rows, "lesen"),
+      schreiben: skillRaw(rows, "schreiben"),
+      sprechen: skillRaw(rows, "sprechen"),
+    });
+    return {
+      modules: rows.map((entry) => asModule(entry, entry.raw, entry.maxRaw, false)),
+      passed: result.passed,
+      rule: exam.scoring.kind,
+      percent: result.total,
+      total: result.total,
+      maxTotal: 100,
+      written: result.written,
+      oral: result.oral,
+      headline: result.passed ? "Bestanden" : "Nicht bestanden",
+      detail: `Schriftlich ${result.written} von 75, mündlich ${result.oral} von 25, gesamt ${result.total} von 100. Bestanden ab 60. Das ist eine Übung, keine offizielle Bewertung.`,
+    };
+  }
+  if (exam.scoring.kind === "goethe-a2") {
+    const lesen = scaleGoetheA2(skillRaw(rows, "lesen"));
+    const hoeren = scaleGoetheA2(skillRaw(rows, "hoeren"));
+    const schreiben = scaleGoetheA2(skillRaw(rows, "schreiben"));
+    const sprechen = skillRaw(rows, "sprechen");
+    const result = passGoetheA2({ lesen, hoeren, schreiben, sprechen });
+    const scaled: Record<string, number> = { lesen, hoeren, schreiben, sprechen };
+    return {
+      modules: rows.map((entry) => asModule(entry, scaled[entry.module.skill] ?? entry.raw, 25, false)),
+      passed: result.passed,
+      rule: exam.scoring.kind,
+      percent: Math.round(result.total),
+      total: result.total,
+      maxTotal: 100,
+      written: result.written,
+      oral: result.oral,
+      headline: result.passed ? "Bestanden" : "Nicht bestanden",
+      detail: `Gesamt ${result.total} von 100, schriftlich ${result.written} von 75, mündlich ${result.oral} von 25. Bestanden nur mit mindestens 60 gesamt, 45 schriftlich und 15 mündlich.`,
+    };
+  }
+  if (exam.scoring.kind === "telc-60") {
+    const result = passTelc60({
+      hoeren: skillRaw(rows, "hoeren"),
+      lesen: skillRaw(rows, "lesen"),
+      schreiben: skillRaw(rows, "schreiben"),
+      sprechen: skillRaw(rows, "sprechen"),
+    });
+    return {
+      modules: rows.map((entry) => asModule(entry, entry.raw, entry.maxRaw, false)),
+      passed: result.passed,
+      rule: exam.scoring.kind,
+      percent: Math.round((result.total / 60) * 100),
+      total: result.total,
+      maxTotal: 60,
+      grade: result.grade,
+      headline: result.passed ? result.grade : "Nicht bestanden",
+      detail: `Gesamt ${result.total} von 60. Note: ${result.grade}. Bestanden ab 36.`,
+    };
+  }
+  const result = passTelc300({
+    lesen: skillRaw(rows, "lesen"),
+    sprachbausteine: skillRaw(rows, "sprachbausteine"),
+    hoeren: skillRaw(rows, "hoeren"),
+    schreiben: skillRaw(rows, "schreiben"),
+    sprechen: skillRaw(rows, "sprechen"),
+  });
   return {
-    modules,
-    passed: modules.every((module) => module.passed),
-    rule: exam.scoring.kind,
+    modules: rows.map((entry) => asModule(entry, entry.raw, entry.maxRaw, false)),
+    passed: result.passed,
+    rule: "telc-300",
+    percent: Math.round((result.total / 300) * 100),
+    total: result.total,
+    maxTotal: 300,
+    written: result.written,
+    oral: result.oral,
+    grade: result.grade,
+    headline: result.passed ? result.grade : "Nicht bestanden",
+    detail: `Schriftlich ${result.written} von 225, mündlich ${result.oral} von 75, gesamt ${result.total} von 300. Bestanden ab 135 schriftlich und 45 mündlich. Note: ${result.grade}.`,
   };
 }
 

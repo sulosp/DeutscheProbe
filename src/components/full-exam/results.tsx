@@ -36,7 +36,7 @@ export function ExamResults({
   });
   const weak = weakestTeil(score);
   const weakTeil = weak ? findTeil(weak.teilId) : null;
-  const average = Math.round(score.modules.reduce((sum, entry) => sum + entry.points, 0) / Math.max(score.modules.length, 1));
+  const average = score.percent;
 
   useEffect(() => {
     const next = { ...feedback };
@@ -99,11 +99,9 @@ export function ExamResults({
         <div>
           <p className="text-small font-semibold text-brand-text">Ergebnis · Beispieldaten</p>
           <h1 className="mt-1 text-h1 font-semibold">{exam.title}</h1>
-          <p className="mt-2 max-w-2xl text-muted">
-            Jedes Modul gilt ab 60 von 100 Punkten als bestanden. Lesen und Hören rechnen 30 Rohpunkte auf 100 um. Das ist eine Übung, keine offizielle Bewertung.
-          </p>
+          <p className="mt-2 max-w-2xl text-muted">{score.detail}</p>
           <div className="mt-3">
-            <Badge tone={score.passed ? "success" : "danger"}>{score.passed ? "Alle Module bestanden" : "Noch nicht alle Module bestanden"}</Badge>
+            <Badge tone={score.passed ? "success" : "danger"}>{score.headline}</Badge>
           </div>
         </div>
       </div>
@@ -113,7 +111,9 @@ export function ExamResults({
           <Card key={module.moduleId} className="p-4">
             <div className="flex items-start justify-between gap-3">
               <SkillBadge skill={module.skill} />
-              <Badge tone={module.passed ? "success" : "danger"}>{module.passed ? "bestanden" : "nicht bestanden"}</Badge>
+              {score.rule === "goethe-modular" ? (
+                <Badge tone={module.passed ? "success" : "danger"}>{module.passed ? "bestanden" : "nicht bestanden"}</Badge>
+              ) : null}
             </div>
             <h2 className="mt-3 text-h3 font-semibold">
               {module.points} / {module.maxPoints}
