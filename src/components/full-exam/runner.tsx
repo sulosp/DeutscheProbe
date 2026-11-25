@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { HoerenPlayer } from "@/components/full-exam/hoeren-player";
 import { SolvedExample, Stimuli, TeilQuestions } from "@/components/full-exam/items";
-import { SchreibenTeil, SprechenTeil } from "@/components/full-exam/productive";
+import { SpeakingSheet, SchreibenTeil, SprechenTeil } from "@/components/full-exam/productive";
 import { ExamResults } from "@/components/full-exam/results";
 import { SkillBadge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -322,7 +322,7 @@ export function FullExamRunner() {
         />
       ) : null}
       {session.phase === "run" && part && part.skill !== "hoeren" ? (
-        <ModuleRun exam={paper} module={part} session={session} patch={patch} />
+        <ModuleRun exam={paper} module={part} session={session} patch={patch} secondsLeft={seconds} />
       ) : null}
 
       <Modal open={confirm !== null} title={confirm === "cancel" ? "Prüfung abbrechen?" : "Modul beenden?"} onClose={() => setConfirm(null)}>
@@ -449,11 +449,20 @@ function BreakScreen({ exam, moduleIndex, onContinue }: { exam: MockExam; module
 
 function PrepScreen({ module, notes, onNotes, onSkip }: { module: ExamModule; notes: string; onNotes: (value: string) => void; onSkip: () => void }) {
   return (
-    <div className="space-y-4">
-      <h1 className="text-h2 font-semibold">Vorbereitung {module.title}</h1>
-      <p className="text-muted">Notiere Stichworte. Die Notizen bleiben in diesem Tab. In der Prüfung sind es {module.prepMinutes} Minuten.</p>
-      <Textarea value={notes} onChange={(event) => onNotes(event.target.value)} aria-label="Vorbereitungsnotizen" />
-      <Button onClick={onSkip}>Vorbereitung beenden</Button>
+    <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="space-y-4">
+        <div>
+          <h1 className="text-h2 font-semibold">Vorbereitung {module.title}</h1>
+          <p className="mt-2 text-muted">Notiere Stichworte. Die Notizen bleiben in diesem Tab. In der Prüfung sind es {module.prepMinutes} Minuten.</p>
+        </div>
+        {module.teile.map((teil) => (
+          <SpeakingSheet key={teil.id} teil={teil} />
+        ))}
+      </div>
+      <div className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+        <Textarea value={notes} onChange={(event) => onNotes(event.target.value)} aria-label="Vorbereitungsnotizen" placeholder="Stichworte" />
+        <Button onClick={onSkip}>Vorbereitung beenden</Button>
+      </div>
     </div>
   );
 }
@@ -490,11 +499,13 @@ function ModuleRun({
   module,
   session,
   patch,
+  secondsLeft,
 }: {
   exam: MockExam;
   module: ExamModule;
   session: FullExamSession;
   patch: (change: (session: FullExamSession) => FullExamSession) => void;
+  secondsLeft: number | null;
 }) {
   const leadId = module.sharedClockWith ?? module.id;
   const group = exam.modules.filter((entry) => entry.id === leadId || entry.sharedClockWith === leadId);
@@ -573,7 +584,7 @@ function ModuleRun({
           draft={session.speaking[teil.id] ?? emptySpeaking()}
           topicId={session.answers[`${teil.id}-topic`]}
           audioScope={session.id}
-          autoPlay={session.mode === "exam"}
+          secondsLeft={secondsLeft}
           onTopic={(topicId) => patch((current) => ({ ...current, answers: { ...current.answers, [`${teil.id}-topic`]: topicId } }))}
           onDraft={(draft) => patch((current) => ({ ...current, speaking: { ...current.speaking, [teil.id]: draft } }))}
         />
