@@ -6,8 +6,8 @@ import type { Skill } from "@/lib/types";
 
 const badgeTones = {
   neutral: "bg-sunken text-muted",
-  success: "bg-success-fill text-white",
-  danger: "bg-danger-fill text-white",
+  success: "bg-success-soft text-success dark:bg-success-fill dark:text-white",
+  danger: "bg-danger-soft text-danger dark:bg-danger-fill dark:text-white",
   warn: "bg-warn-soft text-warn",
 };
 

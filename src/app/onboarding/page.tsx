@@ -57,7 +57,7 @@ export default function OnboardingPage() {
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             {exams.map((item) => (
               <button key={item.id} type="button" onClick={() => setExam(item.id)} className="text-left">
-                <Card className={`h-full p-5 ${exam === item.id ? "border-brand ring-2 ring-brand" : ""}`}>
+                <Card className={`h-full p-5 ${exam === item.id ? "border-brand-text ring-2 ring-brand-text/40 dark:border-brand dark:ring-brand" : ""}`}>
                   <h2 className="text-h3 font-bold">{item.title}</h2>
                   <p className="mt-2 text-small text-muted">{item.text}</p>
                 </Card>
@@ -69,7 +69,7 @@ export default function OnboardingPage() {
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {levels.map((item) => (
               <button key={item.id} type="button" onClick={() => setLevel(item.id)} className="text-left">
-                <Card className={`h-full p-5 ${level === item.id ? "border-brand ring-2 ring-brand" : ""}`}>
+                <Card className={`h-full p-5 ${level === item.id ? "border-brand-text ring-2 ring-brand-text/40 dark:border-brand dark:ring-brand" : ""}`}>
                   <h2 className="text-h3 font-bold">{item.id}</h2>
                   <p className="mt-2 text-small text-muted">{item.text}</p>
                 </Card>

@@ -58,7 +58,7 @@ Neue Aufgaben kommen als Einträge in `src/content/goethe.ts` oder `src/content/
 
 ## Gestaltung
 
-Farben, Schriftgrößen, Radien und Schatten stehen in `src/styles/tokens.css`. Komponenten benutzen nur diese Namen. Die Marke ist ein Violett (`#6647F0`), mit Pink (`#FD71AF`) und Blau (`#49CCF9`) als Akzentverlauf. Überschriften nutzen Plus Jakarta Sans, Fließtext Inter. Erfolg ist blau, nicht grün. Darstellung: Hell, Dunkel oder System, Schalter im Kopf, gespeichert unter `deutscheprobe-theme`, ohne Aufblitzen beim Laden.
+Farben, Schriftgrößen, Radien und Schatten stehen in `src/styles/tokens.css`. Komponenten benutzen nur diese Namen. Im Hellen sind Violett, Pink und Blau helle Töne mit dunkler Schrift. Im Dunkeln bleibt die Marke ein kräftiges Violett (`#6647F0`). Überschriften nutzen Plus Jakarta Sans, Fließtext Inter. Erfolg ist blau, nicht grün. Darstellung: Hell (Standard), Dunkel oder System, Schalter im Kopf, gespeichert unter `deutscheprobe-theme`, ohne Aufblitzen beim Laden.
 
 Die Bausteine liegen in `src/components/ui` (Button, Card, Badge, SkillBadge, Chip, Tabs, Timer, ProgressBar, Input, Modal). `/design-system` zeigt Tokens und Komponenten.
 

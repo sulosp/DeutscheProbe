@@ -48,6 +48,8 @@
   --color-streak: var(--streak);
   --color-streak-fill: var(--streak-fill);
   --color-streak-soft: var(--streak-soft);
+  --color-streak-dot: var(--streak-dot);
+  --color-streak-on-dot: var(--streak-on-dot);
 
   --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-jakarta), "Plus Jakarta Sans", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -134,8 +136,46 @@ h3,
   color: var(--text);
 }
 
+.brand-panel {
+  border: 1px solid #e4daf8;
+  background-color: #f7f4ff;
+  background-image: linear-gradient(145deg, #fbf9ff 0%, #efe6ff 46%, #f4f8ff 100%);
+  color: var(--text);
+}
+
+.dark .brand-panel {
+  border-color: transparent;
+  background-color: var(--brand);
+  background-image: none;
+  color: var(--brand-foreground);
+}
+
+a.exam-cta,
+button.exam-cta {
+  border-color: color-mix(in srgb, var(--brand-text) 20%, transparent);
+  background-color: var(--brand);
+  color: var(--brand-foreground);
+}
+
+a.exam-cta:hover,
+button.exam-cta:hover {
+  background-color: var(--brand-hover);
+}
+
+.dark a.exam-cta,
+.dark button.exam-cta {
+  border-color: var(--border);
+  background-color: var(--surface-raised);
+  color: var(--text);
+}
+
+.dark a.exam-cta:hover,
+.dark button.exam-cta:hover {
+  background-color: var(--surface-sunken);
+}
+
 :focus-visible {
-  outline: 2px solid var(--brand);
+  outline: 2px solid var(--brand-text);
   outline-offset: 2px;
 }
 
@@ -144,6 +184,6 @@ a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid var(--brand);
+  outline: 2px solid var(--brand-text);
   outline-offset: 2px;
 }

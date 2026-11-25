@@ -35,7 +35,7 @@ function FakeButton({ children, light = false }: { children: ReactNode; light?: 
     <span
       className={
         light
-          ? "inline-flex h-10 items-center gap-2 rounded-full border border-white/40 bg-white px-4 text-small font-semibold tracking-tight text-foreground shadow-sm"
+          ? "inline-flex h-10 items-center gap-2 rounded-full border border-brand-text/20 bg-brand px-4 text-small font-semibold tracking-tight text-brand-foreground shadow-sm dark:border-border dark:bg-raised dark:text-foreground"
           : "inline-flex h-9 items-center gap-2 rounded-full border border-border bg-raised px-3 text-small font-semibold tracking-tight text-foreground shadow-sm"
       }
     >
@@ -89,7 +89,7 @@ export function DashboardPreview() {
 
         <div className="flex flex-wrap items-center gap-1.5" aria-hidden>
           <span className="mr-1 text-micro text-muted">Prüfung</span>
-          <span className="rounded-full bg-brand px-3 py-1 text-micro font-bold text-white">Goethe</span>
+          <span className="rounded-full bg-brand px-3 py-1 text-micro font-bold text-brand-foreground">Goethe</span>
           <span className="rounded-full px-3 py-1 text-micro font-semibold text-muted">telc</span>
           <span className="ml-1 text-micro text-muted">Niveau</span>
           {["A1", "A2", "B1", "B2"].map((level) => (
@@ -97,7 +97,7 @@ export function DashboardPreview() {
               key={level}
               className={
                 level === "B1"
-                  ? "rounded-full bg-brand px-2.5 py-1 text-micro font-bold text-white"
+                  ? "rounded-full bg-brand px-2.5 py-1 text-micro font-bold text-brand-foreground"
                   : "rounded-full px-2.5 py-1 text-micro font-semibold text-muted"
               }
             >
@@ -108,14 +108,14 @@ export function DashboardPreview() {
 
         <div className="grid gap-3 lg:grid-cols-[1.35fr_0.9fr]">
           <BrandPanel className="p-4 sm:p-5">
-            <p className="text-small text-white/80">Probeprüfung · Goethe B1</p>
+            <p className="text-small font-semibold text-brand-text dark:font-normal dark:text-white/80">Probeprüfung · Goethe B1</p>
             <h3 className="mt-2 max-w-md text-h3 font-extrabold leading-tight sm:text-h2">Komplette Probeprüfung starten</h3>
-            <p className="mt-2 max-w-lg text-small text-white/85">
+            <p className="mt-2 max-w-lg text-small text-muted dark:text-white/85">
               Lesen, Hören, Schreiben und Sprechen in der echten Reihenfolge – mit Timer und Gesamtwertung.
             </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {["Lesen 65 Min.", "Hören 40 Min.", "Schreiben 60 Min.", "Sprechen 15 Min."].map((item) => (
-                <span key={item} className="rounded-full bg-white/15 px-2.5 py-1 text-micro font-bold">
+                <span key={item} className="rounded-full bg-white px-2.5 py-1 text-micro font-bold text-brand-text shadow-sm dark:bg-white/15 dark:text-white dark:shadow-none">
                   {item}
                 </span>
               ))}
@@ -124,7 +124,7 @@ export function DashboardPreview() {
               <FakeButton light>
                 Jetzt starten <IconArrow />
               </FakeButton>
-              <span className="text-micro text-white/80">Zwischenspeichern jederzeit möglich</span>
+              <span className="text-micro text-muted dark:text-white/80">Zwischenspeichern jederzeit möglich</span>
             </div>
           </BrandPanel>
 
@@ -138,7 +138,7 @@ export function DashboardPreview() {
                 {DAYS.map((day, index) => (
                   <span key={day} className="text-center text-micro text-muted">
                     <span
-                      className={`mx-auto mb-1 grid h-6 w-6 place-items-center rounded-full ${WEEK[index] ? "bg-streak-fill text-white" : "bg-sunken text-soft"}`}
+                      className={`mx-auto mb-1 grid h-6 w-6 place-items-center rounded-full ${WEEK[index] ? "bg-streak-dot text-streak-on-dot" : "bg-sunken text-soft"}`}
                     >
                       {WEEK[index] ? "✓" : ""}
                     </span>

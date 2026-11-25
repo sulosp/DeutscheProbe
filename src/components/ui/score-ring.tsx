@@ -3,7 +3,7 @@ export function ScoreRing({ percent, label = "Ergebnis" }: { percent: number; la
   return (
     <div
       className="grid h-32 w-32 place-items-center rounded-full"
-      style={{ background: `conic-gradient(var(--brand) ${safe * 3.6}deg, var(--surface-sunken) 0deg)` }}
+      style={{ background: `conic-gradient(var(--brand-vivid) ${safe * 3.6}deg, var(--surface-sunken) 0deg)` }}
       role="img"
       aria-label={`${label} ${safe} Prozent`}
     >

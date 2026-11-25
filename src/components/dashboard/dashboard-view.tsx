@@ -190,23 +190,23 @@ function GoetheTop({
   return (
     <div className="grid gap-4 lg:grid-cols-[1.35fr_0.9fr]">
       <BrandPanel className="p-5 md:p-6">
-        <p className="text-small text-white/80">Probeprüfung · {track.title.replace("Goethe-Zertifikat ", "Goethe ")}</p>
+        <p className="text-small font-semibold text-brand-text dark:font-normal dark:text-white/80">Probeprüfung · {track.title.replace("Goethe-Zertifikat ", "Goethe ")}</p>
         <h2 className="mt-3 max-w-md text-h1 font-extrabold leading-tight">Komplette Probeprüfung starten</h2>
-        <p className="mt-3 max-w-lg text-small text-white/85">
+        <p className="mt-3 max-w-lg text-small text-muted dark:text-white/85">
           Lesen, Hören, Schreiben und Sprechen in der echten Reihenfolge – mit Timer und Gesamtwertung.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {track.parts.map((part) => (
-            <span key={part.taskId} className="rounded-full bg-white/15 px-3 py-1 text-micro font-semibold">
+            <span key={part.taskId} className="rounded-full bg-white px-3 py-1 text-micro font-semibold text-brand-text shadow-sm dark:bg-white/15 dark:text-white dark:shadow-none">
               {part.label} {part.minutes} Min.
             </span>
           ))}
         </div>
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Button href="/probe" variant="secondary">
+          <Button href="/probe" variant="ghost" className="exam-cta">
             Jetzt starten <IconArrow />
           </Button>
-          <span className="text-micro text-white/80">Zwischenspeichern jederzeit möglich</span>
+          <span className="text-micro text-muted dark:text-white/80">Zwischenspeichern jederzeit möglich</span>
         </div>
       </BrandPanel>
       <div className="grid gap-4">
@@ -218,7 +218,7 @@ function GoetheTop({
           <div className="mt-3 flex gap-2">
             {DAYS.map((day, index) => (
               <span key={day} className="text-center text-micro text-muted">
-                <span className={`mx-auto mb-1 grid h-6 w-6 place-items-center rounded-full ${week[index] ? "bg-streak-fill text-white" : "bg-sunken text-soft"}`}>
+                <span className={`mx-auto mb-1 grid h-6 w-6 place-items-center rounded-full ${week[index] ? "bg-streak-dot text-streak-on-dot" : "bg-sunken text-soft"}`}>
                   {week[index] ? "✓" : ""}
                 </span>
                 {day}
@@ -257,11 +257,11 @@ function TelcTop({ track }: { track: Track }) {
     <div className="space-y-5">
       <BrandPanel className="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-small text-white/80">Probeprüfung · {track.title.replace("telc Deutsch ", "telc ")}</p>
+          <p className="text-small font-semibold text-brand-text dark:font-normal dark:text-white/80">Probeprüfung · {track.title.replace("telc Deutsch ", "telc ")}</p>
           <h2 className="mt-1 text-h2 font-extrabold">Komplette Probeprüfung starten</h2>
-          <p className="mt-2 max-w-2xl text-small text-white/85">{track.parts.map((part) => part.label).join(", ")}.</p>
+          <p className="mt-2 max-w-2xl text-small text-muted dark:text-white/85">{track.parts.map((part) => part.label).join(", ")}.</p>
         </div>
-        <Button href="/probe" variant="secondary">
+        <Button href="/probe" variant="ghost" className="exam-cta">
           Jetzt starten
         </Button>
       </BrandPanel>

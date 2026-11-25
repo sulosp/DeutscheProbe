@@ -3,11 +3,11 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 const variants = {
-  primary: "bg-brand text-brand-foreground shadow-sm hover:bg-brand-hover",
+  primary: "border border-brand-text/20 bg-brand text-brand-foreground shadow-sm hover:bg-brand-hover dark:border-transparent",
   secondary: "border border-border bg-raised text-foreground shadow-sm hover:bg-sunken",
   ghost: "bg-transparent text-foreground hover:bg-sunken",
   soft: "bg-brand-soft text-brand-text hover:opacity-90",
-  danger: "bg-danger-fill text-white hover:opacity-90",
+  danger: "bg-danger-soft text-danger hover:opacity-90 dark:bg-danger-fill dark:text-white",
 };
 
 const sizes = {

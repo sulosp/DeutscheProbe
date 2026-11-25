@@ -5,15 +5,13 @@
   Components use the semantic names (brand, surface, skill-lesen, …).
   To reskin the product, edit the values below.
 
-  The palette follows a violet product system:
-    brand fill   #6647F0  (white text clears WCAG AA)
-    vivid        #7B68EE
-    pink accent  #FD71AF
-    blue accent  #49CCF9
-    ink          #1B1B2E on white surfaces
+  Light theme uses soft tints of the same violet, pink, and blue.
+  Buttons, chips, and the exam card are light fills with dark text.
+  Dark theme keeps the deeper violet (#6647F0) and white text.
 
-  The pink/blue/purple gradient is reserved for the mark, hero glow,
-  and highlighted words. Body text stays solid ink.
+  Light brand fill  #D4C6FF with text #3A2780
+  Light vivid bar   #8E7AEE
+  Ink               #1B1B2E on white surfaces
 
   Success stays blue, not green. The favicon (src/app/icon.svg) repeats
   the mark gradient because a static icon cannot read CSS variables.
@@ -22,32 +20,32 @@
 :root {
   color-scheme: light;
 
-  --brand: #6647f0;
-  --brand-hover: #5536dc;
-  --brand-vivid: #7b68ee;
-  --brand-foreground: #ffffff;
-  --brand-text: #5344c4;
-  --brand-soft: #eeeaff;
-  --brand-softer: #f7f6fd;
-  --accent-pink: #fd71af;
-  --accent-blue: #49ccf9;
-  --brand-gradient: linear-gradient(135deg, #7b68ee 0%, #fd71af 50%, #49ccf9 100%);
-  --brand-gradient-text: linear-gradient(100deg, #5344c4 0%, #be185d 50%, #0b6f96 100%);
-  --mark-gradient: linear-gradient(135deg, #6647f0 0%, #be185d 100%);
+  --brand: #d4c6ff;
+  --brand-hover: #c9b8ff;
+  --brand-vivid: #8e7aee;
+  --brand-foreground: #3a2780;
+  --brand-text: #6a57dd;
+  --brand-soft: #f4f0ff;
+  --brand-softer: #f8f6ff;
+  --accent-pink: #f0a0c8;
+  --accent-blue: #8fd4f0;
+  --brand-gradient: linear-gradient(135deg, #d4c6ff 0%, #f5c2dc 50%, #b7e7f8 100%);
+  --brand-gradient-text: linear-gradient(100deg, #6a57dd 0%, #c02670 52%, #0b6f96 100%);
+  --mark-gradient: linear-gradient(135deg, #e4d8ff 0%, #f6d0e6 100%);
 
-  --surface: #f7f7fb;
+  --surface: #fbfbfe;
   --surface-raised: #ffffff;
-  --surface-sunken: #ededf4;
+  --surface-sunken: #f3f1f8;
   --text: #1b1b2e;
   --text-muted: #5e5e7a;
   --text-soft: #65657f;
-  --border: #e7e7ef;
-  --border-strong: #dedee9;
+  --border: #e6e4ee;
+  --border-strong: #d9d6e4;
   --overlay: rgb(27 27 46 / 0.52);
 
   --success: #0b6f96;
   --success-fill: #0b6f96;
-  --success-soft: #e5f6fc;
+  --success-soft: #e9f7fc;
   --warn: #9a6400;
   --warn-soft: #fff6dd;
   --error: #c42a48;
@@ -55,24 +53,26 @@
   --error-soft: #fdecef;
 
   --skill-sprechen: #c2410c;
-  --skill-sprechen-vivid: #d4530a;
-  --skill-sprechen-soft: #fff1e8;
-  --skill-hoeren: #5344c4;
-  --skill-hoeren-vivid: #7b68ee;
-  --skill-hoeren-soft: #f1eefe;
+  --skill-sprechen-vivid: #d96a22;
+  --skill-sprechen-soft: #fff6f0;
+  --skill-hoeren: #6a57dd;
+  --skill-hoeren-vivid: #8e7aee;
+  --skill-hoeren-soft: #f4f0ff;
   --skill-lesen: #0b6f96;
-  --skill-lesen-vivid: #0b7ea8;
-  --skill-lesen-soft: #e5f6fc;
-  --skill-schreiben: #be185d;
-  --skill-schreiben-vivid: #d63378;
-  --skill-schreiben-soft: #fdecf4;
-  --skill-sprachbausteine: #3a2f8a;
-  --skill-sprachbausteine-vivid: #5b4bc4;
-  --skill-sprachbausteine-soft: #eeedfb;
+  --skill-lesen-vivid: #1898c0;
+  --skill-lesen-soft: #f4fbfe;
+  --skill-schreiben: #c02670;
+  --skill-schreiben-vivid: #e25a90;
+  --skill-schreiben-soft: #fff0f6;
+  --skill-sprachbausteine: #6d5bd4;
+  --skill-sprachbausteine-vivid: #8876e6;
+  --skill-sprachbausteine-soft: #f7f5ff;
 
   --streak: #c2410c;
-  --streak-fill: #c2410c;
-  --streak-soft: #fff1e8;
+  --streak-fill: #d96a22;
+  --streak-soft: #fff6f0;
+  --streak-dot: #f8c9a4;
+  --streak-on-dot: #9a3412;
 
   --dp-shadow-sm: 0 1px 2px rgb(27 27 46 / 0.06);
   --dp-shadow-md: 0 1px 2px rgb(27 27 46 / 0.04), 0 12px 32px -18px rgb(27 27 46 / 0.18);
@@ -154,6 +154,8 @@
   --streak: #fdba8c;
   --streak-fill: #c2410c;
   --streak-soft: #3a2418;
+  --streak-dot: #c2410c;
+  --streak-on-dot: #ffffff;
 
   --dp-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.35);
   --dp-shadow-md: 0 1px 2px rgb(0 0 0 / 0.28), 0 16px 36px -20px rgb(0 0 0 / 0.65);

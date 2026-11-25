@@ -202,7 +202,7 @@ export function TaskPlayer({
                   return (
                     <label
                       key={option.id}
-                      className={`flex cursor-pointer items-start gap-3 rounded-xl border px-3 py-3 ${selected ? "border-brand bg-brand-soft" : "border-border bg-raised"}`}
+                      className={`flex cursor-pointer items-start gap-3 rounded-xl border px-3 py-3 ${selected ? "border-brand-text bg-brand-soft dark:border-brand" : "border-border bg-raised"}`}
                     >
                       <input
                         type="radio"

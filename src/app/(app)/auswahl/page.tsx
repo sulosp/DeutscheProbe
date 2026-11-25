@@ -24,7 +24,7 @@ export default function AuswahlPage() {
           const selected = track.id === active;
           return (
             <button key={track.id} type="button" onClick={() => setTrack(track.exam, track.level)} className="text-left">
-              <Card className={`h-full p-4 ${selected ? "border-brand ring-2 ring-brand" : ""}`}>
+              <Card className={`h-full p-4 ${selected ? "border-brand-text ring-2 ring-brand-text/40 dark:border-brand dark:ring-brand" : ""}`}>
                 <p className="text-micro font-semibold uppercase tracking-wide text-muted">{track.exam}</p>
                 <h2 className="mt-1 text-h3 font-bold">{track.level}</h2>
                 <p className="mt-2 text-small text-muted">{track.tagline}</p>

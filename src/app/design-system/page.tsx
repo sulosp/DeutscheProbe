@@ -62,7 +62,7 @@ export default function DesignSystemPage() {
             <p className="text-small font-semibold text-brand-text">DeutscheProbe</p>
             <h1 className="display mt-2">Design-System</h1>
             <p className="mt-3 max-w-2xl text-muted">
-              Alle Farben stehen in <code className="text-foreground">src/styles/tokens.css</code>. Die Marke ist Violett (#6647F0), der Verlauf aus Violett, Pink und Blau bleibt Akzent. Überschriften nutzen Plus Jakarta Sans, Fließtext Inter. Hell, Dunkel und System teilen sich dieselben Namen.
+              Alle Farben stehen in <code className="text-foreground">src/styles/tokens.css</code>. Im Hellen sind Knöpfe, Chips und die Prüfungskarte helle Töne mit dunkler Schrift. Im Dunkeln bleibt die Marke ein kräftiges Violett. Überschriften nutzen Plus Jakarta Sans, Fließtext Inter. Hell ist die Voreinstellung.
             </p>
           </div>
           <ThemeToggle />
