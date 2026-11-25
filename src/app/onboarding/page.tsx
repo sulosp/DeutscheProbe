@@ -43,17 +43,22 @@ export default function OnboardingPage() {
   return (
     <div>
       <SiteHeader />
-      <main className="mx-auto max-w-3xl px-4 py-8">
-        <p className="text-small font-semibold text-brand-text">Schritt {step + 1} von 3</p>
-        <h1 className="mt-2 text-h1 font-semibold">
+      <main className="mx-auto max-w-3xl px-4 py-10">
+        <p className="text-small font-bold text-brand-text">Schritt {step + 1} von 3</p>
+        <div className="mt-3 flex gap-2" aria-hidden>
+          {[0, 1, 2].map((index) => (
+            <span key={index} className={`h-1.5 flex-1 rounded-full ${index <= step ? "bg-brand" : "bg-sunken"}`} />
+          ))}
+        </div>
+        <h1 className="mt-4 text-h1 font-extrabold tracking-tight">
           {step === 0 ? "Welche Prüfung planst du?" : step === 1 ? "Welches Niveau?" : "Was ist dein Ziel?"}
         </h1>
         {step === 0 ? (
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             {exams.map((item) => (
               <button key={item.id} type="button" onClick={() => setExam(item.id)} className="text-left">
-                <Card className={`h-full p-5 ${exam === item.id ? "border-brand ring-2 ring-brand" : ""}`}>
-                  <h2 className="text-h3 font-semibold">{item.title}</h2>
+                <Card className={`h-full p-5 ${exam === item.id ? "border-brand-text ring-2 ring-brand-text/40 dark:border-brand dark:ring-brand" : ""}`}>
+                  <h2 className="text-h3 font-bold">{item.title}</h2>
                   <p className="mt-2 text-small text-muted">{item.text}</p>
                 </Card>
               </button>
@@ -64,8 +69,8 @@ export default function OnboardingPage() {
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {levels.map((item) => (
               <button key={item.id} type="button" onClick={() => setLevel(item.id)} className="text-left">
-                <Card className={`h-full p-5 ${level === item.id ? "border-brand ring-2 ring-brand" : ""}`}>
-                  <h2 className="text-h3 font-semibold">{item.id}</h2>
+                <Card className={`h-full p-5 ${level === item.id ? "border-brand-text ring-2 ring-brand-text/40 dark:border-brand dark:ring-brand" : ""}`}>
+                  <h2 className="text-h3 font-bold">{item.id}</h2>
                   <p className="mt-2 text-small text-muted">{item.text}</p>
                 </Card>
               </button>

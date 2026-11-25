@@ -7,7 +7,7 @@ const tones = {
   success: "bg-success",
   warn: "bg-warn",
   danger: "bg-danger",
-  streak: "bg-streak",
+  streak: "bg-streak-fill",
 };
 
 export function ProgressBar({
@@ -24,7 +24,7 @@ export function ProgressBar({
   const width = Math.max(0, Math.min(100, value));
   return (
     <div
-      className="h-1.5 w-full overflow-hidden rounded-full bg-sunken"
+      className="h-2 w-full overflow-hidden rounded-full bg-sunken"
       role="progressbar"
       aria-valuenow={Math.round(width)}
       aria-valuemin={0}

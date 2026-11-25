@@ -2,7 +2,7 @@ import type { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes 
 import { cn } from "@/lib/cn";
 
 const field =
-  "w-full rounded-lg border border-border bg-raised px-3 text-foreground outline-none placeholder:text-soft focus-visible:ring-2 focus-visible:ring-brand";
+  "w-full rounded-xl border border-border bg-raised px-3 text-foreground outline-none placeholder:text-soft focus-visible:border-brand-text focus-visible:ring-2 focus-visible:ring-brand-text/30";
 
 export function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
   return (

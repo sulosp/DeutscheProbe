@@ -147,7 +147,7 @@ export function TaskPlayer({
             <Badge>Beispieldaten</Badge>
             <Badge>{mode === "exam" ? "Probeprüfung" : "Übung"}</Badge>
           </div>
-          <h1 className="mt-3 text-h1 font-semibold tracking-tight">{task.title}</h1>
+          <h1 className="mt-3 text-h1 font-extrabold tracking-tight">{task.title}</h1>
           <p className="mt-1 text-small text-muted">
             {task.teil} · {task.minutes} Min.
           </p>
@@ -202,7 +202,7 @@ export function TaskPlayer({
                   return (
                     <label
                       key={option.id}
-                      className={`flex cursor-pointer items-start gap-3 rounded-lg border px-3 py-2 ${selected ? "border-brand bg-brand-soft" : "border-border"}`}
+                      className={`flex cursor-pointer items-start gap-3 rounded-xl border px-3 py-3 ${selected ? "border-brand-text bg-brand-soft dark:border-brand" : "border-border bg-raised"}`}
                     >
                       <input
                         type="radio"

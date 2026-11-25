@@ -46,7 +46,7 @@ export function FeedbackView({
       <div className="grid items-center gap-6 md:grid-cols-[auto_1fr]">
         <ScoreRing percent={feedback.percent} />
         <div>
-          <h1 className="text-h1 font-semibold tracking-tight">{task.title}</h1>
+          <h1 className="text-h1 font-extrabold tracking-tight">{task.title}</h1>
           <p className="mt-2 max-w-2xl text-muted">{feedback.summary}</p>
           <p className="mt-2 text-small text-muted">
             {feedback.score} von {feedback.maxScore} Punkten

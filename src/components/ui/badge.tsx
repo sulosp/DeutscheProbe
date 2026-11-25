@@ -6,8 +6,8 @@ import type { Skill } from "@/lib/types";
 
 const badgeTones = {
   neutral: "bg-sunken text-muted",
-  success: "bg-success text-brand-foreground",
-  danger: "bg-danger text-white",
+  success: "bg-success-soft text-success dark:bg-success-fill dark:text-white",
+  danger: "bg-danger-soft text-danger dark:bg-danger-fill dark:text-white",
   warn: "bg-warn-soft text-warn",
 };
 
@@ -21,7 +21,7 @@ export function Badge({
   tone?: keyof typeof badgeTones;
 }) {
   return (
-    <span className={cn("inline-flex items-center rounded-full px-2.5 py-1 text-micro font-semibold", badgeTones[tone], className)}>
+    <span className={cn("inline-flex items-center rounded-full px-2.5 py-1 text-micro font-bold tracking-tight", badgeTones[tone], className)}>
       {children}
     </span>
   );
@@ -29,7 +29,7 @@ export function Badge({
 
 export function SkillBadge({ skill, className }: { skill: Skill; className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-micro font-semibold", skillBadgeClass(skill), className)}>
+    <span className={cn("inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-micro font-bold tracking-tight", skillBadgeClass(skill), className)}>
       <SkillIcon skill={skill} className="h-3.5 w-3.5" />
       {SKILL_LABEL[skill]}
     </span>

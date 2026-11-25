@@ -30,10 +30,10 @@ export function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="dialog-title"
-        className="w-full max-w-md rounded-xl border border-border bg-raised p-5 shadow-pop"
+        className="w-full max-w-md rounded-2xl border border-border bg-raised p-5 shadow-pop"
         onClick={(event) => event.stopPropagation()}
       >
-        <h2 id="dialog-title" className="text-h3 font-semibold tracking-tight">
+        <h2 id="dialog-title" className="text-h3 font-bold tracking-tight">
           {title}
         </h2>
         <div className="mt-3 text-small text-muted">{children}</div>
