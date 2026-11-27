@@ -1,4 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { privatePage } from "@/lib/seo";
+
+export const metadata = privatePage({
+  title: "Seite nicht gefunden",
+  description: "Diese Adresse gibt es in DeutscheProbe nicht.",
+  path: "/",
+});
 
 export default function NotFound() {
   return (

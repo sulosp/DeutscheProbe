@@ -101,11 +101,8 @@ export default function HomePage() {
         </section>
       </main>
       <footer className="border-t border-border bg-raised">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-small text-muted">
+        <div className="mx-auto max-w-6xl px-4 py-6 text-small text-muted">
           <span>DeutscheProbe · Beispieldaten, keine Verbindung zu Goethe-Institut oder telc.</span>
-          <Button href="/design-system" variant="ghost" size="sm">
-            Design-System
-          </Button>
         </div>
       </footer>
     </div>
