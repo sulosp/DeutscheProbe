@@ -34,10 +34,12 @@ Siehe `.env.example`. Nichts davon ist Pflicht.
 | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase-Projekt, Free Tier |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | anon key |
+| `NEXT_PUBLIC_ENABLE_GOOGLE_AUTH` | `true` zeigt „Mit Google fortfahren“. Sonst bleibt der Button aus |
+| `SUPABASE_SERVICE_ROLE_KEY` | Dienstschlüssel nur auf dem Server, zum Löschen des Kontos |
 | `GEMINI_API_KEY` | Einschätzung für Schreiben und Sprechen, Free Tier |
 | `GEMINI_MODEL` | Standard `gemini-2.0-flash` |
 
-Supabase: E-Mail und Google unter Authentication aktivieren, `.../auth/callback` als Redirect eintragen, dann `supabase/schema.sql` im SQL-Editor ausführen. Profile und Versuche sind mit Row Level Security auf die eigene Nutzerin beschränkt.
+Supabase: E-Mail unter Authentication aktivieren, `.../auth/callback` als Redirect eintragen, dann `supabase/schema.sql` im SQL-Editor ausführen. Google ist optional und erscheint erst, wenn `NEXT_PUBLIC_ENABLE_GOOGLE_AUTH` auf `true` steht. Zum Löschen eines Kontos braucht der Server `SUPABASE_SERVICE_ROLE_KEY`. Profile und Versuche sind mit Row Level Security auf die eigene Nutzerin beschränkt.
 
 Ohne `GEMINI_API_KEY` antwortet `/api/feedback` mit der Demo-Einschätzung.
 

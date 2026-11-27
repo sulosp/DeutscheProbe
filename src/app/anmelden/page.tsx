@@ -2,23 +2,34 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Mark } from "@/components/logo";
 import { SiteHeader } from "@/components/shell/site-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FieldError, Input, Label } from "@/components/ui/input";
-import { demoMode } from "@/lib/env";
+import { demoMode, googleAuthEnabled } from "@/lib/env";
 import { useAppState } from "@/lib/storage";
 import { getSupabase } from "@/lib/supabase/browser";
 
 export default function SignInPage() {
   const router = useRouter();
-  const { signInDemo, startDemo } = useAppState();
+  const { signInDemo } = useAppState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
+  const showGoogle = googleAuthEnabled && !demoMode;
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const fehler = params.get("fehler");
+    if (!fehler) return;
+    setError(fehler.slice(0, 240));
+    params.delete("fehler");
+    const next = params.toString();
+    window.history.replaceState(null, "", next ? `/anmelden?${next}` : "/anmelden");
+  }, []);
 
   async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -54,7 +65,11 @@ export default function SignInPage() {
           <Mark />
           <h1 className="mt-4 text-h1 font-extrabold tracking-tight">Anmelden</h1>
           <p className="mt-2 text-small text-muted">
-            {demoMode ? "Demo-Modus: das Passwort wird nicht gespeichert. Es zählt die E-Mail in diesem Browser." : "Mit E-Mail oder Google."}
+            {demoMode
+              ? "Demo-Modus: das Passwort wird nicht gespeichert. Es zählt die E-Mail in diesem Browser."
+              : showGoogle
+                ? "Mit E-Mail oder Google."
+                : "Mit E-Mail."}
           </p>
           <form className="mt-5 space-y-4" onSubmit={onSubmit}>
             <div>
@@ -64,31 +79,33 @@ export default function SignInPage() {
             <div>
               <Label htmlFor="password">Passwort</Label>
               <Input id="password" type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+              <p className="mt-2 text-right">
+                <Link href="/passwort-vergessen" className="text-small font-semibold text-brand-text">
+                  Passwort vergessen?
+                </Link>
+              </p>
             </div>
             <FieldError>{error}</FieldError>
             <Button type="submit" className="w-full" disabled={pending}>
               Anmelden
             </Button>
           </form>
-          <Button
-            variant="secondary"
-            className="mt-3 w-full"
-            onClick={() => {
-              if (demoMode) {
-                startDemo();
-                router.push("/uebersicht");
-                return;
-              }
-              const supabase = getSupabase();
-              if (!supabase) return;
-              void supabase.auth.signInWithOAuth({
-                provider: "google",
-                options: { redirectTo: `${window.location.origin}/auth/callback` },
-              });
-            }}
-          >
-            Mit Google fortfahren
-          </Button>
+          {showGoogle ? (
+            <Button
+              variant="secondary"
+              className="mt-3 w-full"
+              onClick={() => {
+                const supabase = getSupabase();
+                if (!supabase) return;
+                void supabase.auth.signInWithOAuth({
+                  provider: "google",
+                  options: { redirectTo: `${window.location.origin}/auth/callback` },
+                });
+              }}
+            >
+              Mit Google fortfahren
+            </Button>
+          ) : null}
           <p className="mt-4 text-small text-muted">
             Noch kein Konto? <Link href="/registrieren" className="font-semibold text-brand-text">Registrieren</Link>
           </p>
