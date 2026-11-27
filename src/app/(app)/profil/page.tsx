@@ -6,22 +6,28 @@ import { useEffect, useRef, useState } from "react";
 import { SkillBadge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input, Label } from "@/components/ui/input";
+import { FieldError, Input, Label } from "@/components/ui/input";
+import { Modal } from "@/components/ui/modal";
 import { getTask } from "@/content";
 import { demoMode } from "@/lib/env";
+import { useExamSession } from "@/lib/exam-session";
 import { initials } from "@/lib/format";
 import { useAppState } from "@/lib/storage";
 import { getSupabase } from "@/lib/supabase/browser";
-import { useExamSession } from "@/lib/exam-session";
 
 export default function ProfilePage() {
   const router = useRouter();
-  const { profile, attempts, updateProfile, signOut } = useAppState();
+  const { profile, attempts, updateProfile, signOut, clearAccount } = useAppState();
   const { clear } = useExamSession();
   const [goal, setGoal] = useState("");
   const [days, setDays] = useState(30);
   const [name, setName] = useState("");
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [confirm, setConfirm] = useState("");
+  const [deleteError, setDeleteError] = useState("");
+  const [deletePending, setDeletePending] = useState(false);
   const filled = useRef(false);
+  const confirmed = confirm.trim().toLocaleUpperCase("de-DE") === "LÖSCHEN";
 
   useEffect(() => {
     if (!profile || filled.current) return;
@@ -32,6 +38,45 @@ export default function ProfilePage() {
   }, [profile]);
 
   if (!profile) return null;
+
+  function closeDelete() {
+    if (deletePending) return;
+    setDeleteOpen(false);
+    setConfirm("");
+    setDeleteError("");
+  }
+
+  function leaveAfterDelete() {
+    clearAccount();
+    window.location.replace("/");
+  }
+
+  async function onDelete() {
+    if (!confirmed || deletePending) return;
+    setDeleteError("");
+    setDeletePending(true);
+    try {
+      const response = await fetch("/api/account/delete", { method: "POST" });
+      const payload = (await response.json().catch(() => ({}))) as { error?: string; ok?: boolean };
+      if (!response.ok) {
+        if (response.status === 401 && profile?.auth === "demo") {
+          leaveAfterDelete();
+          return;
+        }
+        setDeleteError(payload.error || "Das Konto konnte nicht gelöscht werden.");
+        setDeletePending(false);
+        return;
+      }
+      leaveAfterDelete();
+    } catch {
+      if (demoMode) {
+        leaveAfterDelete();
+        return;
+      }
+      setDeleteError("Das Konto konnte nicht gelöscht werden. Bitte versuche es erneut.");
+      setDeletePending(false);
+    }
+  }
 
   return (
     <div className="space-y-6">
@@ -110,6 +155,44 @@ export default function ProfilePage() {
       >
         Abmelden
       </Button>
+      <section id="konto-loeschen" className="rounded-xl border border-danger/30 bg-danger-soft p-5">
+        <h2 className="text-h3 font-bold text-danger">Konto löschen</h2>
+        <p className="mt-2 max-w-2xl text-small text-muted">
+          {demoMode
+            ? "Im Demo-Modus liegen Profil und Versuche nur in diesem Browser. Löschen entfernt sie hier."
+            : "Profil, Versuche und die Anmeldung werden dauerhaft gelöscht. Das lässt sich nicht rückgängig machen."}
+        </p>
+        <Button variant="danger" className="mt-4" onClick={() => setDeleteOpen(true)}>
+          Konto löschen
+        </Button>
+      </section>
+      <Modal open={deleteOpen} title="Konto wirklich löschen?" onClose={closeDelete}>
+        <p>
+          {demoMode
+            ? "Die Daten in diesem Browser werden entfernt."
+            : "Profil, Versuche und die Anmeldung werden unwiderruflich gelöscht."}{" "}
+          Tippe <span className="font-semibold text-foreground">LÖSCHEN</span> zur Bestätigung.
+        </p>
+        <div className="mt-4">
+          <Label htmlFor="delete-confirm">Bestätigung</Label>
+          <Input
+            id="delete-confirm"
+            value={confirm}
+            autoComplete="off"
+            placeholder="LÖSCHEN"
+            onChange={(event) => setConfirm(event.target.value)}
+          />
+        </div>
+        <FieldError>{deleteError}</FieldError>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Button variant="secondary" onClick={closeDelete} disabled={deletePending}>
+            Abbrechen
+          </Button>
+          <Button variant="danger" onClick={() => void onDelete()} disabled={!confirmed || deletePending}>
+            Endgültig löschen
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 }

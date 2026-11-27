@@ -144,6 +144,12 @@ export function useAppState() {
     signOut() {
       update((current) => ({ ...current, profile: null }));
     },
+    clearAccount() {
+      cache = "";
+      window.localStorage.removeItem(KEY);
+      window.sessionStorage.removeItem("deutscheprobe.exam");
+      window.sessionStorage.removeItem("deutscheprobe.full-exam");
+    },
     newAttemptId() {
       return uid("versuch");
     },
