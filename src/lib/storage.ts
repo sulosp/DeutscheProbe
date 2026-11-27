@@ -59,8 +59,8 @@ function update(change: (state: AppState) => AppState) {
 }
 
 export const demoProfile: Profile = {
-  name: "Sulochana Peiris",
-  email: "sulochana@demo.local",
+  name: "Lena Klein",
+  email: "lena@beispiel.de",
   exam: "goethe",
   level: "B1",
   goal: "Goethe-Zertifikat B1",

@@ -68,19 +68,19 @@ export function DashboardPreview() {
             <span className="ml-auto grid h-8 w-8 place-items-center rounded-full border border-border bg-raised text-muted">
               <IconBell className="h-3.5 w-3.5" />
             </span>
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-brand-soft text-micro font-bold text-brand-text">SP</span>
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-brand-soft text-micro font-bold text-brand-text">LK</span>
           </div>
 
           <div className="mt-3 flex flex-wrap items-end justify-between gap-2">
             <div>
               <p className="text-micro font-semibold text-brand-text">Goethe-Zertifikat B1</p>
-              <h2 className="font-display text-h3 font-extrabold tracking-tight">Guten Tag, Sulochana!</h2>
+              <h2 className="font-display text-h3 font-extrabold tracking-tight">Guten Tag, Lena!</h2>
             </div>
             <Badge tone="warn">Alle Werte = Beispieldaten</Badge>
           </div>
 
           <div className="mt-3 grid grid-cols-2 gap-2 lg:grid-cols-4">
-            <MiniStat label="Serie" value="12" unit="Tage" note="5/7 Tagen aktiv" />
+            <MiniStat label="Serie" value="12" unit="Tage" note="5/7 Tage aktiv" />
             <MiniStat label="Heute" value="20" unit="Min." note="Ziel 30 Min." />
             <MiniStat label="Prüfung" value="38" unit="Tage" note="B1" />
             <MiniStat label="Bereitschaft" value="65" unit="%" note="Ø der Teile" />
@@ -93,7 +93,7 @@ export function DashboardPreview() {
             </Card>
             <Card className="col-span-2 flex flex-col items-center p-3 lg:col-span-1">
               <h3 className="self-start text-small font-bold">Prüfungsreife</h3>
-              <ReadinessDonut percent={65} caption="Prüfungsreife 65 Prozent, Beispieldaten Goethe B1." />
+              <ReadinessDonut percent={65} caption="Prüfungsreife 65 Prozent für Goethe B1." />
             </Card>
             <Card className="col-span-2 p-3 lg:col-span-1">
               <p className="text-micro font-semibold text-brand-text">Probeprüfung · Goethe B1</p>
@@ -158,7 +158,7 @@ export function DashboardPreview() {
         </div>
       </div>
       <figcaption className="sr-only">
-        Vorschau der Übersicht für Goethe B1 mit Seitenleiste, Wochenaktivität, Prüfungsreife, Fertigkeiten und letzten Ergebnissen. Beispieldaten.
+        Vorschau der Übersicht für Goethe B1 mit Seitenleiste, Wochenaktivität, Prüfungsreife, Fertigkeiten und letzten Ergebnissen.
       </figcaption>
     </figure>
   );

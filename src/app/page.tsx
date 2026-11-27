@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { IconArrow, IconBook, IconHeadphones, IconMic, IconPen } from "@/components/icons";
 import { DashboardPreview } from "@/components/marketing/dashboard-preview";
 import { SiteHeader } from "@/components/shell/site-header";
@@ -33,13 +34,13 @@ export default function HomePage() {
         <section className="mx-auto max-w-6xl px-4 pb-6 pt-10 md:pt-16">
           <div className="mx-auto max-w-3xl text-center">
             <p className="inline-flex rounded-full bg-brand-soft px-3 py-1 text-small font-bold text-brand-text">
-              Kostenlos · Goethe und telc · A1 bis B2
+              Kostenlos · ohne Abo · A1 bis B2
             </p>
             <h1 className="hero-title mt-5 text-foreground">
-              Kostenlos für Goethe und telc üben – auch <span className="gradient-text">Sprechen und Schreiben</span>
+              Goethe und telc üben – inklusive <span className="gradient-text">Sprechen mit Timer</span>
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lead text-muted">
-              Probeprüfungen mit Timer, Aufgaben zum Lesen, Hören, Schreiben und Sprechen. Alles mit eigenen Beispieldaten, ohne Abo.
+              Kostenlos und ohne Abo: Goethe-Zertifikat und telc von A1 bis B2, mit zeitlich begrenztem Sprechen, Schreiben, Lesen und Hören.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button href="/registrieren" size="lg">
@@ -56,6 +57,26 @@ export default function HomePage() {
                 Beispiel ansehen
               </Button>
             </div>
+            <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-border bg-raised p-4 shadow-card">
+              <p className="text-small font-bold text-foreground">Eine Aufgabe sofort üben, ohne Konto</p>
+              <div className="mt-3 flex flex-wrap justify-center gap-2">
+                {[
+                  ["Lesen", "/probieren/lesen", IconBook],
+                  ["Hören", "/probieren/hoeren", IconHeadphones],
+                  ["Schreiben", "/probieren/schreiben", IconPen],
+                  ["Sprechen", "/probieren/sprechen", IconMic],
+                ].map(([label, href, Icon]) => (
+                  <Link
+                    key={href as string}
+                    href={href as string}
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-border bg-surface px-4 text-small font-semibold text-foreground hover:bg-sunken"
+                  >
+                    <Icon className="h-4 w-4" />
+                    {label as string}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="relative mx-auto mt-12 max-w-6xl md:mt-16">
@@ -65,7 +86,7 @@ export default function HomePage() {
               aria-hidden
             />
             <DashboardPreview />
-            <p className="mt-4 text-center text-small text-muted">So sieht die Übersicht aus · Goethe B1, Beispieldaten</p>
+            <p className="mt-4 text-center text-small text-muted">So sieht die Übersicht für Goethe B1 aus.</p>
           </div>
         </section>
 
@@ -101,11 +122,18 @@ export default function HomePage() {
         </section>
       </main>
       <footer className="border-t border-border bg-raised">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-small text-muted">
-          <span>DeutscheProbe · Beispieldaten, keine Verbindung zu Goethe-Institut oder telc.</span>
-          <Button href="/design-system" variant="ghost" size="sm">
-            Design-System
-          </Button>
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-small text-muted sm:flex-row sm:items-start sm:justify-between">
+          <p className="max-w-xl">
+            DeutscheProbe ist ein unabhängiges Werkzeug zur Prüfungsvorbereitung und nicht mit dem Goethe-Institut oder der telc gGmbH verbunden.
+          </p>
+          <nav className="flex shrink-0 gap-4 font-semibold" aria-label="Rechtliches">
+            <Link href="/impressum" className="hover:text-foreground">
+              Impressum
+            </Link>
+            <Link href="/datenschutz" className="hover:text-foreground">
+              Datenschutz
+            </Link>
+          </nav>
         </div>
       </footer>
     </div>

@@ -124,7 +124,7 @@ export function DashboardView({ track }: { track: Track }) {
       ) : null}
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-        <StatCard label="Serie" value={String(streak)} unit="Tage" note={`${activeDays}/7 Tagen aktiv`} values={bars} />
+        <StatCard label="Serie" value={String(streak)} unit="Tage" note={`${activeDays}/7 Tage aktiv`} values={bars} />
         <StatCard label="Heute" value={String(minutes)} unit="Min." note="Ziel 30 Min." values={bars} />
         <StatCard label="Prüfung" value={String(profile.examInDays)} unit="Tage" note={track.level} values={bars} />
         <StatCard label="Bereitschaft" value={`${readiness}`} unit="%" note={sample ? "Beispieldaten" : "Ø der Teile"} values={stats.map((item) => item.percent)} />
